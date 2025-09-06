@@ -2,7 +2,7 @@ package es.api.onepiece.core.exceptions;
 
 import lombok.Getter;
 
-/** Domain-level exception for campaign errors. */
+/** Domain-level exception for character errors. */
 @Getter
 public class CharacterException extends RuntimeException {
 

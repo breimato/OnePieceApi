@@ -5,13 +5,14 @@ info:
   description:  API to manage characters from One Piece.
 
 paths:
-  /v1/characters:
+  # Public domains
+  /api/v1/characters:
     $ref: './one-piece-api/characters-v1.api.yaml'
 
 components:
   schemas:
     ApiError:
-      $ref: './components/ApiErrorV1.yaml'
+      $ref: './components/ApiError.yaml'
   responses:
     400:
       description: Bad Request
