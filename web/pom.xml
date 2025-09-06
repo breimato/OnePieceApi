@@ -70,6 +70,12 @@
             <version>${jackson.databindnullable.version}</version>
         </dependency>
 
+        <!-- Flyway migrations -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+
         <!-- Testing básico (hereda del padre si está) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
