@@ -84,7 +84,7 @@ db/**/dumps/
 db/**/pgdata/
 db/.env
 db/*.env
-!db/init/**
+db/init/
 
 ### Docker ###
 .docker/
