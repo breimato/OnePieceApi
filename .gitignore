@@ -1,0 +1,97 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IntelliJ IDEA ###
+.idea
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+### Windows ###
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+### IntelliJ/IDE files ###
+*.iml
+.idea/**
+
+### Logs ###
+*.log
+logs/
+log/
+
+### JVM crash logs ###
+hs_err_pid*.log
+replay_pid*.log
+
+### Build and generated sources ###
+**/target/
+**/build/
+**/out/
+**/target/generated-sources/
+**/target/generated-test-sources/
+
+### Environment and secrets ###
+.env
+.env.*
+**/.env
+**/.env.*
+*.secret
+*.secrets
+secrets/
+
+### Spring local config (mantener application.yml por defecto en control de versiones)
+**/application-local.properties
+**/application-local.yml
+**/application-*.local.properties
+**/application-*.local.yml
+# No commitear configuración sensible por módulo (mantener .example)
+web/src/main/resources/application.properties
+web/src/main/resources/application.yml
+!web/src/main/resources/application.properties.example
+!web/src/main/resources/application.yml.example
+
+### Database local data (no ignorar scripts de init) ###
+db/**/volumes/
+db/**/data/
+db/**/backups/
+db/**/dumps/
+db/**/pgdata/
+db/.env
+db/*.env
+!db/init/**
+
+### Docker ###
+.docker/
+**/.docker/
+docker/**/secrets/
+
+### Coverage reports ###
+.jacoco/
+**/jacoco.exec
+**/target/site/jacoco/

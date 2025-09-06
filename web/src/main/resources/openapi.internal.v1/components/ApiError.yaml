@@ -1,0 +1,13 @@
+description: Error
+content:
+  application/json:
+    schema:
+      description: 'Api Error V1'
+      type: object
+      properties:
+        errorCode:
+          description: Error Code
+          type: integer
+        message:
+          description: Message Error
+          type: string

@@ -1,0 +1,33 @@
+openapi: 3.0.3
+info:
+  title: es-one-piece-api
+  version: 1.0.0
+  description:  API to manage characters from One Piece.
+
+paths:
+  /v1/characters:
+    $ref: './one-piece-api/characters-v1.api.yaml'
+
+components:
+  schemas:
+    ApiError:
+      $ref: './components/ApiErrorV1.yaml'
+  responses:
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    404:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    500:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
