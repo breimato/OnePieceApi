@@ -1,0 +1,35 @@
+description: Character V1
+type: object
+properties:
+  id:
+    description: "Character Identification"
+    type: integer
+  name:
+    description: "Character Name"
+    type: string
+  description:
+    description: "Character Description"
+    type: string
+  height:
+    description: "Character Height"
+    type: number
+  age:
+    description: "Character Age"
+    type: integer
+  bounty:
+    description: "Character Bounty"
+    type: integer
+    format: int64
+  image:
+    description: "Character Image URL"
+    type: string
+  status:
+    description: "Character Status"
+    type: string
+  fruits:
+    description: "Fruits"
+    type: array
+    items:
+      $ref: 'Fruit.yaml'
+  debut:
+    $ref: 'Debut.yaml'

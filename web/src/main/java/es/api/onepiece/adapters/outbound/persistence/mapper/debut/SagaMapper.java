@@ -1,0 +1,26 @@
+package es.api.onepiece.adapters.outbound.persistence.mapper.debut;
+
+import es.api.onepiece.adapters.outbound.persistence.entities.SagaEntity;
+import es.api.onepiece.core.internal.domain.debut.Saga;
+import org.mapstruct.Builder;
+import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
+
+/**
+ * The Interface SagaMapper.
+ */
+@Mapper(
+        unmappedTargetPolicy = ReportingPolicy.IGNORE,
+        builder = @Builder(disableBuilder = true),
+        componentModel = "spring"
+)
+public interface SagaMapper {
+
+    /**
+     * To saga.
+     *
+     * @param entity the entity
+     * @return the saga
+     */
+    Saga toSaga(SagaEntity entity);
+}

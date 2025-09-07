@@ -1,25 +1,17 @@
+summary: "Characters V1"
+description: "Characters v1"
 get:
-  summary: List One Piece characters
-  operationId: listCharacters
   tags:
-    - Characters
+    - get-characters-v1
   responses:
     '200':
-      description: Successful response
       content:
         application/json:
           schema:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: string
-                name:
-                  type: string
-    '500':
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '../components/ApiError.yaml'
+            $ref: '../responses/GetCharactersV1Response.yaml'
+      description: "200 OK"
+    '204':
+      description: "No Content - No characters were found"
+  operationId: "GetCharactersV1"
+  summary: "Get Characters V1"
+  description: "Get Characters V1"

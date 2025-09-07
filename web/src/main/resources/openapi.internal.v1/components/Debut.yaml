@@ -1,0 +1,12 @@
+description: Debut V1
+type: object
+properties:
+  id:
+    description: "Debut Identification"
+    type: integer
+  chapter:
+    $ref: 'Chapter.yaml'
+  episode:
+    $ref: 'Episode.yaml'
+  saga:
+    $ref: 'Saga.yaml'

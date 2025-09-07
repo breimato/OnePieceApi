@@ -1,0 +1,9 @@
+description: Get characters response V1
+type: object
+properties:
+  characters:
+    description: Characters
+    type: array
+    items:
+      $ref: '../components/Character.yaml'
+        

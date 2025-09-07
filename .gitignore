@@ -95,3 +95,4 @@ docker/**/secrets/
 .jacoco/
 **/jacoco.exec
 **/target/site/jacoco/
+/.metadata/

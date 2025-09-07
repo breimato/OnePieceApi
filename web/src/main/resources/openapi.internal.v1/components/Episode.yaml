@@ -1,0 +1,15 @@
+description: Episode V1
+type: object
+properties:
+  id:
+    description: "Episode Identification"
+    type: integer
+  title:
+    description: "Episode Title"
+    type: string
+  number:
+    description: "Episode Number"
+    type: integer
+  description:
+    description: "Episode Description"
+    type: string

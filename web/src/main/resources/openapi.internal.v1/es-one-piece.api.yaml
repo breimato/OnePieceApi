@@ -13,6 +13,18 @@ components:
   schemas:
     ApiError:
       $ref: './components/ApiError.yaml'
+    Character:
+      $ref: './components/Character.yaml'
+    Fruit:
+      $ref: './components/Fruit.yaml'
+    Debut:
+      $ref: './components/Debut.yaml'
+    Chapter:
+      $ref: './components/Chapter.yaml'
+    Episode:
+      $ref: './components/Episode.yaml'
+    Saga:
+      $ref: './components/Saga.yaml'
   responses:
     400:
       description: Bad Request

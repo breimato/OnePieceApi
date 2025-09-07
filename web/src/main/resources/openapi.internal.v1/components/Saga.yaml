@@ -1,0 +1,15 @@
+description: Saga V1
+type: object
+properties:
+  id:
+    description: "Saga Identification"
+    type: integer
+  title:
+    description: "Saga Title"
+    type: string
+  number:
+    description: "Saga Number"
+    type: integer
+  description:
+    description: "Saga Description"
+    type: string

@@ -6,10 +6,10 @@ import java.io.Serial;
 
 
 /**
- * The Class CharacterException.
+ * The Class FruitException.
  */
 @Getter
-public class CharacterException extends RuntimeException {
+public class FruitException extends RuntimeException {
 
   /** The Constant serialVersionUID. */
   @Serial
@@ -19,12 +19,12 @@ public class CharacterException extends RuntimeException {
   private final String code;
 
   /**
-   * Instantiates a new character exception.
+   * Instantiates a new fruit exception.
    *
    * @param code the code
    * @param message the message
    */
-  public CharacterException(String code, String message) {
+  public FruitException(String code, String message) {
     super(message);
     this.code = code;
   }
