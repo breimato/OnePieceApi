@@ -334,7 +334,7 @@ public interface CharacterMyBatisMapper {
             c.age,
             c.bounty,
             c.image_url as image
-        from "character" c
+        from character c
         where c.character_id = #{id}
         """
     )
