@@ -4,10 +4,8 @@ import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeE
 import es.api.onepiece.core.internal.domain.debut.Debut;
 import es.api.onepiece.core.internal.domain.fruit.Fruit;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -15,38 +13,11 @@ import java.util.List;
  * The Class Character.
  */
 @Data
-@Builder
+@EqualsAndHashCode(callSuper = false)
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Character {
-
-    /** The id. */
-    @NotNull
-    private Integer id;
-
-    /** The name. */
-    @NotNull
-    private String name;
-
-    /** The description. */
-    @NotNull
-    private String description;
-
-    /** The height. */
-    @NotNull
-    private Integer height;
-
-    /** The age. */
-    @NotNull
-    private Integer age;
-
-    /** The bounty. */
-    @NotNull
-    private Long bounty;
-
-    /** The image. */
-    @NotNull
-    private String image;
+public class Character extends BaseCharacter {
 
     /** The status. */
     @NotNull
