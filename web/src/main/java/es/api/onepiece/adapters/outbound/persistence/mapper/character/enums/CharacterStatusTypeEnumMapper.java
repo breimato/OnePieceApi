@@ -1,6 +1,6 @@
-package es.api.onepiece.adapters.outbound.persistence.mapper.character;
+package es.api.onepiece.adapters.outbound.persistence.mapper.character.enums;
 
-import es.api.onepiece.adapters.outbound.persistence.entities.CharacterStatusEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterStatusEntity;
 import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;

@@ -1,6 +1,6 @@
 package es.api.onepiece.adapters.outbound.persistence.mapper.character;
 
-import es.api.onepiece.adapters.outbound.persistence.entities.CharacterEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterEntity;
 import es.api.onepiece.adapters.outbound.persistence.mapper.debut.DebutMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.fruit.FruitMapper;
 import es.api.onepiece.core.internal.domain.character.Character;
@@ -17,7 +17,7 @@ import java.util.List;
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         builder = @Builder(disableBuilder = true),
         componentModel = "spring",
-        uses = {FruitMapper.class, DebutMapper.class}
+        uses = {FruitMapper.class, DebutMapper.class, RaceMapper.class, HakiMapper.class, CharacterTitleMapper.class, JobMapper.class, CharacterAffiliationMapper.class}
 )
 public interface CharacterMapper {
 

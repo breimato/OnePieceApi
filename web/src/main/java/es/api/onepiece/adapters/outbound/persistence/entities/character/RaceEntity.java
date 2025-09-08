@@ -1,4 +1,4 @@
-package es.api.onepiece.adapters.outbound.persistence.entities;
+package es.api.onepiece.adapters.outbound.persistence.entities.character;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,13 +9,13 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * The Class FruitEntity.
+ * The Class RaceEntity.
  */
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FruitEntity implements Serializable {
+public class RaceEntity implements Serializable {
 
     /** The Constant serialVersionUID. */
     @Serial
@@ -23,16 +23,10 @@ public class FruitEntity implements Serializable {
 
     /** The id. */
     private Integer id;
-
+    
     /** The name. */
     private String name;
-
+    
     /** The description. */
     private String description;
-
-    /** The image. */
-    private String image;
-
-    /** The type. */
-    private FruitTypeEntity type;
 }

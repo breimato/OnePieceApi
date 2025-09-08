@@ -1,0 +1,22 @@
+description: Affiliation V1
+type: object
+properties:
+  id:
+    description: "Affiliation Identification"
+    type: integer
+  leader:
+    description: "Affiliation Leader (basic info)"
+    $ref: 'CharacterBasic.yaml'
+  name:
+    description: "Affiliation Name"
+    type: string
+  description:
+    description: "Affiliation Description"
+    type: string
+  totalBounty:
+    description: "Total Bounty"
+    type: integer
+    format: int64
+  isActive:
+    description: "Is Active"
+    type: boolean

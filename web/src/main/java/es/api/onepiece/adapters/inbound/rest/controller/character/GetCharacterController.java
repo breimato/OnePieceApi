@@ -33,9 +33,9 @@ public class GetCharacterController implements GetCharactersV1Api{
     @Override
     public ResponseEntity<GetCharactersV1ResponseDto> getCharactersV1() {
 
-        final var characters = getCharactersUseCase.findAll();
+        final var characters = this.getCharactersUseCase.findAll();
 
-        final var charactersDto = characterDtoMapper.toCharacterV1DtoList(characters);
+        final var charactersDto = this.characterDtoMapper.toCharacterV1DtoList(characters);
 
         final var getCharactersV1ResponseDto =
                 GetCharactersV1ResponseDto.builder().characters(charactersDto).build();

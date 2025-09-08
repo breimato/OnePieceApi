@@ -1,6 +1,6 @@
 package es.api.onepiece.adapters.outbound.persistence.mapper.debut;
 
-import es.api.onepiece.adapters.outbound.persistence.entities.SagaEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.debut.SagaEntity;
 import es.api.onepiece.core.internal.domain.debut.Saga;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;

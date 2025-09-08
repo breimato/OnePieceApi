@@ -1,6 +1,6 @@
-package es.api.onepiece.adapters.outbound.persistence.mapper.character;
+package es.api.onepiece.adapters.outbound.persistence.mapper.debut;
 
-import es.api.onepiece.adapters.outbound.persistence.entities.ChapterEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.debut.ChapterEntity;
 import es.api.onepiece.core.internal.domain.debut.Chapter;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;

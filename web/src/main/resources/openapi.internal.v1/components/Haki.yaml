@@ -1,0 +1,12 @@
+description: Haki V1
+type: object
+properties:
+  id:
+    description: "Haki Identification"
+    type: integer
+  name:
+    description: "Haki Name"
+    type: string
+  description:
+    description: "Haki Description"
+    type: string

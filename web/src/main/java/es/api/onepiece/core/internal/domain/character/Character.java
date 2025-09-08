@@ -52,9 +52,29 @@ public class Character {
     @NotNull
     private CharacterStatusTypeEnum status;
 
+    /** The race. */
+    @NotNull
+    private Race race;
+
     /** The fruits. */
     @NotNull
     private List<Fruit> fruits;
+
+    /** The hakis. */
+    @NotNull
+    private List<Haki> hakis;
+
+    /** The titles. */
+    @NotNull
+    private List<CharacterTitle> titles;
+
+    /** The jobs. */
+    @NotNull
+    private List<Job> jobs;
+
+    /** The affiliations. */
+    @NotNull
+    private List<CharacterAffiliation> affiliations;
 
     /** The debut. */
     @NotNull

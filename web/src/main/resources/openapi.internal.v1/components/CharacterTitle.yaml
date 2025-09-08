@@ -1,0 +1,12 @@
+description: Character Title V1
+type: object
+properties:
+  id:
+    description: "Character Title Identification"
+    type: integer
+  title:
+    description: "Character Title"
+    type: string
+  isActive:
+    description: "Is Active"
+    type: boolean

@@ -1,6 +1,6 @@
 package es.api.onepiece.adapters.outbound.persistence.mapper.debut;
 
-import es.api.onepiece.adapters.outbound.persistence.entities.EpisodeEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.debut.EpisodeEntity;
 import es.api.onepiece.core.internal.domain.debut.Episode;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;

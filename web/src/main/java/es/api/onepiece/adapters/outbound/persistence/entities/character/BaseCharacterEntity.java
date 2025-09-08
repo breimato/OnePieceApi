@@ -1,5 +1,7 @@
-package es.api.onepiece.adapters.outbound.persistence.entities;
+package es.api.onepiece.adapters.outbound.persistence.entities.character;
 
+import es.api.onepiece.adapters.outbound.persistence.entities.debut.DebutEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitEntity;
 import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,24 +13,22 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * The Class CharacterEntity.
+ * The Class BaseCharacterEntity.
  */
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CharacterEntity implements Serializable {
+public class BaseCharacterEntity implements Serializable {
 
     /** The Constant serialVersionUID. */
     @Serial private static final long serialVersionUID = 1L;
-
 
     /** The id. */
     private Integer id;
 
     /** The name. */
     private String name;
-
     
     /** The description. */
     private String description;
@@ -48,17 +48,5 @@ public class CharacterEntity implements Serializable {
     /** The image. */
     
     private String image;
-
-    /** The status. */
-    
-    private CharacterStatusTypeEnum status;
-
-    /** The fruits. */
-    
-    private List<FruitEntity> fruits;
-
-    /** The debut. */
-    
-    private DebutEntity debut;
 
 }

@@ -1,0 +1,12 @@
+description: Race V1
+type: object
+properties:
+  id:
+    description: "Race Identification"
+    type: integer
+  name:
+    description: "Race Name"
+    type: string
+  description:
+    description: "Race Description"
+    type: string

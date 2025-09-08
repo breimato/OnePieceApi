@@ -29,7 +29,7 @@ public class GetCharacterRepository implements FindCharactersPersistencePort {
      */
     @Override
     public List<Character> findAll() {
-        final var characters = characterMyBatisMapper.findAll();
-        return characterMapper.toCharacterList(characters);
+        final var characters = this.characterMyBatisMapper.findAll();
+        return this.characterMapper.toCharacterList(characters);
     }
 }

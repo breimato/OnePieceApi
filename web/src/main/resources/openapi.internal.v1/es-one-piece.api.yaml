@@ -15,6 +15,8 @@ components:
       $ref: './components/ApiError.yaml'
     Character:
       $ref: './components/Character.yaml'
+    CharacterBasic:
+      $ref: './components/CharacterBasic.yaml'
     Fruit:
       $ref: './components/Fruit.yaml'
     Debut:
@@ -25,6 +27,18 @@ components:
       $ref: './components/Episode.yaml'
     Saga:
       $ref: './components/Saga.yaml'
+    Race:
+      $ref: './components/Race.yaml'
+    Haki:
+      $ref: './components/Haki.yaml'
+    Job:
+      $ref: './components/Job.yaml'
+    CharacterTitle:
+      $ref: './components/CharacterTitle.yaml'
+    Affiliation:
+      $ref: './components/Affiliation.yaml'
+    CharacterAffiliation:
+      $ref: './components/CharacterAffiliation.yaml'
   responses:
     400:
       description: Bad Request

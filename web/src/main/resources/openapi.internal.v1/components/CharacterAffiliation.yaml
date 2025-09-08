@@ -1,0 +1,11 @@
+description: Character Affiliation V1
+type: object
+properties:
+  affiliation:
+    $ref: 'Affiliation.yaml'
+  status:
+    description: "Affiliation Status"
+    type: string
+  role:
+    description: "Affiliation Role"
+    type: string

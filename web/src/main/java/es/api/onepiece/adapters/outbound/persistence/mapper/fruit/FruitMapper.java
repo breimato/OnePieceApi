@@ -1,6 +1,6 @@
 package es.api.onepiece.adapters.outbound.persistence.mapper.fruit;
 
-import es.api.onepiece.adapters.outbound.persistence.entities.FruitEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitEntity;
 import es.api.onepiece.core.internal.domain.fruit.Fruit;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;

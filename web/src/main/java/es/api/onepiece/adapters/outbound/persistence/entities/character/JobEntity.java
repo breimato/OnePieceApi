@@ -1,4 +1,4 @@
-package es.api.onepiece.adapters.outbound.persistence.entities;
+package es.api.onepiece.adapters.outbound.persistence.entities.character;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,13 +9,13 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * The Class SagaEntity.
+ * The Class JobEntity.
  */
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SagaEntity implements Serializable {
+public class JobEntity implements Serializable {
 
     /** The Constant serialVersionUID. */
     @Serial
@@ -24,11 +24,8 @@ public class SagaEntity implements Serializable {
     /** The id. */
     private Integer id;
     
-    /** The title. */
-    private String title;
-    
-    /** The number. */
-    private Integer number;
+    /** The name. */
+    private String name;
     
     /** The description. */
     private String description;

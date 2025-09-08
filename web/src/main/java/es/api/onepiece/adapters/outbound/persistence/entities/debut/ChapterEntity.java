@@ -1,4 +1,4 @@
-package es.api.onepiece.adapters.outbound.persistence.entities;
+package es.api.onepiece.adapters.outbound.persistence.entities.debut;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

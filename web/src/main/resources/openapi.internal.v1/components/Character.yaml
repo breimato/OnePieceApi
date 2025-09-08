@@ -26,10 +26,32 @@ properties:
   status:
     description: "Character Status"
     type: string
+  race:
+    $ref: 'Race.yaml'
   fruits:
     description: "Fruits"
     type: array
     items:
       $ref: 'Fruit.yaml'
+  hakis:
+    description: "Hakis"
+    type: array
+    items:
+      $ref: 'Haki.yaml'
+  titles:
+    description: "Titles"
+    type: array
+    items:
+      $ref: 'CharacterTitle.yaml'
+  jobs:
+    description: "Jobs"
+    type: array
+    items:
+      $ref: 'Job.yaml'
+  affiliations:
+    description: "Affiliations"
+    type: array
+    items:
+      $ref: 'CharacterAffiliation.yaml'
   debut:
     $ref: 'Debut.yaml'

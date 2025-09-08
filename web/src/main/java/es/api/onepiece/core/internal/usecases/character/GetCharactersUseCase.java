@@ -26,6 +26,6 @@ public class GetCharactersUseCase implements GetCharactersPort {
      */
     @Override
     public List<Character> findAll() {
-        return findCharactersPersistencePort.findAll();
+        return this.findCharactersPersistencePort.findAll();
     }
 }

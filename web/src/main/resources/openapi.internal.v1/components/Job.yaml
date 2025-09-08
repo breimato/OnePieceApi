@@ -1,0 +1,12 @@
+description: Job V1
+type: object
+properties:
+  id:
+    description: "Job Identification"
+    type: integer
+  name:
+    description: "Job Name"
+    type: string
+  description:
+    description: "Job Description"
+    type: string
