@@ -20,6 +20,7 @@ public class Affiliation {
     private Integer id;
 
     /** The leader. */
+    @NotNull
     private BaseCharacter leader;
 
     /** The name. */

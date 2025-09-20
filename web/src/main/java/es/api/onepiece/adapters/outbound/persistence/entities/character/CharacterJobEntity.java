@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -22,8 +23,10 @@ public class CharacterJobEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** The character. */
+    @NotNull
     private CharacterEntity character;
     
     /** The job. */
+    @NotNull
     private JobEntity job;
 }

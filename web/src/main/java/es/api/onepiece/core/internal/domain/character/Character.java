@@ -3,6 +3,7 @@ package es.api.onepiece.core.internal.domain.character;
 import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum;
 import es.api.onepiece.core.internal.domain.debut.Debut;
 import es.api.onepiece.core.internal.domain.fruit.Fruit;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -28,23 +29,23 @@ public class Character extends BaseCharacter {
     private Race race;
 
     /** The fruits. */
-    @NotNull
+    @Valid
     private List<Fruit> fruits;
 
     /** The hakis. */
-    @NotNull
+    @Valid
     private List<Haki> hakis;
 
     /** The titles. */
-    @NotNull
+    @Valid
     private List<CharacterTitle> titles;
 
     /** The jobs. */
-    @NotNull
+    @Valid
     private List<Job> jobs;
 
     /** The affiliations. */
-    @NotNull
+    @Valid
     private List<CharacterAffiliation> affiliations;
 
     /** The debut. */

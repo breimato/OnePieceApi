@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Validated
 @RequiredArgsConstructor
-public class GetCharacterController implements GetCharactersV1Api{
+public class GetCharacterController implements GetCharactersV1Api {
 
     /** The get characters use case. */
     private final GetCharactersUseCase getCharactersUseCase;

@@ -21,6 +21,7 @@ public class CharacterTitle {
     private Integer id;
 
     /** The character. */
+    @NotNull
     private Character character;
 
     /** The title. */

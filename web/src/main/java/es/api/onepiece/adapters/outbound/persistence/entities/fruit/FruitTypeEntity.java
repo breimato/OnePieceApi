@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -24,8 +25,10 @@ public class FruitTypeEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** The id. */
+    @NotNull
     private Integer id;
     
     /** The type. */
+    @NotNull
     private String type;
 }
