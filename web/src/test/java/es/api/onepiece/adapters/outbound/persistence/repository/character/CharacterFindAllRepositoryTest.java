@@ -16,10 +16,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
- * The Class GetCharacterRepositoryTest.
+ * The Class CharacterFindAllRepositoryTest.
  */
 @ExtendWith(MockitoExtension.class)
-class GetCharacterRepositoryTest {
+class CharacterFindAllRepositoryTest {
 
     /** The character my batis mapper. */
     @Mock
@@ -31,7 +31,7 @@ class GetCharacterRepositoryTest {
 
     /** The get character repository. */
     @InjectMocks
-    private GetCharacterRepository getCharacterRepository;
+    private CharacterFindAllRepository characterFindAllRepository;
 
     /**
      * Test find all when characters exist then maps and returns domain list.
@@ -47,7 +47,7 @@ class GetCharacterRepositoryTest {
         when(characterMapper.toCharacterList(characterEntities)).thenReturn(domainCharacters);
 
         // When
-        final var result = getCharacterRepository.findAll();
+        final var result = characterFindAllRepository.findAll();
 
         // Then
         assertEquals(domainCharacters, result);

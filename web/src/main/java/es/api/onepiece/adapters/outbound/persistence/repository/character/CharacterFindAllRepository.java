@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * The Class GetCharacterRepository.
+ * The Class CharacterFindAllRepository.
  */
 @Component
 @AllArgsConstructor
-public class GetCharacterRepository implements FindCharactersPersistencePort {
+public class CharacterFindAllRepository implements FindCharactersPersistencePort {
 
     /** The character my batis mapper. */
     private final CharacterMyBatisMapper characterMyBatisMapper;
