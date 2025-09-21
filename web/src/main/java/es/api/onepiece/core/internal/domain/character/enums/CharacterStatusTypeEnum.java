@@ -38,7 +38,7 @@ public enum CharacterStatusTypeEnum {
 
         try {
             return CharacterStatusTypeEnum.valueOf(name);
-        } catch (final Exception exception) {
+        } catch (final CharacterException exception) {
             log.error(ExceptionMessageConstants.CHARACTER_STATUS_MESSAGE_ERROR, exception);
             throw new CharacterException(
                     ExceptionMessageConstants.CHARACTER_STATUS_CODE_ERROR,
@@ -56,7 +56,7 @@ public enum CharacterStatusTypeEnum {
 
         try {
             return characterStatus.name();
-        } catch (final RuntimeException exception) {
+        } catch (final CharacterException exception) {
             log.error(ExceptionMessageConstants.CHARACTER_STATUS_MESSAGE_ERROR, exception);
             throw new CharacterException(
                     ExceptionMessageConstants.CHARACTER_STATUS_CODE_ERROR,

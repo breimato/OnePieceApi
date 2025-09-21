@@ -35,7 +35,7 @@ public enum CharacterTitleTypeEnum {
     public static CharacterTitleTypeEnum getByName(final String name) {
         try {
             return CharacterTitleTypeEnum.valueOf(name);
-        } catch (final Exception exception) {
+        } catch (final CharacterException exception) {
             log.error(ExceptionMessageConstants.CHARACTER_TITLE_MESSAGE_ERROR, exception);
             throw new CharacterException(
                 ExceptionMessageConstants.CHARACTER_TITLE_CODE_ERROR,
@@ -52,7 +52,7 @@ public enum CharacterTitleTypeEnum {
     public static String getByType(final CharacterTitleTypeEnum type) {
         try {
             return type.name();
-        } catch (final RuntimeException exception) {
+        } catch (final CharacterException exception) {
             log.error(ExceptionMessageConstants.CHARACTER_TITLE_MESSAGE_ERROR, exception);
             throw new CharacterException(
                 ExceptionMessageConstants.CHARACTER_TITLE_CODE_ERROR,

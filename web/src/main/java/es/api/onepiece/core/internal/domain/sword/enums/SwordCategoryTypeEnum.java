@@ -35,7 +35,7 @@ public enum SwordCategoryTypeEnum {
     public static SwordCategoryTypeEnum getByName(final String name) {
         try {
             return SwordCategoryTypeEnum.valueOf(name);
-        } catch (final Exception exception) {
+        } catch (final SwordException exception) {
             log.error(ExceptionMessageConstants.SWORD_CATEGORY_MESSAGE_ERROR, exception);
             throw new SwordException(
                 ExceptionMessageConstants.SWORD_CATEGORY_CODE_ERROR,
@@ -52,7 +52,7 @@ public enum SwordCategoryTypeEnum {
     public static String getByType(final SwordCategoryTypeEnum swordCategoryType) {
         try {
             return swordCategoryType.name();
-        } catch (final RuntimeException exception) {
+        } catch (final SwordException exception) {
             log.error(ExceptionMessageConstants.SWORD_CATEGORY_MESSAGE_ERROR, exception);
             throw new SwordException(
                 ExceptionMessageConstants.SWORD_CATEGORY_CODE_ERROR,

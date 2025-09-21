@@ -48,7 +48,7 @@ public enum FruitTypeEnum {
 
         try {
             return FruitTypeEnum.valueOf(name);
-        } catch (final Exception exception) {
+        } catch (final FruitException exception) {
             log.error(ExceptionMessageConstants.FRUIT_TYPE_MESSAGE_ERROR, exception);
             throw new FruitException(
                     ExceptionMessageConstants.FRUIT_TYPE_CODE_ERROR,
@@ -66,7 +66,7 @@ public enum FruitTypeEnum {
 
         try {
             return fruitType.name();
-        } catch (final Exception exception) {
+        } catch (final FruitException exception) {
             log.error(ExceptionMessageConstants.FRUIT_TYPE_MESSAGE_ERROR, exception);
             throw new FruitException(
                     ExceptionMessageConstants.FRUIT_TYPE_CODE_ERROR,

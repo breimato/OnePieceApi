@@ -35,7 +35,7 @@ public enum CharacterAffiliationRoleEnum {
     public static CharacterAffiliationRoleEnum getByName(final String name) {
         try {
             return CharacterAffiliationRoleEnum.valueOf(name);
-        } catch (final Exception exception) {
+        } catch (final CharacterException exception) {
             log.error(ExceptionMessageConstants.CHARACTER_AFFILIATION_ROLE_MESSAGE_ERROR, exception);
             throw new CharacterException(
                 ExceptionMessageConstants.CHARACTER_AFFILIATION_ROLE_CODE_ERROR,
@@ -52,7 +52,7 @@ public enum CharacterAffiliationRoleEnum {
     public static String getByType(final CharacterAffiliationRoleEnum characterAffiliationRole) {
         try {
             return characterAffiliationRole.name();
-        } catch (final RuntimeException exception) {
+        } catch (final CharacterException exception) {
             log.error(ExceptionMessageConstants.CHARACTER_AFFILIATION_ROLE_MESSAGE_ERROR, exception);
             throw new CharacterException(
                 ExceptionMessageConstants.CHARACTER_AFFILIATION_ROLE_CODE_ERROR,

@@ -30,7 +30,7 @@ public enum BoatTypeEnum {
     public static BoatTypeEnum getByName(final String name) {
         try {
             return BoatTypeEnum.valueOf(name);
-        } catch (final Exception exception) {
+        } catch (final BoatException exception) {
             log.error(ExceptionMessageConstants.BOAT_TYPE_MESSAGE_ERROR, exception);
             throw new BoatException(
                 ExceptionMessageConstants.BOAT_TYPE_CODE_ERROR,
@@ -47,7 +47,7 @@ public enum BoatTypeEnum {
     public static String getByType(final BoatTypeEnum boatType) {
         try {
             return boatType.name();
-        } catch (final RuntimeException exception) {
+        } catch (final BoatException exception) {
             log.error(ExceptionMessageConstants.BOAT_TYPE_MESSAGE_ERROR, exception);
             throw new BoatException(
                 ExceptionMessageConstants.BOAT_TYPE_CODE_ERROR,

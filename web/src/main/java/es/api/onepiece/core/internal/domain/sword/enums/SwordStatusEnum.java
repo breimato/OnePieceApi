@@ -35,7 +35,7 @@ public enum SwordStatusEnum {
     public static SwordStatusEnum getByName(final String name) {
         try {
             return SwordStatusEnum.valueOf(name);
-        } catch (final Exception exception) {
+        } catch (final SwordException exception) {
             log.error(ExceptionMessageConstants.SWORD_STATUS_MESSAGE_ERROR, exception);
             throw new SwordException(
                 ExceptionMessageConstants.SWORD_STATUS_CODE_ERROR,
@@ -52,7 +52,7 @@ public enum SwordStatusEnum {
     public static String getByType(final SwordStatusEnum swordStatus) {
         try {
             return swordStatus.name();
-        } catch (final RuntimeException exception) {
+        } catch (final SwordException exception) {
             log.error(ExceptionMessageConstants.SWORD_STATUS_MESSAGE_ERROR, exception);
             throw new SwordException(
                 ExceptionMessageConstants.SWORD_STATUS_CODE_ERROR,
