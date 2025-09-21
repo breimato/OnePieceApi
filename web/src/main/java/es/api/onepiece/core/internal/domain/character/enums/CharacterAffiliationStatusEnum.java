@@ -36,27 +36,27 @@ public enum CharacterAffiliationStatusEnum {
         try {
             return CharacterAffiliationStatusEnum.valueOf(name);
         } catch (final Exception exception) {
-            log.error(ExceptionMessageConstants.CHARACTER_STATUS_MESSAGE_ERROR, exception);
+            log.error(ExceptionMessageConstants.CHARACTER_AFFILIATION_STATUS_MESSAGE_ERROR, exception);
             throw new CharacterException(
-                ExceptionMessageConstants.CHARACTER_STATUS_CODE_ERROR,
-                ExceptionMessageConstants.CHARACTER_STATUS_MESSAGE_ERROR);
+                ExceptionMessageConstants.CHARACTER_AFFILIATION_STATUS_CODE_ERROR,
+                ExceptionMessageConstants.CHARACTER_AFFILIATION_STATUS_MESSAGE_ERROR);
         }
     }
 
     /**
      * Gets the by type.
      *
-     * @param type the type
+     * @param characterAffiliationStatus the character affiliation status
      * @return the by type
      */
-    public static String getByType(final CharacterAffiliationStatusEnum type) {
+    public static String getByType(final CharacterAffiliationStatusEnum characterAffiliationStatus) {
         try {
-            return type.name();
+            return characterAffiliationStatus.name();
         } catch (final RuntimeException exception) {
-            log.error(ExceptionMessageConstants.CHARACTER_STATUS_MESSAGE_ERROR, exception);
+            log.error(ExceptionMessageConstants.CHARACTER_AFFILIATION_STATUS_MESSAGE_ERROR, exception);
             throw new CharacterException(
-                ExceptionMessageConstants.CHARACTER_STATUS_CODE_ERROR,
-                ExceptionMessageConstants.CHARACTER_STATUS_MESSAGE_ERROR);
+                ExceptionMessageConstants.CHARACTER_AFFILIATION_STATUS_CODE_ERROR,
+                ExceptionMessageConstants.CHARACTER_AFFILIATION_STATUS_MESSAGE_ERROR);
         }
     }
 }

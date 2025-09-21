@@ -29,8 +29,4 @@ public class SwordCategoryEntity implements Serializable {
     /** The name. */
     @NotNull
     private String name;
-    
-    /** The description. */
-    @NotNull
-    private String description;
 }

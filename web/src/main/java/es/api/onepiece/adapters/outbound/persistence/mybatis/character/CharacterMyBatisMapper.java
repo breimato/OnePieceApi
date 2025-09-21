@@ -7,6 +7,9 @@ import es.api.onepiece.adapters.outbound.persistence.entities.debut.EpisodeEntit
 import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitTypeEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.debut.SagaEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.sword.SwordEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.sword.SwordCategoryEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.boat.BoatEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.One;
@@ -78,6 +81,24 @@ public interface CharacterMyBatisMapper {
                 javaType = List.class,
                 column = "character_id",
                 many = @Many(select = "getAffiliationsByCharacterId")
+            ),
+            @Result(
+                property = "swords",
+                javaType = List.class,
+                column = "character_id",
+                many = @Many(select = "getSwordsByCharacterId")
+            ),
+            @Result(
+                property = "transformations",
+                javaType = List.class,
+                column = "character_id",
+                many = @Many(select = "getTransformationsByCharacterId")
+            ),
+            @Result(
+                property = "attacks",
+                javaType = List.class,
+                column = "character_id",
+                many = @Many(select = "getAttacksByCharacterId")
             )
         }
     )
@@ -224,7 +245,7 @@ public interface CharacterMyBatisMapper {
     )
     @Select(
         """
-        select h.id as haki_id, h.name, ''::text as description
+        select h.id as haki_id, h.name, h.name as description
         from character_haki ch
         join haki h on h.id = ch.haki_id
         where ch.character_id = #{characterId}
@@ -279,6 +300,109 @@ public interface CharacterMyBatisMapper {
     List<JobEntity> getJobsByCharacterId(Integer characterId);
 
     /**
+     * Gets the swords by character id.
+     *
+     * @param characterId the character id
+     * @return the swords by character id
+     */
+    @Results(
+        value = {
+            @Result(property = "id",          column = "sword_id"),
+            @Result(property = "name",        column = "name"),
+            @Result(property = "description", column = "description"),
+            @Result(property = "blackSword",  column = "is_black_sword"),
+            @Result(property = "swordStatus", column = "status_name"),
+            @Result(property = "category",    column = "category_id", one = @One(select = "getSwordCategoryById")),
+            @Result(property = "debut",       column = "first_appearance_id", one = @One(select = "getDebutById"))
+        }
+    )
+    @Select(
+        """
+        select s.sword_id as sword_id, s.name, s.description, s.is_black_sword, ss.name as status_name, s.category_id, s.first_appearance_id
+        from character_sword cs
+        join sword s on s.sword_id = cs.sword_id
+        join sword_status ss on ss.id = s.status_id
+        where cs.character_id = #{characterId}
+        """
+    )
+    List<SwordEntity> getSwordsByCharacterId(Integer characterId);
+
+    /**
+     * Gets the sword category by id.
+     *
+     * @param categoryId the category id
+     * @return the sword category by id
+     */
+    @Select("select id, name from sword_category where id = #{categoryId}")
+    @Results({
+        @Result(property = "id",          column = "id"),
+        @Result(property = "name",        column = "name")
+    })
+    SwordCategoryEntity getSwordCategoryById(Integer categoryId);
+
+    /**
+     * Gets the transformations by character id.
+     *
+     * @param characterId the character id
+     * @return the transformations by character id
+     */
+    @Results(
+        value = {
+            @Result(property = "id",          column = "transformation_id"),
+            @Result(property = "name",        column = "name"),
+            @Result(property = "description", column = "description"),
+            @Result(property = "debut",       column = "first_appearance_id", one = @One(select = "getDebutById"))
+        }
+    )
+    @Select(
+        """
+        select t.transformation_id as transformation_id, t.name, t.description, t.first_appearance_id
+        from transformation t
+        where t.character_id = #{characterId}
+        """
+    )
+    List<TransformationEntity> getTransformationsByCharacterId(Integer characterId);
+
+    /**
+     * Gets the attacks by character id.
+     *
+     * @param characterId the character id
+     * @return the attacks by character id
+     */
+    @Results(
+        value = {
+            @Result(property = "id",          column = "attack_id"),
+            @Result(property = "name",        column = "name"),
+            @Result(property = "description", column = "description"),
+            @Result(property = "debut",       column = "first_appearance_id", one = @One(select = "getDebutById")),
+            @Result(property = "transformation", column = "transformation_id", one = @One(select = "getTransformationById"))
+        }
+    )
+    @Select(
+        """
+        select a.attack_id as attack_id, a.name, a.description, a.first_appearance_id, a.transformation_id
+        from attack a
+        where a.character_id = #{characterId}
+        """
+    )
+    List<AttackEntity> getAttacksByCharacterId(Integer characterId);
+
+    /**
+     * Gets the transformation by id.
+     *
+     * @param id the id
+     * @return the transformation by id
+     */
+    @Select("select transformation_id as transformation_id, name, description, character_id, first_appearance_id from transformation where transformation_id = #{id}")
+    @Results(value = {
+        @Result(property = "id",          column = "transformation_id"),
+        @Result(property = "name",        column = "name"),
+        @Result(property = "description", column = "description"),
+        @Result(property = "debut",       column = "first_appearance_id", one = @One(select = "getDebutById"))
+    })
+    TransformationEntity getTransformationById(Integer id);
+
+    /**
      * Gets the affiliations by character id.
      *
      * @param characterId the character id
@@ -294,6 +418,9 @@ public interface CharacterMyBatisMapper {
             @Result(property = "affiliation.leader",
                     column = "leader_id",
                     one = @One(select = "getCharacterLeaderById")),
+            @Result(property = "affiliation.boats",
+                    column = "affiliation_id",
+                    many = @Many(select = "getBoatsByAffiliationId")),
             @Result(property = "status", column = "status"),
             @Result(property = "role",   column = "role")
         }
@@ -317,6 +444,31 @@ public interface CharacterMyBatisMapper {
         """
     )
     List<CharacterAffiliationEntity> getAffiliationsByCharacterId(Integer characterId);
+
+    /**
+     * Gets the boats by affiliation id.
+     *
+     * @param affiliationId the affiliation id
+     * @return the boats by affiliation id
+     */
+    @Results(
+        value = {
+            @Result(property = "id",          column = "boat_id"),
+            @Result(property = "name",        column = "name"),
+            @Result(property = "isAlive",     column = "is_alive"),
+            @Result(property = "boatType",    column = "type_name"),
+            @Result(property = "debut",       column = "first_appearance_id", one = @One(select = "getDebutById"))
+        }
+    )
+    @Select(
+        """
+        select b.boat_id as boat_id, b.name, b.is_alive, bt.name as type_name, b.first_appearance_id
+        from boat b
+        left join boat_type bt on bt.id = b.type_id
+        where b.affiliation_id = #{affiliationId}
+        """
+    )
+    List<BoatEntity> getBoatsByAffiliationId(Integer affiliationId);
 
     /**
      * Gets the character leader by id.

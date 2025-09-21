@@ -37,7 +37,4 @@ public class Boat {
     @NotNull
     private Debut debut;
 
-    /** The affiliation. */
-    @NotNull
-    private Affiliation affiliation;
 }

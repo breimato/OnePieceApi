@@ -39,6 +39,14 @@ components:
       $ref: './components/Affiliation.yaml'
     CharacterAffiliation:
       $ref: './components/CharacterAffiliation.yaml'
+    Boat:
+      $ref: './components/Boat.yaml'
+    Sword:
+      $ref: './components/Sword.yaml'
+    Transformation:
+      $ref: './components/Transformation.yaml'
+    Attack:
+      $ref: './components/Attack.yaml'
   responses:
     400:
       description: Bad Request

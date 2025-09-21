@@ -3,6 +3,7 @@ package es.api.onepiece.core.internal.domain.character;
 import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum;
 import es.api.onepiece.core.internal.domain.debut.Debut;
 import es.api.onepiece.core.internal.domain.fruit.Fruit;
+import es.api.onepiece.core.internal.domain.sword.Sword;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -50,6 +51,18 @@ public class Character extends BaseCharacter {
     /** The affiliations. */
     @Valid
     private List<CharacterAffiliation> affiliations;
+
+    /** The transformations. */
+    @Valid
+    private List<Transformation> transformations;
+
+    /** The attacks. */
+    @Valid
+    private List<Attack> attacks;
+
+    /** The swords. */
+    @Valid
+    private List<Sword> swords;
 
     /** The debut. */
     @NotNull

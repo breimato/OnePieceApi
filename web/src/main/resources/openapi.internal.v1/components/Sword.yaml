@@ -1,0 +1,23 @@
+description: Sword V1
+type: object
+properties:
+  id:
+    description: "Sword Identification"
+    type: integer
+  name:
+    description: "Sword Name"
+    type: string
+  description:
+    description: "Sword Description"
+    type: string
+  blackSword:
+    description: "Is Black Sword"
+    type: boolean
+  swordStatus:
+    description: "Sword Status"
+    type: string
+  category:
+    description: "Sword Category"
+    type: string
+  debut:
+    $ref: 'Debut.yaml'

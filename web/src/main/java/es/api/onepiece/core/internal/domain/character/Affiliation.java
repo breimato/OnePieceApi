@@ -1,10 +1,14 @@
 package es.api.onepiece.core.internal.domain.character;
 
+import es.api.onepiece.core.internal.domain.boat.Boat;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 /**
  * The Class Affiliation.
@@ -38,4 +42,8 @@ public class Affiliation {
     /** The is active. */
     @NotNull
     private Boolean isActive;
+
+    /** The boats. */
+    @Valid
+    private List<Boat> boats;
 }

@@ -59,13 +59,13 @@ public enum FruitTypeEnum {
     /**
      * Gets the by type.
      *
-     * @param fruitTypeEnum the fruit type enum
+     * @param fruitType the fruit type
      * @return the by type
      */
-    public static String getByType(final FruitTypeEnum fruitTypeEnum) {
+    public static String getByType(final FruitTypeEnum fruitType) {
 
         try {
-            return fruitTypeEnum.name();
+            return fruitType.name();
         } catch (final Exception exception) {
             log.error(ExceptionMessageConstants.FRUIT_TYPE_MESSAGE_ERROR, exception);
             throw new FruitException(

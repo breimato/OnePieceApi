@@ -2,6 +2,7 @@ package es.api.onepiece.adapters.outbound.persistence.entities.character;
 
 import es.api.onepiece.adapters.outbound.persistence.entities.debut.DebutEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.sword.SwordEntity;
 import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -45,6 +46,18 @@ public class CharacterEntity extends BaseCharacterEntity implements Serializable
     /** The titles. */
     @Valid
     private List<CharacterTitleEntity> titles;
+
+    /** The swords. */
+    @Valid
+    private List<SwordEntity> swords;
+
+    /** The transformations. */
+    @Valid
+    private List<TransformationEntity> transformations;
+
+    /** The attacks. */
+    @Valid
+    private List<AttackEntity> attacks;
 
     /** The jobs. */
     @Valid

@@ -26,10 +26,6 @@ public class CharacterTitleEntity implements Serializable {
     @NotNull
     private Integer id;
     
-    /** The character. */
-    @NotNull
-    private CharacterEntity character;
-    
     /** The title. */
     @NotNull
     private String title;

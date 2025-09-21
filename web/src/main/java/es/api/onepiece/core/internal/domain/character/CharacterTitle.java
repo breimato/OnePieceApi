@@ -1,6 +1,6 @@
 package es.api.onepiece.core.internal.domain.character;
 
-import es.api.onepiece.core.internal.domain.character.enums.CharacterTitleEnum;
+import es.api.onepiece.core.internal.domain.character.enums.CharacterTitleTypeEnum;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,13 +20,9 @@ public class CharacterTitle {
     @NotNull
     private Integer id;
 
-    /** The character. */
-    @NotNull
-    private Character character;
-
     /** The title. */
     @NotNull
-    private CharacterTitleEnum title;
+    private CharacterTitleTypeEnum title;
 
     /** The is active. */
     @NotNull

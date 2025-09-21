@@ -1,5 +1,6 @@
 package es.api.onepiece.core.internal.domain.character;
 
+import es.api.onepiece.core.internal.domain.character.enums.HakiTypeEnum;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,9 +20,9 @@ public class Haki {
     @NotNull
     private Integer id;
 
-    /** The name. */
+    /** The type. */
     @NotNull
-    private String name;
+    private HakiTypeEnum type;
 
     /** The description. */
     @NotNull

@@ -1,13 +1,16 @@
 package es.api.onepiece.adapters.outbound.persistence.entities.character;
 
+import es.api.onepiece.adapters.outbound.persistence.entities.boat.BoatEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.Valid;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * The Class AffiliationEntity.
@@ -45,4 +48,8 @@ public class AffiliationEntity implements Serializable {
     /** The is active. */
     @NotNull
     private Boolean isActive;
+
+    /** The boats. */
+    @Valid
+    private List<BoatEntity> boats;
 }

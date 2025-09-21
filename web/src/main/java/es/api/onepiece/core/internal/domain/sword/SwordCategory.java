@@ -1,5 +1,6 @@
 package es.api.onepiece.core.internal.domain.sword;
 
+import es.api.onepiece.core.internal.domain.sword.enums.SwordCategoryTypeEnum;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,9 +20,9 @@ public class SwordCategory {
     @NotNull
     private Integer id;
 
-    /** The name. */
+    /** The type. */
     @NotNull
-    private String name;
+    private SwordCategoryTypeEnum type;
 
     /** The description. */
     @NotNull

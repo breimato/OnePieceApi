@@ -14,16 +14,16 @@ import org.mapstruct.ReportingPolicy;
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         builder = @Builder(disableBuilder = true),
         componentModel = "spring",
-        uses = {CharacterTitleEnumMapper.class}
+        uses = {CharacterTitleTypeEnumMapper.class}
 )
 public interface CharacterTitleMapper {
 
     /**
      * To character title.
      *
-     * @param entity the entity
+     * @param characterTitleEntity the character title entity
      * @return the character title
      */
-    @Mapping(target = "character", ignore = true)
-    CharacterTitle toCharacterTitle(CharacterTitleEntity entity);
+    @Mapping(source = "title", target = "title")
+    CharacterTitle toCharacterTitle(CharacterTitleEntity characterTitleEntity);
 }

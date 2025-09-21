@@ -36,25 +36,27 @@ public enum CharacterAffiliationRoleEnum {
         try {
             return CharacterAffiliationRoleEnum.valueOf(name);
         } catch (final Exception exception) {
+            log.error(ExceptionMessageConstants.CHARACTER_AFFILIATION_ROLE_MESSAGE_ERROR, exception);
             throw new CharacterException(
-                ExceptionMessageConstants.CHARACTER_STATUS_CODE_ERROR,
-                ExceptionMessageConstants.CHARACTER_STATUS_MESSAGE_ERROR);
+                ExceptionMessageConstants.CHARACTER_AFFILIATION_ROLE_CODE_ERROR,
+                ExceptionMessageConstants.CHARACTER_AFFILIATION_ROLE_MESSAGE_ERROR);
         }
     }
 
     /**
      * Gets the by type.
      *
-     * @param type the type
+     * @param characterAffiliationRole the character affiliation role
      * @return the by type
      */
-    public static String getByType(final CharacterAffiliationRoleEnum type) {
+    public static String getByType(final CharacterAffiliationRoleEnum characterAffiliationRole) {
         try {
-            return type.name();
+            return characterAffiliationRole.name();
         } catch (final RuntimeException exception) {
+            log.error(ExceptionMessageConstants.CHARACTER_AFFILIATION_ROLE_MESSAGE_ERROR, exception);
             throw new CharacterException(
-                ExceptionMessageConstants.CHARACTER_STATUS_CODE_ERROR,
-                ExceptionMessageConstants.CHARACTER_STATUS_MESSAGE_ERROR);
+                ExceptionMessageConstants.CHARACTER_AFFILIATION_ROLE_CODE_ERROR,
+                ExceptionMessageConstants.CHARACTER_AFFILIATION_ROLE_MESSAGE_ERROR);
         }
     }
 }

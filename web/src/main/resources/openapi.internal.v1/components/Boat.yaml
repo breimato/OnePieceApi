@@ -1,0 +1,17 @@
+description: Boat V1
+type: object
+properties:
+  id:
+    description: "Boat Identification"
+    type: integer
+  name:
+    description: "Boat Name"
+    type: string
+  isAlive:
+    description: "Is Boat Alive"
+    type: boolean
+  type:
+    description: "Boat Type"
+    type: string
+  debut:
+    $ref: 'Debut.yaml'

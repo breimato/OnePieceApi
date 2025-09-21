@@ -1,0 +1,14 @@
+description: Transformation V1
+type: object
+properties:
+  id:
+    description: "Transformation Identification"
+    type: integer
+  name:
+    description: "Transformation Name"
+    type: string
+  description:
+    description: "Transformation Description"
+    type: string
+  debut:
+    $ref: 'Debut.yaml'

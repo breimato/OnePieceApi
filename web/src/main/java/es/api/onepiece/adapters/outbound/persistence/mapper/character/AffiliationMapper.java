@@ -1,6 +1,7 @@
 package es.api.onepiece.adapters.outbound.persistence.mapper.character;
 
 import es.api.onepiece.adapters.outbound.persistence.entities.character.AffiliationEntity;
+import es.api.onepiece.adapters.outbound.persistence.mapper.boat.BoatMapper;
 import es.api.onepiece.core.internal.domain.character.Affiliation;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
@@ -14,7 +15,7 @@ import org.mapstruct.ReportingPolicy;
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         builder = @Builder(disableBuilder = true),
         componentModel = "spring",
-        uses = { BaseCharacterMapper.class }
+        uses = { BaseCharacterMapper.class, BoatMapper.class }
 )
 public interface AffiliationMapper {
 

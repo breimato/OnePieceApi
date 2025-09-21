@@ -7,12 +7,12 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The Enum CharacterTitleEnum.
+ * The Enum CharacterTitleTypeEnum.
  */
 @Slf4j
 @Getter
 @AllArgsConstructor
-public enum CharacterTitleEnum {
+public enum CharacterTitleTypeEnum {
 
     /** The shichibukai. */
     SHICHIBUKAI(1),
@@ -32,13 +32,14 @@ public enum CharacterTitleEnum {
      * @param name the name
      * @return the by name
      */
-    public static CharacterTitleEnum getByName(final String name) {
+    public static CharacterTitleTypeEnum getByName(final String name) {
         try {
-            return CharacterTitleEnum.valueOf(name);
+            return CharacterTitleTypeEnum.valueOf(name);
         } catch (final Exception exception) {
+            log.error(ExceptionMessageConstants.CHARACTER_TITLE_MESSAGE_ERROR, exception);
             throw new CharacterException(
-                ExceptionMessageConstants.CHARACTER_STATUS_CODE_ERROR,
-                ExceptionMessageConstants.CHARACTER_STATUS_MESSAGE_ERROR);
+                ExceptionMessageConstants.CHARACTER_TITLE_CODE_ERROR,
+                ExceptionMessageConstants.CHARACTER_TITLE_MESSAGE_ERROR);
         }
     }
 
@@ -48,13 +49,14 @@ public enum CharacterTitleEnum {
      * @param type the type
      * @return the by type
      */
-    public static String getByType(final CharacterTitleEnum type) {
+    public static String getByType(final CharacterTitleTypeEnum type) {
         try {
             return type.name();
         } catch (final RuntimeException exception) {
+            log.error(ExceptionMessageConstants.CHARACTER_TITLE_MESSAGE_ERROR, exception);
             throw new CharacterException(
-                ExceptionMessageConstants.CHARACTER_STATUS_CODE_ERROR,
-                ExceptionMessageConstants.CHARACTER_STATUS_MESSAGE_ERROR);
+                ExceptionMessageConstants.CHARACTER_TITLE_CODE_ERROR,
+                ExceptionMessageConstants.CHARACTER_TITLE_MESSAGE_ERROR);
         }
     }
 }

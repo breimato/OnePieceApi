@@ -4,6 +4,7 @@ import es.api.onepiece.adapters.outbound.persistence.entities.sword.SwordCategor
 import es.api.onepiece.core.internal.domain.sword.SwordCategory;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 /**
@@ -12,7 +13,8 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
+        componentModel = "spring",
+        uses = { SwordCategoryTypeEnumMapper.class }
 )
 public interface SwordCategoryMapper {
     
@@ -22,5 +24,6 @@ public interface SwordCategoryMapper {
      * @param entity the entity
      * @return the sword category
      */
+    @Mapping(source = "name", target = "type")
     SwordCategory toSwordCategory(SwordCategoryEntity entity);
 }

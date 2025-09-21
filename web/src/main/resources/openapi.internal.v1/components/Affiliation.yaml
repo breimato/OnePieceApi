@@ -20,3 +20,8 @@ properties:
   isActive:
     description: "Is Active"
     type: boolean
+  boats:
+    description: "Affiliation Boats"
+    type: array
+    items:
+      $ref: 'Boat.yaml'

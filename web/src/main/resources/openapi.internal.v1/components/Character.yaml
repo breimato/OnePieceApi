@@ -53,5 +53,20 @@ properties:
     type: array
     items:
       $ref: 'CharacterAffiliation.yaml'
+  swords:
+    description: "Swords"
+    type: array
+    items:
+      $ref: 'Sword.yaml'
+  transformations:
+    description: "Transformations"
+    type: array
+    items:
+      $ref: 'Transformation.yaml'
+  attacks:
+    description: "Attacks"
+    type: array
+    items:
+      $ref: 'Attack.yaml'
   debut:
     $ref: 'Debut.yaml'
