@@ -245,7 +245,7 @@ public interface CharacterMyBatisMapper {
     )
     @Select(
         """
-        select h.id as haki_id, h.name, h.name as description
+        select h.id as haki_id, h.name, h.description
         from character_haki ch
         join haki h on h.id = ch.haki_id
         where ch.character_id = #{characterId}

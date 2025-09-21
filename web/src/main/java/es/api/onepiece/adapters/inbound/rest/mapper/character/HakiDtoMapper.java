@@ -24,7 +24,7 @@ public interface HakiDtoMapper {
      * @param haki the haki
      * @return the haki dto
      */
-    @Mapping(source = "description", target = "name")
+    @Mapping(source = "type", target = "name")
     HakiDto toDto(Haki haki);
 
     /**
