@@ -23,9 +23,9 @@ public interface CharacterAffiliationMapper {
     /**
      * To character affiliation.
      *
-     * @param entity the entity
+     * @param characterAffiliationEntity the characterAffiliationEntity
      * @return the character affiliation
      */
     @Mapping(target = "character", ignore = true)
-    CharacterAffiliation toCharacterAffiliation(CharacterAffiliationEntity entity);
+    CharacterAffiliation toCharacterAffiliation(CharacterAffiliationEntity characterAffiliationEntity);
 }

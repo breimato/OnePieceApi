@@ -41,7 +41,7 @@ public class AttackEntity implements Serializable {
     
     /** The character. */
     @NotNull
-    private CharacterEntity character;
+    private BaseCharacterEntity character;
     
     /** The transformation. */
     private TransformationEntity transformation;

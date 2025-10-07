@@ -3,7 +3,6 @@ package es.api.onepiece.adapters.outbound.persistence.entities.character;
 import es.api.onepiece.adapters.outbound.persistence.entities.debut.DebutEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.sword.SwordEntity;
-import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +28,7 @@ public class CharacterEntity extends BaseCharacterEntity implements Serializable
 
     /** The status. */
     @NotNull
-    private CharacterStatusTypeEnum status;
+    private CharacterStatusEntity status;
 
     /** The race. */
     @NotNull

@@ -1,8 +1,8 @@
 version: '3.8'
 services:
   onepiece-db:
-    image: postgres:16
-    container_name: ${POSTGRES_CONTAINER_NAME:-onepiece-db-container}
+    image: postgres:18
+    container_name: ${POSTGRES_CONTAINER_NAME}
     env_file:
       - ./.env
     environment:
@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+      - "${POSTGRES_PORT}"
     volumes:
       - onepiece-data:/var/lib/postgresql/data
     restart: unless-stopped

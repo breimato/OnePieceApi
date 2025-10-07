@@ -49,13 +49,13 @@ public enum CharacterStatusTypeEnum {
     /**
      * Gets the by type.
      *
-     * @param characterStatus the character status
+     * @param characterStatusTypeEnum the character status
      * @return the by type
      */
-    public static String getByType(final CharacterStatusTypeEnum characterStatus) {
+    public static String getByType(final CharacterStatusTypeEnum characterStatusTypeEnum) {
 
         try {
-            return characterStatus.name();
+            return characterStatusTypeEnum.name();
         } catch (final CharacterException exception) {
             log.error(ExceptionMessageConstants.CHARACTER_STATUS_MESSAGE_ERROR, exception);
             throw new CharacterException(

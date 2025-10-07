@@ -40,6 +40,7 @@ public interface CharacterMyBatisMapper {
             @Result(property = "age",         column = "age"),
             @Result(property = "bounty",      column = "bounty"),
             @Result(property = "image",       column = "image_url"),
+            @Result(property = "status",    column = "status_id", one = @One(select = "getStatusById")),
             @Result(
                 property = "race",
                 javaType = RaceEntity.class,
@@ -190,6 +191,14 @@ public interface CharacterMyBatisMapper {
         @Result(property = "description", column = "description")
     })
     RaceEntity getRaceById(Integer raceId);
+
+
+    @Select("select id, name as status from character_status where id = #{id}")
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "status", column = "status")
+    })
+    CharacterStatusEntity getStatusById(Integer id);
 
 
     /**
@@ -375,12 +384,13 @@ public interface CharacterMyBatisMapper {
             @Result(property = "name",        column = "name"),
             @Result(property = "description", column = "description"),
             @Result(property = "debut",       column = "first_appearance_id", one = @One(select = "getDebutById")),
+            @Result(property = "character", column = "character_id", one = @One(select = "getAttackOwnerById")),
             @Result(property = "transformation", column = "transformation_id", one = @One(select = "getTransformationById"))
         }
     )
     @Select(
         """
-        select a.attack_id as attack_id, a.name, a.description, a.first_appearance_id, a.transformation_id
+        select a.attack_id as attack_id, a.name, a.description, a.first_appearance_id, a.transformation_id, a.character_id
         from attack a
         where a.character_id = #{characterId}
         """
@@ -500,4 +510,26 @@ public interface CharacterMyBatisMapper {
         @Result(property = "image",       column = "image")
     })
     BaseCharacterEntity getCharacterLeaderById(Integer id);
+
+    @Results(
+        value = {
+                @Result(property = "id",          column = "character_id"),
+                @Result(property = "name",        column = "name"),
+                @Result(property = "description", column = "description"),
+                @Result(property = "height",      column = "height_cm"),
+                @Result(property = "age",         column = "age"),
+                @Result(property = "bounty",      column = "bounty"),
+                @Result(property = "image",       column = "image_url"),
+        }
+    )
+    @Select(
+            """
+            select
+                c.character_id, c.name, c.description, c.height_cm, c.age, c.bounty,
+                c.image_url
+            from "character" c
+            where c.character_id = #{id}
+            """
+    )
+    List<BaseCharacterEntity> getAttackOwnerById(Integer id);
 }
