@@ -1,0 +1,25 @@
+summary: "Get Character By Id V1"
+description: "Get Character By Id V1"
+get:
+  tags:
+    - get-character-by-id-v1
+  parameters:
+    - name: id
+      in: path
+      description: Character Id
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/GetCharacterByIdV1Response.yaml'
+      description: "200 OK"
+    '404':
+      description: "Not Found - Character not found"
+  operationId: "GetCharacterByIdV1"
+  summary: "Get Character By Id V1"
+  description: "Get Character By Id V1"

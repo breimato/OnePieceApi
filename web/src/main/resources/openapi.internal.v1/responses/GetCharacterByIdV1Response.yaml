@@ -1,0 +1,6 @@
+description: Get character by id response V1
+type: object
+properties:
+  character:
+    description: Character
+    $ref: '../components/Character.yaml'

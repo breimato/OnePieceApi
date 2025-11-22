@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * The Class CharacterFindAllRepository.
+ * The Class CharacterFindRepository.
  */
 @Component
 @AllArgsConstructor
-public class CharacterFindAllRepository implements FindCharactersPersistencePort {
+public class CharacterFindRepository implements FindCharactersPersistencePort {
 
     /** The character my batis mapper. */
     private final CharacterMyBatisMapper characterMyBatisMapper;
@@ -31,5 +31,17 @@ public class CharacterFindAllRepository implements FindCharactersPersistencePort
     public List<Character> findAll() {
         final var characters = this.characterMyBatisMapper.findAll();
         return this.characterMapper.toCharacterList(characters);
+    }
+
+    /**
+     * Find by id.
+     *
+     * @param id the id
+     * @return the character
+     */
+    @Override
+    public Character findById(final Integer id) {
+        final var characterEntity = this.characterMyBatisMapper.getCharacterById(id);
+        return this.characterMapper.toCharacter(characterEntity);
     }
 }

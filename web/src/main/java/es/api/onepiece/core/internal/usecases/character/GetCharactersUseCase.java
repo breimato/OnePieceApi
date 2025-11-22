@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-
 /**
  * The Class GetCharactersUseCase.
  */
@@ -27,5 +26,16 @@ public class GetCharactersUseCase implements GetCharactersPort {
     @Override
     public List<Character> findAll() {
         return this.findCharactersPersistencePort.findAll();
+    }
+
+    /**
+     * Find by id.
+     *
+     * @param id the id
+     * @return the character
+     */
+    @Override
+    public Character findById(final Integer id) {
+        return this.findCharactersPersistencePort.findById(id);
     }
 }
