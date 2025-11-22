@@ -35,15 +35,15 @@ class GetCharacterControllerTest {
 
     /** The get character controller. */
     @InjectMocks
-    private GetCharacterController getCharacterController;
+    GetCharacterController getCharacterController;
 
     /** The get characters use case. */
     @Mock
-    private GetCharactersUseCase getCharactersUseCase;
+    GetCharactersUseCase getCharactersUseCase;
 
     /** The character dto mapper. */
     @Mock
-    private CharacterDtoMapper characterDtoMapper;
+    CharacterDtoMapper characterDtoMapper;
 
 
     /**

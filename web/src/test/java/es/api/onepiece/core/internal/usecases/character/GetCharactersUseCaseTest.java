@@ -21,11 +21,11 @@ class GetCharactersUseCaseTest {
 
     /** The find characters persistence port. */
     @Mock
-    private FindCharactersPersistencePort findCharactersPersistencePort;
+    FindCharactersPersistencePort findCharactersPersistencePort;
 
     /** The get characters use case. */
     @InjectMocks
-    private GetCharactersUseCase getCharactersUseCase;
+    GetCharactersUseCase getCharactersUseCase;
 
     /**
      * Test find all when characters exist then returns domain list.
@@ -34,13 +34,13 @@ class GetCharactersUseCaseTest {
     void testFindAll_whenCharactersExist_thenReturnsDomainList() {
         // Given
         final var expectedCharacters = Instancio.ofList(Character.class).size(3).create();
-        when(findCharactersPersistencePort.findAll()).thenReturn(expectedCharacters);
 
         // When
+        when(findCharactersPersistencePort.findAll()).thenReturn(expectedCharacters);
         final var actualCharacters = getCharactersUseCase.findAll();
 
         // Then
-        assertEquals(expectedCharacters, actualCharacters);
         verify(findCharactersPersistencePort).findAll();
+        assertEquals(expectedCharacters, actualCharacters);
     }
 }
