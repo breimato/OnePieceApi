@@ -2,6 +2,7 @@ package es.api.onepiece.core.ports.inbound.character;
 
 import java.util.List;
 import es.api.onepiece.core.internal.domain.character.Character;
+import es.api.onepiece.core.internal.domain.character.CharacterSummary;
 
 /**
  * The Interface GetCharactersPort.
@@ -13,7 +14,7 @@ public interface GetCharactersPort {
      *
      * @return the list
      */
-    List<Character> findAll();
+    List<CharacterSummary> findAll();
 
     /**
      * Find by id.

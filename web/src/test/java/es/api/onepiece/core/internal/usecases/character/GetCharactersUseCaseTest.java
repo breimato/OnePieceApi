@@ -1,6 +1,7 @@
 package es.api.onepiece.core.internal.usecases.character;
 
 import es.api.onepiece.core.internal.domain.character.Character;
+import es.api.onepiece.core.internal.domain.character.CharacterSummary;
 import es.api.onepiece.core.ports.outbound.character.FindCharactersPersistencePort;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -21,11 +22,11 @@ class GetCharactersUseCaseTest {
 
     /** The find characters persistence port. */
     @Mock
-    FindCharactersPersistencePort findCharactersPersistencePort;
+    private FindCharactersPersistencePort findCharactersPersistencePort;
 
     /** The get characters use case. */
     @InjectMocks
-    GetCharactersUseCase getCharactersUseCase;
+    private GetCharactersUseCase getCharactersUseCase;
 
     /**
      * Test find all when characters exist then returns domain list.
@@ -33,14 +34,14 @@ class GetCharactersUseCaseTest {
     @Test
     void testFindAll_whenCharactersExist_thenReturnsDomainList() {
         // Given
-        final var expectedCharacters = Instancio.ofList(Character.class).size(3).create();
+        final var characterSummaryList = Instancio.ofList(CharacterSummary.class).size(3).create();
 
         // When
-        when(findCharactersPersistencePort.findAll()).thenReturn(expectedCharacters);
-        final var actualCharacters = getCharactersUseCase.findAll();
+        when(this.findCharactersPersistencePort.findAll()).thenReturn(characterSummaryList);
+        final var actualCharacters = this.getCharactersUseCase.findAll();
 
         // Then
-        verify(findCharactersPersistencePort).findAll();
-        assertEquals(expectedCharacters, actualCharacters);
+        verify(this.findCharactersPersistencePort).findAll();
+        assertEquals(characterSummaryList, actualCharacters);
     }
 }

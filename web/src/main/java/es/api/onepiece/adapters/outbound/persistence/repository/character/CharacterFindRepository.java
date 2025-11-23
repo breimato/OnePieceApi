@@ -3,6 +3,7 @@ package es.api.onepiece.adapters.outbound.persistence.repository.character;
 import es.api.onepiece.adapters.outbound.persistence.mybatis.character.CharacterMyBatisMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.character.CharacterMapper;
 import es.api.onepiece.core.internal.domain.character.Character;
+import es.api.onepiece.core.internal.domain.character.CharacterSummary;
 import es.api.onepiece.core.ports.outbound.character.FindCharactersPersistencePort;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -28,9 +29,9 @@ public class CharacterFindRepository implements FindCharactersPersistencePort {
      * @return the list
      */
     @Override
-    public List<Character> findAll() {
-        final var characters = this.characterMyBatisMapper.findAll();
-        return this.characterMapper.toCharacterList(characters);
+    public List<CharacterSummary> findAll() {
+        final var characterSummaryEntities = this.characterMyBatisMapper.findAllSummary();
+        return this.characterMapper.toCharacterSummaryList(characterSummaryEntities);
     }
 
     /**

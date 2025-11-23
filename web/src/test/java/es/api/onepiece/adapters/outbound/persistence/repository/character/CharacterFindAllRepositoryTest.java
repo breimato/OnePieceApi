@@ -1,9 +1,9 @@
 package es.api.onepiece.adapters.outbound.persistence.repository.character;
 
-import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterSummaryEntity;
 import es.api.onepiece.adapters.outbound.persistence.mapper.character.CharacterMapper;
 import es.api.onepiece.adapters.outbound.persistence.mybatis.character.CharacterMyBatisMapper;
-import es.api.onepiece.core.internal.domain.character.Character;
+import es.api.onepiece.core.internal.domain.character.CharacterSummary;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,8 +23,8 @@ class CharacterFindAllRepositoryTest {
 
     /** The get character repository. */
     @InjectMocks
-    CharacterFindAllRepository characterFindAllRepository;
-    
+    CharacterFindRepository characterFindRepository;
+
     /** The character my batis mapper. */
     @Mock
     CharacterMyBatisMapper characterMyBatisMapper;
@@ -38,20 +38,21 @@ class CharacterFindAllRepositoryTest {
      */
     @Test
     void testFindAll_whenCharactersExist_thenMapsAndReturnsDomainList() {
-        
-        // Given
-        final var characterEntities = Instancio.ofList(CharacterEntity.class).size(3).create();
-        final var domainCharacters = Instancio.ofList(Character.class).size(3).create();
-        
-        // When
-        when(characterMyBatisMapper.findAll()).thenReturn(characterEntities);
-        when(characterMapper.toCharacterList(characterEntities)).thenReturn(domainCharacters);
 
-        final var result = characterFindAllRepository.findAll();
+        // Given
+        final var characterSummaryEntities = Instancio.ofList(CharacterSummaryEntity.class).size(3).create();
+        final var domainCharacterSummaries = Instancio.ofList(CharacterSummary.class).size(3).create();
+
+        // When
+        when(this.characterMyBatisMapper.findAllSummary()).thenReturn(characterSummaryEntities);
+        when(this.characterMapper.toCharacterSummaryList(characterSummaryEntities))
+                .thenReturn(domainCharacterSummaries);
+
+        final var result = this.characterFindRepository.findAll();
 
         // Then
-        verify(characterMyBatisMapper).findAll();
-        verify(characterMapper).toCharacterList(characterEntities);
-        assertEquals(domainCharacters, result);
+        verify(this.characterMyBatisMapper).findAllSummary();
+        verify(this.characterMapper).toCharacterSummaryList(characterSummaryEntities);
+        assertEquals(domainCharacterSummaries, result);
     }
 }
