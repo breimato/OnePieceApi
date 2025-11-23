@@ -22,11 +22,11 @@ class GetCharactersUseCaseTest {
 
     /** The find characters persistence port. */
     @Mock
-    private FindCharactersPersistencePort findCharactersPersistencePort;
+    FindCharactersPersistencePort findCharactersPersistencePort;
 
     /** The get characters use case. */
     @InjectMocks
-    private GetCharactersUseCase getCharactersUseCase;
+    GetCharactersUseCase getCharactersUseCase;
 
     /**
      * Test find all when characters exist then returns domain list.
