@@ -38,10 +38,10 @@ class GetCharactersUseCaseTest {
 
         // When
         when(this.findCharactersPersistencePort.findAll()).thenReturn(characterSummaryList);
-        final var actualCharacters = this.getCharactersUseCase.findAll();
+        final var characterList = this.getCharactersUseCase.findAll();
 
         // Then
         verify(this.findCharactersPersistencePort).findAll();
-        assertEquals(characterSummaryList, actualCharacters);
+        assertEquals(characterSummaryList, characterList);
     }
 }
