@@ -69,4 +69,10 @@ public class ExceptionMessageConstants {
     /** The Constant CHARACTER_NOT_FOUND_MESSAGE_ERROR. */
     public static final String CHARACTER_NOT_FOUND_MESSAGE_ERROR = "Character not found";
 
+    /** The Constant FRUITS_LIMIT_EXCEEDED_CODE_ERROR. */
+    public static final String FRUITS_LIMIT_EXCEEDED_CODE_ERROR = "OP-FRUIT-002";
+
+    /** The Constant FRUITS_LIMIT_EXCEEDED_MESSAGE_ERROR. */
+    public static final String FRUITS_LIMIT_EXCEEDED_MESSAGE_ERROR = "A character cannot have more than 2 fruits";
+
 }

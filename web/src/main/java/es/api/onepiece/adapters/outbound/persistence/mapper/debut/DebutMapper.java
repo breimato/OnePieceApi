@@ -9,12 +9,8 @@ import org.mapstruct.ReportingPolicy;
 /**
  * The Interface DebutMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring",
-        uses = {ChapterMapper.class, EpisodeMapper.class, SagaMapper.class}
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring", uses = {
+        ChapterMapper.class, EpisodeMapper.class, SagaMapper.class })
 public interface DebutMapper {
 
     /**
@@ -24,4 +20,12 @@ public interface DebutMapper {
      * @return the debut
      */
     Debut toDebut(DebutEntity entity);
+
+    /**
+     * To debut entity.
+     *
+     * @param debut the debut
+     * @return the debut entity
+     */
+    DebutEntity toDebutEntity(Debut debut);
 }

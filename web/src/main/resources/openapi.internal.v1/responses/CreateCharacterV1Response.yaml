@@ -1,0 +1,5 @@
+description: Create Character V1 Response
+type: object
+properties:
+  character:
+    $ref: '../components/Character.yaml'

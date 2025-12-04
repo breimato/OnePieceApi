@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-
 /**
  * The Enum CharacterStatusTypeEnum.
  */
@@ -26,7 +25,6 @@ public enum CharacterStatusTypeEnum {
 
     /** The id. */
     private final Integer id;
-
 
     /**
      * Gets the by name.
@@ -62,5 +60,23 @@ public enum CharacterStatusTypeEnum {
                     ExceptionMessageConstants.CHARACTER_STATUS_CODE_ERROR,
                     ExceptionMessageConstants.CHARACTER_STATUS_MESSAGE_ERROR);
         }
+    }
+
+    /**
+     * Gets the by id.
+     *
+     * @param id the id
+     * @return the by id
+     */
+    public static CharacterStatusTypeEnum getById(final Integer id) {
+        for (CharacterStatusTypeEnum status : values()) {
+            if (status.getId().equals(id)) {
+                return status;
+            }
+        }
+        log.error(ExceptionMessageConstants.CHARACTER_STATUS_MESSAGE_ERROR);
+        throw new CharacterException(
+                ExceptionMessageConstants.CHARACTER_STATUS_CODE_ERROR,
+                ExceptionMessageConstants.CHARACTER_STATUS_MESSAGE_ERROR);
     }
 }

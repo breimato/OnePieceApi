@@ -20,9 +20,7 @@ public class GetCharactersUseCase implements GetCharactersPort {
     private final FindCharactersPersistencePort findCharactersPersistencePort;
 
     /**
-     * Find all.
-     *
-     * @return the list
+     * {@inheritDoc}
      */
     @Override
     public List<CharacterSummary> findAll() {
@@ -30,10 +28,7 @@ public class GetCharactersUseCase implements GetCharactersPort {
     }
 
     /**
-     * Find by id.
-     *
-     * @param id the id
-     * @return the character
+     * {@inheritDoc}
      */
     @Override
     public Character findById(final Integer id) {

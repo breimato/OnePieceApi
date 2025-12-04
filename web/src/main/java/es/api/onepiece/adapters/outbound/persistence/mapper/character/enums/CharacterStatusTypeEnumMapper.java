@@ -6,15 +6,10 @@ import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
-
 /**
  * The Interface CharacterStatusTypeEnumMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring",
-        implementationName = "CharacterStatusTypeEnumMapperFromPersistence")
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring", implementationName = "CharacterStatusTypeEnumMapperFromPersistence")
 public interface CharacterStatusTypeEnumMapper {
 
     /**
@@ -25,5 +20,18 @@ public interface CharacterStatusTypeEnumMapper {
      */
     default CharacterStatusTypeEnum toCharacterStatusTypeEnum(CharacterStatusEntity characterStatusEntity) {
         return CharacterStatusTypeEnum.getByName(characterStatusEntity.getStatus());
+    }
+
+    /**
+     * To character status entity.
+     *
+     * @param characterStatusTypeEnum the character status type enum
+     * @return the character status entity
+     */
+    default CharacterStatusEntity toCharacterStatusEntity(CharacterStatusTypeEnum characterStatusTypeEnum) {
+        if (characterStatusTypeEnum == null) {
+            return null;
+        }
+        return new CharacterStatusEntity(characterStatusTypeEnum.getId(), characterStatusTypeEnum.name());
     }
 }

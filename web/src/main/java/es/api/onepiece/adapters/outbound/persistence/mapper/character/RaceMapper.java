@@ -9,13 +9,9 @@ import org.mapstruct.ReportingPolicy;
 /**
  * The Interface RaceMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface RaceMapper {
-    
+
     /**
      * To race.
      *
@@ -23,4 +19,12 @@ public interface RaceMapper {
      * @return the race
      */
     Race toRace(RaceEntity entity);
+
+    /**
+     * To race entity.
+     *
+     * @param race the race
+     * @return the race entity
+     */
+    RaceEntity toRaceEntity(Race race);
 }

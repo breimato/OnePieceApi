@@ -9,11 +9,7 @@ import org.mapstruct.ReportingPolicy;
 /**
  * The Interface EpisodeMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface EpisodeMapper {
 
     /**
@@ -23,4 +19,12 @@ public interface EpisodeMapper {
      * @return the episode
      */
     Episode toEpisode(EpisodeEntity entity);
+
+    /**
+     * To episode entity.
+     *
+     * @param episode the episode
+     * @return the episode entity
+     */
+    EpisodeEntity toEpisodeEntity(Episode episode);
 }

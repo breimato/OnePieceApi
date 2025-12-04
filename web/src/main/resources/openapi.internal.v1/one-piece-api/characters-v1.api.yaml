@@ -15,3 +15,27 @@ get:
   operationId: "GetCharactersV1"
   summary: "Get Characters V1"
   description: "Get Characters V1"
+post:
+  tags:
+    - create-character-v1
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../components/CreateCharacterRequest.yaml'
+  responses:
+    '201':
+      description: "Created - Character successfully created"
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/CreateCharacterV1Response.yaml'
+    '400':
+      $ref: '../es-one-piece.api.yaml#/components/responses/400'
+    '500':
+      $ref: '../es-one-piece.api.yaml#/components/responses/500'
+  operationId: "CreateCharacterV1"
+  summary: "Create Character V1"
+  description: "Create a new character"
+

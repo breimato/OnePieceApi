@@ -9,11 +9,7 @@ import org.mapstruct.ReportingPolicy;
 /**
  * The Interface ChapterMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface ChapterMapper {
 
     /**
@@ -23,4 +19,12 @@ public interface ChapterMapper {
      * @return the chapter
      */
     Chapter toChapter(ChapterEntity entity);
+
+    /**
+     * To chapter entity.
+     *
+     * @param chapter the chapter
+     * @return the chapter entity
+     */
+    ChapterEntity toChapterEntity(Chapter chapter);
 }

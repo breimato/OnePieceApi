@@ -2,16 +2,21 @@ package es.api.onepiece.adapters.outbound.persistence.mapper.character;
 
 import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterSummaryEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.character.RaceEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.debut.DebutEntity;
 import es.api.onepiece.adapters.outbound.persistence.mapper.character.enums.CharacterStatusTypeEnumMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.debut.DebutMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.fruit.FruitMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.sword.SwordMapper;
 import es.api.onepiece.core.internal.domain.character.Character;
 import es.api.onepiece.core.internal.domain.character.CharacterSummary;
-import org.mapstruct.Builder;
-import org.mapstruct.Mapper;
-import org.mapstruct.ReportingPolicy;
+import es.api.onepiece.core.internal.domain.character.Race;
+import es.api.onepiece.core.internal.domain.debut.Debut;
+import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitEntity;
+import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
+import org.mapstruct.*;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -26,10 +31,10 @@ public interface CharacterMapper {
     /**
      * To character.
      *
-     * @param entity the entity
+     * @param characterEntity the character entity
      * @return the character
      */
-    Character toCharacter(CharacterEntity entity);
+    Character toCharacter(CharacterEntity characterEntity);
 
     /**
      * To character list.
@@ -54,4 +59,50 @@ public interface CharacterMapper {
      * @return the list
      */
     List<CharacterSummary> toCharacterSummaryList(List<CharacterSummaryEntity> entities);
+
+    /**
+     * To character entity.
+     *
+     * @param character the character
+     * @return the character entity
+     */
+    CharacterEntity toCharacterEntity(Character character);
+
+    /**
+     * To character entity from vo.
+     * Mapeamos manualmente race y debut porque los nombres y tipos no coinciden.
+     * Ignoramos las listas porque se guardan en tablas separadas.
+     *
+     * @param createCharacterVo the create character vo
+     * @return the character entity
+     */
+    @Mapping(target = "race", source = "raceId", qualifiedByName = "mapRaceEntity")
+    @Mapping(target = "debut", source = "debutId", qualifiedByName = "mapDebutEntity")
+    CharacterEntity toCharacterEntityFromVo(CreateCharacterVo createCharacterVo);
+
+    /**
+     * Map race entity using ID.
+     * Creates a proxy entity just for the Foreign Key reference.
+     */
+    @Named("mapRaceEntity")
+    default RaceEntity mapRaceEntity(final Integer id) {
+        if (id == null) return null;
+        final var entity = new RaceEntity();
+        entity.setId(id);
+        return entity;
+    }
+
+    /**
+     * Map debut entity using ID.
+     * Creates a proxy entity just for the Foreign Key reference.
+     */
+    @Named("mapDebutEntity")
+    default DebutEntity mapDebutEntity(final Integer id) {
+        if (id == null) return null;
+        final var entity = new DebutEntity();
+        entity.setId(id);
+        return entity;
+    }
+
 }
+

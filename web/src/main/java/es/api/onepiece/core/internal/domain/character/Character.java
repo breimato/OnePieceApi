@@ -68,5 +68,4 @@ public class Character extends BaseCharacter {
     @NotNull
     private Debut debut;
 
-
 }

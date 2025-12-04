@@ -9,11 +9,7 @@ import org.mapstruct.ReportingPolicy;
 /**
  * The Interface SagaMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface SagaMapper {
 
     /**
@@ -23,4 +19,12 @@ public interface SagaMapper {
      * @return the saga
      */
     Saga toSaga(SagaEntity entity);
+
+    /**
+     * To saga entity.
+     *
+     * @param saga the saga
+     * @return the saga entity
+     */
+    SagaEntity toSagaEntity(Saga saga);
 }

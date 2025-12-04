@@ -25,9 +25,7 @@ public class GetCharacterController implements GetCharactersV1Api {
     private final CharacterSummaryDtoMapper characterSummaryDtoMapper;
 
     /**
-     * Gets the characters V 1.
-     *
-     * @return the characters V 1
+     * {@inheritDoc}
      */
     @Override
     public ResponseEntity<GetCharactersV1ResponseDto> getCharactersV1() {

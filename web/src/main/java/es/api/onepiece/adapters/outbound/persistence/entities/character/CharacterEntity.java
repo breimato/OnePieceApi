@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -26,13 +25,23 @@ public class CharacterEntity extends BaseCharacterEntity implements Serializable
     /** The Constant serialVersionUID. */
     @Serial private static final long serialVersionUID = 1L;
 
+    /** The status id. */
+    private String statusId;
+
+    /** The race id. */
+    private Integer raceId;
+
+    /** The debut id. */
+    private Integer debutId;
+
     /** The status. */
-    @NotNull
     private CharacterStatusEntity status;
 
     /** The race. */
-    @NotNull
     private RaceEntity race;
+
+    /** The debut. */
+    private DebutEntity debut;
 
     /** The fruits. */
     @Valid
@@ -65,9 +74,5 @@ public class CharacterEntity extends BaseCharacterEntity implements Serializable
     /** The affiliations. */
     @Valid
     private List<CharacterAffiliationEntity> affiliations;
-
-    /** The debut. */
-    @NotNull
-    private DebutEntity debut;
 
 }

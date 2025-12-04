@@ -25,10 +25,7 @@ public class GetCharacterByIdController implements GetCharacterByIdV1Api {
     private final CharacterDtoMapper characterDtoMapper;
 
     /**
-     * Gets the character by id V 1.
-     *
-     * @param id the id
-     * @return the character by id V 1
+     * {@inheritDoc}
      */
     @Override
     public ResponseEntity<GetCharacterByIdV1ResponseDto> getCharacterByIdV1(final Integer id) {
@@ -37,10 +34,10 @@ public class GetCharacterByIdController implements GetCharacterByIdV1Api {
 
         final var characterDto = this.characterDtoMapper.toCharacterV1Dto(character);
 
-        final var response = GetCharacterByIdV1ResponseDto.builder()
+        final var getCharacterByIdV1ResponseDto = GetCharacterByIdV1ResponseDto.builder()
                 .character(characterDto)
                 .build();
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(getCharacterByIdV1ResponseDto, HttpStatus.OK);
     }
 }

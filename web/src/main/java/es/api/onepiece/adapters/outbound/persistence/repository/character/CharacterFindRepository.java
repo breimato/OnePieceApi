@@ -24,9 +24,7 @@ public class CharacterFindRepository implements FindCharactersPersistencePort {
     private final CharacterMapper characterMapper;
 
     /**
-     * Find all.
-     *
-     * @return the list
+     * {@inheritDoc}
      */
     @Override
     public List<CharacterSummary> findAll() {
@@ -35,10 +33,7 @@ public class CharacterFindRepository implements FindCharactersPersistencePort {
     }
 
     /**
-     * Find by id.
-     *
-     * @param id the id
-     * @return the character
+     * {@inheritDoc}
      */
     @Override
     public Character findById(final Integer id) {

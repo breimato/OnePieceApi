@@ -1,0 +1,36 @@
+description: Create Character Request V1
+type: object
+properties:
+  name:
+    description: "Character Name"
+    type: string
+  description:
+    description: "Character Description"
+    type: string
+  height:
+    description: "Character Height in cm"
+    type: integer
+  age:
+    description: "Character Age"
+    type: integer
+  bounty:
+    description: "Character Bounty"
+    type: integer
+    format: int64
+  image:
+    description: "Character Image URL"
+    type: string
+  statusId:
+    description: "Character Status ID"
+    type: integer
+  raceId:
+    description: "Race ID"
+    type: integer
+  fruitIds:
+    description: "List of Fruit IDs (maximum 2)"
+    type: array
+    items:
+      type: integer
+  firstAppearanceId:
+    description: "First Appearance (Debut) ID"
+    type: integer
