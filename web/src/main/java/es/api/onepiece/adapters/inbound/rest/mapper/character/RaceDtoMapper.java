@@ -10,11 +10,7 @@ import java.util.List;
 /**
  * The Interface RaceDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface RaceDtoMapper {
 
     /**
@@ -23,7 +19,7 @@ public interface RaceDtoMapper {
      * @param race the race
      * @return the race dto
      */
-    RaceDto toDto(Race race);
+    RaceDto toRaceDto(Race race);
 
     /**
      * To dto list.
@@ -31,5 +27,5 @@ public interface RaceDtoMapper {
      * @param races the races
      * @return the list
      */
-    List<RaceDto> toDtoList(List<Race> races);
+    List<RaceDto> toRaceDtoList(List<Race> races);
 }

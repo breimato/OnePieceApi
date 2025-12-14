@@ -10,20 +10,16 @@ import java.util.List;
 /**
  * The Interface SagaDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface SagaDtoMapper {
-    
+
     /**
      * To dto.
      *
      * @param saga the saga
      * @return the saga dto
      */
-    SagaDto toDto(Saga saga);
+    SagaDto toSagaDto(Saga saga);
 
     /**
      * To dto list.
@@ -31,5 +27,5 @@ public interface SagaDtoMapper {
      * @param sagas the sagas
      * @return the list
      */
-    List<SagaDto> toDtoList(List<Saga> sagas);
+    List<SagaDto> toSagaDtoList(List<Saga> sagas);
 }

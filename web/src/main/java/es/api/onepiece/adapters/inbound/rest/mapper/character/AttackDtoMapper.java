@@ -10,11 +10,7 @@ import java.util.List;
 /**
  * The Interface AttackDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface AttackDtoMapper {
 
     /**
@@ -23,7 +19,7 @@ public interface AttackDtoMapper {
      * @param attack the attack
      * @return the attack dto
      */
-    AttackDto toDto(Attack attack);
+    AttackDto toAttackDto(Attack attack);
 
     /**
      * To dto list.
@@ -31,5 +27,5 @@ public interface AttackDtoMapper {
      * @param attacks the attacks
      * @return the list
      */
-    List<AttackDto> toDtoList(List<Attack> attacks);
+    List<AttackDto> toAttackDtoList(List<Attack> attacks);
 }

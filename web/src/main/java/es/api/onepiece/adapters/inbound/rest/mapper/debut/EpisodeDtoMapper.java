@@ -10,20 +10,16 @@ import java.util.List;
 /**
  * The Interface EpisodeDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface EpisodeDtoMapper {
-    
+
     /**
      * To dto.
      *
      * @param episode the episode
      * @return the episode dto
      */
-    EpisodeDto toDto(Episode episode);
+    EpisodeDto toEpisodeDto(Episode episode);
 
     /**
      * To dto list.
@@ -31,5 +27,5 @@ public interface EpisodeDtoMapper {
      * @param episodes the episodes
      * @return the list
      */
-    List<EpisodeDto> toDtoList(List<Episode> episodes);
+    List<EpisodeDto> toEpisodeDtoList(List<Episode> episodes);
 }

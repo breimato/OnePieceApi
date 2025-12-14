@@ -11,11 +11,7 @@ import java.util.List;
 /**
  * The Interface SwordDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface SwordDtoMapper {
 
     /**
@@ -25,7 +21,7 @@ public interface SwordDtoMapper {
      * @return the sword dto
      */
     @Mapping(source = "category.type", target = "category")
-    SwordDto toDto(Sword sword);
+    SwordDto toSwordDto(Sword sword);
 
     /**
      * To dto list.
@@ -33,5 +29,5 @@ public interface SwordDtoMapper {
      * @param swords the swords
      * @return the list
      */
-    List<SwordDto> toDtoList(List<Sword> swords);
+    List<SwordDto> toSwordDtoList(List<Sword> swords);
 }

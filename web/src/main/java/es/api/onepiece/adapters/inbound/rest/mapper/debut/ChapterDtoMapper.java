@@ -10,20 +10,16 @@ import java.util.List;
 /**
  * The Interface ChapterDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface ChapterDtoMapper {
-    
+
     /**
      * To dto.
      *
      * @param chapter the chapter
      * @return the chapter dto
      */
-    ChapterDto toDto(Chapter chapter);
+    ChapterDto toChapterDto(Chapter chapter);
 
     /**
      * To dto list.
@@ -31,5 +27,5 @@ public interface ChapterDtoMapper {
      * @param chapters the chapters
      * @return the list
      */
-    List<ChapterDto> toDtoList(List<Chapter> chapters);
+    List<ChapterDto> toChapterDtoList(List<Chapter> chapters);
 }

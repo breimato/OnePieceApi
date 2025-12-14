@@ -10,11 +10,7 @@ import java.util.List;
 /**
  * The Interface TransformationDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface TransformationDtoMapper {
 
     /**
@@ -23,7 +19,7 @@ public interface TransformationDtoMapper {
      * @param transformation the transformation
      * @return the transformation dto
      */
-    TransformationDto toDto(Transformation transformation);
+    TransformationDto toTransformationDto(Transformation transformation);
 
     /**
      * To dto list.
@@ -31,5 +27,5 @@ public interface TransformationDtoMapper {
      * @param transformations the transformations
      * @return the list
      */
-    List<TransformationDto> toDtoList(List<Transformation> transformations);
+    List<TransformationDto> toTransformationDtoList(List<Transformation> transformations);
 }

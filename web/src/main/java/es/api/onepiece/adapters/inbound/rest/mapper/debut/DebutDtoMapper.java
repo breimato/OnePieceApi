@@ -10,21 +10,17 @@ import java.util.List;
 /**
  * The Interface DebutDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring",
-        uses = {ChapterDtoMapper.class, EpisodeDtoMapper.class, SagaDtoMapper.class}
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring", uses = {
+        ChapterDtoMapper.class, EpisodeDtoMapper.class, SagaDtoMapper.class })
 public interface DebutDtoMapper {
-    
+
     /**
      * To dto.
      *
      * @param debut the debut
      * @return the debut dto
      */
-    DebutDto toDto(Debut debut);
+    DebutDto toDebutDto(Debut debut);
 
     /**
      * To dto list.
@@ -32,5 +28,5 @@ public interface DebutDtoMapper {
      * @param debuts the debuts
      * @return the list
      */
-    List<DebutDto> toDtoList(List<Debut> debuts);
+    List<DebutDto> toDebutDtoList(List<Debut> debuts);
 }

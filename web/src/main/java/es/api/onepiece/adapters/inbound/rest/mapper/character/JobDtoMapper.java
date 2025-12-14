@@ -10,11 +10,7 @@ import java.util.List;
 /**
  * The Interface JobDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface JobDtoMapper {
 
     /**
@@ -23,7 +19,7 @@ public interface JobDtoMapper {
      * @param job the job
      * @return the job dto
      */
-    JobDto toDto(Job job);
+    JobDto toJobDto(Job job);
 
     /**
      * To dto list.
@@ -31,5 +27,5 @@ public interface JobDtoMapper {
      * @param jobs the jobs
      * @return the list
      */
-    List<JobDto> toDtoList(List<Job> jobs);
+    List<JobDto> toJobDtoList(List<Job> jobs);
 }

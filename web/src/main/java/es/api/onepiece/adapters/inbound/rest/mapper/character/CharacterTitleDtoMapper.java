@@ -11,11 +11,7 @@ import java.util.List;
 /**
  * The Interface CharacterTitleDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface CharacterTitleDtoMapper {
 
     /**
@@ -25,7 +21,7 @@ public interface CharacterTitleDtoMapper {
      * @return the character title dto
      */
     @Mapping(source = "title", target = "title")
-    CharacterTitleDto toDto(CharacterTitle characterTitle);
+    CharacterTitleDto toCharacterTitleDto(CharacterTitle characterTitle);
 
     /**
      * To dto list.
@@ -33,5 +29,5 @@ public interface CharacterTitleDtoMapper {
      * @param titles the titles
      * @return the list
      */
-    List<CharacterTitleDto> toDtoList(List<CharacterTitle> titles);
+    List<CharacterTitleDto> toCharacterTitleDtoList(List<CharacterTitle> titles);
 }

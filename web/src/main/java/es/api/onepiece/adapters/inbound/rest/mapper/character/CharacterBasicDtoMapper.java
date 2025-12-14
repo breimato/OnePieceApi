@@ -10,11 +10,7 @@ import java.util.List;
 /**
  * The Interface CharacterBasicDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface CharacterBasicDtoMapper {
 
     /**
@@ -23,7 +19,7 @@ public interface CharacterBasicDtoMapper {
      * @param baseCharacter the base character
      * @return the character basic dto
      */
-    CharacterBasicDto toDto(BaseCharacter baseCharacter);
+    CharacterBasicDto toCharacterBasicDto(BaseCharacter baseCharacter);
 
     /**
      * To dto list.
@@ -31,5 +27,5 @@ public interface CharacterBasicDtoMapper {
      * @param baseCharacters the base characters
      * @return the list
      */
-    List<CharacterBasicDto> toDtoList(List<BaseCharacter> baseCharacters);
+    List<CharacterBasicDto> toCharacterBasicDtoList(List<BaseCharacter> baseCharacters);
 }

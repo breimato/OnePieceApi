@@ -11,11 +11,7 @@ import java.util.List;
 /**
  * The Interface BoatDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface BoatDtoMapper {
 
     /**
@@ -25,7 +21,7 @@ public interface BoatDtoMapper {
      * @return the boat dto
      */
     @Mapping(source = "boatType", target = "type")
-    BoatDto toDto(Boat boat);
+    BoatDto toBoatDto(Boat boat);
 
     /**
      * To dto list.
@@ -33,5 +29,5 @@ public interface BoatDtoMapper {
      * @param boats the boats
      * @return the list
      */
-    List<BoatDto> toDtoList(List<Boat> boats);
+    List<BoatDto> toBoatDtoList(List<Boat> boats);
 }

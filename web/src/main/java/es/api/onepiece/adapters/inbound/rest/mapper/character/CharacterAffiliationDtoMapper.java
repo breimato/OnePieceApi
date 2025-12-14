@@ -10,12 +10,8 @@ import java.util.List;
 /**
  * The Interface CharacterAffiliationDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring",
-        uses = {AffiliationDtoMapper.class}
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring", uses = {
+        AffiliationDtoMapper.class })
 public interface CharacterAffiliationDtoMapper {
 
     /**
@@ -24,7 +20,7 @@ public interface CharacterAffiliationDtoMapper {
      * @param characterAffiliation the character affiliation
      * @return the character affiliation dto
      */
-    CharacterAffiliationDto toDto(CharacterAffiliation characterAffiliation);
+    CharacterAffiliationDto toCharacterAffiliationDto(CharacterAffiliation characterAffiliation);
 
     /**
      * To dto list.
@@ -32,5 +28,5 @@ public interface CharacterAffiliationDtoMapper {
      * @param characterAffiliations the character affiliations
      * @return the list
      */
-    List<CharacterAffiliationDto> toDtoList(List<CharacterAffiliation> characterAffiliations);
+    List<CharacterAffiliationDto> toCharacterAffiliationDtoList(List<CharacterAffiliation> characterAffiliations);
 }

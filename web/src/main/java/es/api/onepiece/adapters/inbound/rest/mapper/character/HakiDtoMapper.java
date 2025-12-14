@@ -11,11 +11,7 @@ import java.util.List;
 /**
  * The Interface HakiDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface HakiDtoMapper {
 
     /**
@@ -25,7 +21,7 @@ public interface HakiDtoMapper {
      * @return the haki dto
      */
     @Mapping(source = "type", target = "name")
-    HakiDto toDto(Haki haki);
+    HakiDto toHakiDto(Haki haki);
 
     /**
      * To dto list.
@@ -33,5 +29,5 @@ public interface HakiDtoMapper {
      * @param hakis the hakis
      * @return the list
      */
-    List<HakiDto> toDtoList(List<Haki> hakis);
+    List<HakiDto> toHakiDtoList(List<Haki> hakis);
 }

@@ -12,12 +12,8 @@ import java.util.List;
 /**
  * The Interface AffiliationDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring",
-        uses = {CharacterBasicDtoMapper.class, BoatDtoMapper.class}
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring", uses = {
+        CharacterBasicDtoMapper.class, BoatDtoMapper.class })
 public interface AffiliationDtoMapper {
 
     /**
@@ -26,7 +22,7 @@ public interface AffiliationDtoMapper {
      * @param affiliation the affiliation
      * @return the affiliation dto
      */
-    AffiliationDto toDto(Affiliation affiliation);
+    AffiliationDto toAffiliationDto(Affiliation affiliation);
 
     /**
      * To dto list.
@@ -34,5 +30,5 @@ public interface AffiliationDtoMapper {
      * @param affiliations the affiliations
      * @return the list
      */
-    List<AffiliationDto> toDtoList(List<Affiliation> affiliations);
+    List<AffiliationDto> toAffiliationDtoList(List<Affiliation> affiliations);
 }

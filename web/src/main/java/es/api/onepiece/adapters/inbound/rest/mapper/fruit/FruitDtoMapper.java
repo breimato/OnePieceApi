@@ -10,11 +10,7 @@ import java.util.List;
 /**
  * The Interface FruitDtoMapper.
  */
-@Mapper(
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        builder = @Builder(disableBuilder = true),
-        componentModel = "spring"
-)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface FruitDtoMapper {
 
     /**
@@ -23,7 +19,7 @@ public interface FruitDtoMapper {
      * @param fruit the fruit
      * @return the fruit dto
      */
-    FruitDto toDto(Fruit fruit);
+    FruitDto toFruitDto(Fruit fruit);
 
     /**
      * To dto list.
@@ -31,5 +27,5 @@ public interface FruitDtoMapper {
      * @param fruits the fruits
      * @return the list
      */
-    List<FruitDto> toDtoList(List<Fruit> fruits);
+    List<FruitDto> toFruitDtoList(List<Fruit> fruits);
 }
