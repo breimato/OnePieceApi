@@ -480,6 +480,12 @@ public interface CharacterMyBatisMapper {
     BaseCharacterEntity getCharacterLeaderById(Integer id);
 
 
+    /**
+     * Gets the attack owner by id.
+     *
+     * @param id the id
+     * @return the attack owner by id
+     */
     @Result(property = "id", column = "character_id")
     @Result(property = "name", column = "name")
     @Result(property = "description", column = "description")
