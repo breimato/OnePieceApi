@@ -24,10 +24,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Character extends BaseCharacter {
 
-    /** The status. */
-    @NotNull
-    private CharacterStatusTypeEnum status;
-
     /** The race. */
     @NotNull
     private Race race;

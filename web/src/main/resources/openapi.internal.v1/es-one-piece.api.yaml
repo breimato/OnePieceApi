@@ -47,8 +47,6 @@ components:
       $ref: './components/Attack.yaml'
     CharacterBasic:
       $ref: './components/CharacterBasic.yaml'
-    CharacterSummary:
-      $ref: './components/CharacterSummary.yaml'
   responses:
     400:
       description: Bad Request

@@ -1,7 +1,7 @@
 package es.api.onepiece.core.internal.usecases.character;
 
 import es.api.onepiece.core.internal.domain.character.Character;
-import es.api.onepiece.core.internal.domain.character.CharacterSummary;
+import es.api.onepiece.core.internal.domain.character.BaseCharacter;
 import es.api.onepiece.core.ports.outbound.character.FindCharactersPersistencePort;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -34,14 +34,14 @@ class GetCharactersUseCaseTest {
     @Test
     void testFindAll_whenCharactersExist_thenReturnsDomainList() {
         // Given
-        final var characterSummaryList = Instancio.ofList(CharacterSummary.class).size(3).create();
+        final var baseCharacterList = Instancio.ofList(BaseCharacter.class).size(3).create();
 
         // When
-        when(this.findCharactersPersistencePort.findAll()).thenReturn(characterSummaryList);
+        when(this.findCharactersPersistencePort.findAll()).thenReturn(baseCharacterList);
         final var characterList = this.getCharactersUseCase.findAll();
 
         // Then
         verify(this.findCharactersPersistencePort).findAll();
-        assertEquals(characterSummaryList, characterList);
+        assertEquals(baseCharacterList, characterList);
     }
 }

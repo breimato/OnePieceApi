@@ -1,5 +1,7 @@
 package es.api.onepiece.core.internal.domain.character;
 
+import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum;
+import java.util.List;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -43,4 +45,19 @@ public class BaseCharacter {
     /** The image. */
     @NotNull
     private String image;
+
+    /** The status. */
+    private CharacterStatusTypeEnum status;
+
+    /** The fruit list. */
+    private List<String> fruitList;
+
+    /** The haki list. */
+    private List<String> hakiList;
+
+    /** The transformation list. */
+    private List<String> transformationList;
+
+    /** The affiliation. */
+    private String affiliation;
 }

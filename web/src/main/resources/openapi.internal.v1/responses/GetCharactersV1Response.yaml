@@ -5,5 +5,4 @@ properties:
     description: Characters
     type: array
     items:
-      $ref: '../components/CharacterSummary.yaml'
-        
+      $ref: '../components/CharacterBasic.yaml'

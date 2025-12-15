@@ -1,18 +1,11 @@
 package es.api.onepiece.adapters.outbound.persistence.mybatis.character;
 
 import es.api.onepiece.adapters.outbound.persistence.entities.character.*;
-import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterSummaryEntity;
-import es.api.onepiece.adapters.outbound.persistence.entities.debut.ChapterEntity;
-import es.api.onepiece.adapters.outbound.persistence.entities.debut.DebutEntity;
-import es.api.onepiece.adapters.outbound.persistence.entities.debut.EpisodeEntity;
-import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitEntity;
-import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitTypeEntity;
-import es.api.onepiece.adapters.outbound.persistence.entities.debut.SagaEntity;
-import es.api.onepiece.adapters.outbound.persistence.entities.sword.SwordEntity;
-import es.api.onepiece.adapters.outbound.persistence.entities.sword.SwordCategoryEntity;
-import es.api.onepiece.adapters.outbound.persistence.entities.boat.BoatEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.debut.*;
+import es.api.onepiece.adapters.outbound.persistence.entities.fruit.*;
+import es.api.onepiece.adapters.outbound.persistence.entities.sword.*;
+import es.api.onepiece.adapters.outbound.persistence.entities.boat.*;
 import org.apache.ibatis.annotations.*;
-
 import java.util.List;
 
 /**
@@ -26,26 +19,31 @@ public interface CharacterMyBatisMapper {
      *
      * @return the list
      */
-    @Result(property = "id", column = "character_id")
-    @Result(property = "name", column = "name")
-    @Result(property = "description", column = "description")
-    @Result(property = "height", column = "height_cm")
-    @Result(property = "age", column = "age")
-    @Result(property = "bounty", column = "bounty")
-    @Result(property = "image", column = "image_url")
-    @Result(property = "status", column = "status_id", one = @One(select = "getStatusNameById"))
-    @Result(property = "fruitList", javaType = List.class, column = "character_id", many = @Many(select = "getFruitNamesByCharacterId"))
-    @Result(property = "hakiList", javaType = List.class, column = "character_id", many = @Many(select = "getHakiNamesByCharacterId"))
-    @Result(property = "transformationList", javaType = List.class, column = "character_id", many = @Many(select = "getTransformationNamesByCharacterId"))
-    @Result(property = "affiliation", column = "character_id", one = @One(select = "getAffiliationNameByCharacterId"))
+    @Results(value = {
+            @Result(property = "id", column = "character_id"),
+            @Result(property = "name", column = "name"),
+            @Result(property = "description", column = "description"),
+            @Result(property = "height", column = "height_cm"),
+            @Result(property = "age", column = "age"),
+            @Result(property = "bounty", column = "bounty"),
+            @Result(property = "image", column = "image_url"),
+            @Result(property = "statusName", column = "status_name"),
+            @Result(property = "affiliationName", column = "affiliation_name"),
+            @Result(property = "fruitList", column = "character_id", many = @Many(select = "getFruitNamesByCharacterId")),
+            @Result(property = "hakiList", column = "character_id", many = @Many(select = "getHakiNamesByCharacterId")),
+            @Result(property = "transformationList", column = "character_id", many = @Many(select = "getTransformationNamesByCharacterId"))
+    })
     @Select("""
             select
                 c.character_id, c.name, c.description, c.height_cm, c.age, c.bounty,
-                c.image_url, c.status_id
+                c.image_url,
+                cs.name as status_name,
+                (select a.name from character_affiliation ca join affiliation a on a.affiliation_id = ca.affiliation_id where ca.character_id = c.character_id limit 1) as affiliation_name
             from "character" c
+            left join character_status cs on cs.id = c.status_id
             order by c.character_id
             """)
-    List<CharacterSummaryEntity> findAll();
+    List<BaseCharacterEntity> findAll();
 
     @Select("select name from character_status where id = #{id}")
     String getStatusNameById(Integer id);
@@ -139,6 +137,8 @@ public interface CharacterMyBatisMapper {
     @Result(property = "description", column = "description")
     @Result(property = "height", column = "height_cm")
     @Result(property = "age", column = "age")
+    @Result(property = "statusName", column = "status_name")
+    @Result(property = "affiliationName", column = "affiliation_name")
     @Result(property = "bounty", column = "bounty")
     @Result(property = "image", column = "image_url")
     @Result(property = "status", column = "status_id", one = @One(select = "getStatusById"))
@@ -155,8 +155,11 @@ public interface CharacterMyBatisMapper {
     @Select("""
             select
                 c.character_id, c.name, c.description, c.height_cm, c.age, c.bounty,
-                c.image_url, c.status_id, c.first_appearance_id, c.race_id
+                c.image_url, c.status_id, c.first_appearance_id, c.race_id,
+                cs.name as status_name,
+                (select a.name from character_affiliation ca join affiliation a on a.affiliation_id = ca.affiliation_id where ca.character_id = c.character_id limit 1) as affiliation_name
             from "character" c
+            left join character_status cs on cs.id = c.status_id
             where c.character_id = #{id}
             """)
     CharacterEntity getCharacterById(Integer id);

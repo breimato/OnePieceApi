@@ -1,16 +1,17 @@
 package es.api.onepiece.adapters.outbound.persistence.mapper.character;
 
+import es.api.onepiece.adapters.outbound.persistence.entities.character.BaseCharacterEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterEntity;
-import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterSummaryEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.character.HakiEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.character.RaceEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.debut.DebutEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitEntity;
 import es.api.onepiece.adapters.outbound.persistence.mapper.character.enums.CharacterStatusTypeEnumMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.debut.DebutMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.fruit.FruitMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.sword.SwordMapper;
-import es.api.onepiece.core.internal.domain.character.CharacterSummary;
-import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitEntity;
+import es.api.onepiece.core.internal.domain.character.BaseCharacter;
+import es.api.onepiece.core.internal.domain.character.Character;
 import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
 import org.mapstruct.*;
 
@@ -26,37 +27,40 @@ import java.util.List;
 public interface CharacterMapper {
 
     /**
-     * To character.
-     *
-     * @param characterEntity the character entity
-     * @return the character
-     */
-    es.api.onepiece.core.internal.domain.character.Character toCharacter(CharacterEntity characterEntity);
-
-    /**
      * To character list.
      *
      * @param entities the entities
      * @return the list
      */
-    List<es.api.onepiece.core.internal.domain.character.Character> toCharacterList(List<CharacterEntity> entities);
+    List<Character> toCharacterList(List<CharacterEntity> entities);
 
     /**
-     * To character summary.
+     * To base character.
      *
      * @param entity the entity
-     * @return the character summary
+     * @return the base character
      */
-    CharacterSummary toCharacterSummary(
-            CharacterSummaryEntity entity);
+    @Mapping(target = "status", expression = "java(es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum.getByName(entity.getStatusName()))")
+    @Mapping(target = "affiliation", source = "affiliationName")
+    BaseCharacter toBaseCharacter(BaseCharacterEntity entity);
 
     /**
-     * To character summary list.
+     * To base character list.
      *
      * @param entities the entities
      * @return the list
      */
-    List<CharacterSummary> toCharacterSummaryList(List<CharacterSummaryEntity> entities);
+    List<BaseCharacter> toBaseCharacterList(List<BaseCharacterEntity> entities);
+
+    /**
+     * To character.
+     *
+     * @param entity the entity
+     * @return the character
+     */
+    @Mapping(target = "status", expression = "java(es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum.getByName(entity.getStatusName()))")
+    @Mapping(target = "affiliation", source = "affiliationName")
+    Character toCharacter(CharacterEntity entity);
 
     /**
      * To character entity.

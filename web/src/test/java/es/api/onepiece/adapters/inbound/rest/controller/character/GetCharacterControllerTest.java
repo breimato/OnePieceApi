@@ -5,8 +5,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterSummaryDtoMapper;
-import es.api.onepiece.core.internal.domain.character.CharacterSummary;
+import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterBasicDtoMapper;
+import es.api.onepiece.core.internal.domain.character.BaseCharacter;
 import es.api.onepiece.core.internal.usecases.character.GetCharactersUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.openapitools.model.CharacterSummaryDto;
+import org.openapitools.model.CharacterBasicDto;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -42,7 +42,7 @@ class GetCharacterControllerTest {
 
     /** The character dto mapper. */
     @Mock
-    CharacterSummaryDtoMapper characterSummaryDtoMapper;
+    CharacterBasicDtoMapper characterBasicDtoMapper;
 
     /**
      * Sets the up.
@@ -61,19 +61,19 @@ class GetCharacterControllerTest {
     void testGetCharacters_whenValidParams_thenReturnsOk() throws Exception {
 
         // Given
-        final var characterSummaryList = Instancio.ofList(CharacterSummary.class).size(3).create();
-        final var characterDtoList = Instancio.ofList(CharacterSummaryDto.class).size(3).create();
+        final var baseCharacterList = Instancio.ofList(BaseCharacter.class).size(3).create();
+        final var characterDtoList = Instancio.ofList(CharacterBasicDto.class).size(3).create();
 
         // When
-        when(this.getCharactersUseCase.findAll()).thenReturn(characterSummaryList);
-        when(this.characterSummaryDtoMapper.toCharacterSummaryDtoList(characterSummaryList))
+        when(this.getCharactersUseCase.findAll()).thenReturn(baseCharacterList);
+        when(this.characterBasicDtoMapper.toCharacterBasicDtoList(baseCharacterList))
                 .thenReturn(characterDtoList);
 
         final var response = this.mockMvc.perform(get(URL).accept(MediaType.APPLICATION_JSON));
 
         // Then
         verify(this.getCharactersUseCase, times(1)).findAll();
-        verify(this.characterSummaryDtoMapper, times(1)).toCharacterSummaryDtoList(characterSummaryList);
+        verify(this.characterBasicDtoMapper, times(1)).toCharacterBasicDtoList(baseCharacterList);
 
         response
                 .andExpect(status().isOk())

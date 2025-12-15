@@ -23,3 +23,24 @@ properties:
   image:
     description: "Character Image URL"
     type: string
+  status:
+    description: "Character Status"
+    type: string
+  fruitList:
+    description: "Fruit List"
+    type: array
+    items:
+      type: string
+  hakiList:
+    description: "Haki List"
+    type: array
+    items:
+      type: string
+  transformationList:
+    description: "Transformation List"
+    type: array
+    items:
+      type: string
+  affiliation:
+    description: "Affiliation Name"
+    type: string
