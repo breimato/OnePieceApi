@@ -5,7 +5,6 @@ import es.api.onepiece.core.internal.domain.character.Character;
 import es.api.onepiece.core.internal.usecases.character.CreateCharacterUseCase;
 import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
 import org.instancio.Instancio;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -50,14 +49,14 @@ class PostCharacterControllerTest {
 
         // When
         when(this.characterDtoMapper.toCreateCharacterVo(createCharacterRequestDto)).thenReturn(createCharacterVo);
-        when(this.createCharacterUseCase.create(createCharacterVo)).thenReturn(character);
+        when(this.createCharacterUseCase.execute(createCharacterVo)).thenReturn(character);
         when(this.characterDtoMapper.toCharacterV1Dto(character)).thenReturn(characterDto);
 
         final var response = this.postCharacterController.createCharacterV1(createCharacterRequestDto);
 
         // Then
         verify(this.characterDtoMapper, times(1)).toCreateCharacterVo(createCharacterRequestDto);
-        verify(this.createCharacterUseCase, times(1)).create(createCharacterVo);
+        verify(this.createCharacterUseCase, times(1)).execute(createCharacterVo);
         verify(this.characterDtoMapper, times(1)).toCharacterV1Dto(character);
 
         assertThat(response).isNotNull();

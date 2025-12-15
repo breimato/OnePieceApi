@@ -1,68 +1,86 @@
 package es.api.onepiece.adapters.inbound.rest.mapper.character;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.mapstruct.*;
 import org.openapitools.model.CharacterDto;
 import es.api.onepiece.core.internal.domain.character.Character;
-import org.mapstruct.Builder;
-import org.mapstruct.Mapper;
-import org.mapstruct.ReportingPolicy;
 import es.api.onepiece.adapters.inbound.rest.mapper.boat.BoatDtoMapper;
 import es.api.onepiece.adapters.inbound.rest.mapper.fruit.FruitDtoMapper;
 import es.api.onepiece.adapters.inbound.rest.mapper.sword.SwordDtoMapper;
 import es.api.onepiece.adapters.inbound.rest.mapper.debut.DebutDtoMapper;
 
 import java.util.List;
+
 import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
 import org.openapitools.model.CreateCharacterRequestDto;
 import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum;
-import org.mapstruct.Mapping;
 
 /**
  * The Interface CharacterDtoMapper.
  */
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring", uses = {
-                HakiDtoMapper.class,
-                SwordDtoMapper.class,
-                TransformationDtoMapper.class,
-                AttackDtoMapper.class,
-                AffiliationDtoMapper.class,
-                CharacterAffiliationDtoMapper.class,
-                BoatDtoMapper.class,
-                CharacterBasicDtoMapper.class,
-                FruitDtoMapper.class,
-                JobDtoMapper.class,
-                RaceDtoMapper.class,
-                CharacterTitleDtoMapper.class,
-                DebutDtoMapper.class
+        HakiDtoMapper.class,
+        SwordDtoMapper.class,
+        TransformationDtoMapper.class,
+        AttackDtoMapper.class,
+        AffiliationDtoMapper.class,
+        CharacterAffiliationDtoMapper.class,
+        BoatDtoMapper.class,
+        CharacterBasicDtoMapper.class,
+        FruitDtoMapper.class,
+        JobDtoMapper.class,
+        RaceDtoMapper.class,
+        CharacterTitleDtoMapper.class,
+        DebutDtoMapper.class
 })
 public interface CharacterDtoMapper {
 
-        /**
-         * To character V 1 dto.
-         *
-         * @param character the character
-         * @return the character dto
-         */
-        CharacterDto toCharacterV1Dto(Character character);
+    /**
+     * To character V 1 dto.
+     *
+     * @param character the character
+     * @return the character dto
+     */
+    @Mapping(target = "fruits", source = "fruits", qualifiedByName = "emptyListToNull")
+    @Mapping(target = "hakis", source = "hakis", qualifiedByName = "emptyListToNull")
+    @Mapping(target = "titles", source = "titles", qualifiedByName = "emptyListToNull")
+    @Mapping(target = "jobs", source = "jobs", qualifiedByName = "emptyListToNull")
+    @Mapping(target = "affiliations", source = "affiliations", qualifiedByName = "emptyListToNull")
+    @Mapping(target = "swords", source = "swords", qualifiedByName = "emptyListToNull")
+    @Mapping(target = "transformations", source = "transformations", qualifiedByName = "emptyListToNull")
+    @Mapping(target = "attacks", source = "attacks", qualifiedByName = "emptyListToNull")
+    CharacterDto toCharacterV1Dto(Character character);
 
-        /**
-         * To character V 1 dto list.
-         *
-         * @param characters the characters
-         * @return the list
-         */
-        List<CharacterDto> toCharacterV1DtoList(List<Character> characters);
+    /**
+     * To character V 1 dto list.
+     *
+     * @param characters the characters
+     * @return the list
+     */
+    List<CharacterDto> toCharacterV1DtoList(List<Character> characters);
 
-        /**
-         * To create character vo.
-         *
-         * @param createCharacterRequestDto the create character request dto
-         * @return the create character vo
-         */
-        @Mapping(target = "status", source = "statusId")
-        @Mapping(target = "debutId", source = "firstAppearanceId")
-        CreateCharacterVo toCreateCharacterVo(CreateCharacterRequestDto createCharacterRequestDto);
+    /**
+     * To create character vo.
+     *
+     * @param createCharacterRequestDto the create character request dto
+     * @return the create character vo
+     */
+    @Mapping(target = "status", source = "statusId")
+    @Mapping(target = "debutId", source = "firstAppearanceId")
+    CreateCharacterVo toCreateCharacterVo(CreateCharacterRequestDto createCharacterRequestDto);
 
-        default CharacterStatusTypeEnum mapStatusId(final Integer statusId) {
-                return CharacterStatusTypeEnum.getById(statusId);
-        }
+    default CharacterStatusTypeEnum mapStatusId(final Integer statusId) {
+        return CharacterStatusTypeEnum.getById(statusId);
+    }
+
+    /**
+     * Empty list to null.
+     *
+     * @param list the list
+     * @return the list
+     */
+    @Named("emptyListToNull")
+    default <T> List<T> emptyListToNull(List<T> list) {
+        return CollectionUtils.isEmpty(list) ? null : list;
+    }
 }

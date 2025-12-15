@@ -87,10 +87,10 @@ public interface CharacterMyBatisMapper {
      * @param characterEntity the entity
      */
     @Insert(
-            """
-                        insert into "character" (name, description, height_cm, age, bounty, image_url, status_id, first_appearance_id, race_id)
-                        values (#{name}, #{description}, #{height}, #{age}, #{bounty}, #{image}, #{status.id}, #{debut.id}, #{race.id})
-                    """)
+        """
+            insert into "character" (name, description, height_cm, age, bounty, image_url, status_id, first_appearance_id, race_id)
+            values (#{name}, #{description}, #{height}, #{age}, #{bounty}, #{image}, #{status.id}, #{debut.id}, #{race.id})
+        """)
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "character_id")
     void insertCharacter(CharacterEntity characterEntity);
 
@@ -111,6 +111,24 @@ public interface CharacterMyBatisMapper {
                     """)
     void insertFruits(@Param("characterId") Integer characterId,
                       @Param("fruitIds") List<Integer> fruitIds);
+
+    /**
+     * Insert character hakis in batch.
+     *
+     * @param characterId the character id
+     * @param hakiIds    the haki ids
+     */
+    @Insert(
+            """
+                        <script>
+                        insert into character_haki (character_id, haki_id) VALUES
+                        <foreach collection='hakiIds' item='hakiId' separator=','>
+                            (#{characterId}, #{hakiId})
+                        </foreach>
+                        </script>
+                    """)
+    void insertHakis(@Param("characterId") Integer characterId,
+                      @Param("hakiIds") List<Integer> hakiIds);
 
     /**
      * Gets the character by id.

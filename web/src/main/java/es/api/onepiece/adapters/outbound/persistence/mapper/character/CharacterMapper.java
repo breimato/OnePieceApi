@@ -2,6 +2,7 @@ package es.api.onepiece.adapters.outbound.persistence.mapper.character;
 
 import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterSummaryEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.character.HakiEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.character.RaceEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.debut.DebutEntity;
 import es.api.onepiece.adapters.outbound.persistence.mapper.character.enums.CharacterStatusTypeEnumMapper;
@@ -78,6 +79,8 @@ public interface CharacterMapper {
      */
     @Mapping(target = "race", source = "raceId", qualifiedByName = "mapRaceEntity")
     @Mapping(target = "debut", source = "debutId", qualifiedByName = "mapDebutEntity")
+    @Mapping(target = "fruits", source = "fruitIds", qualifiedByName = "mapFruitEntityList")
+    @Mapping(target = "hakis", source = "hakiIds", qualifiedByName = "mapHakiEntityList")
     CharacterEntity toCharacterEntityFromVo(CreateCharacterVo createCharacterVo);
 
     /**
@@ -86,7 +89,6 @@ public interface CharacterMapper {
      */
     @Named("mapRaceEntity")
     default RaceEntity mapRaceEntity(final Integer id) {
-        if (id == null) return null;
         final var entity = new RaceEntity();
         entity.setId(id);
         return entity;
@@ -98,10 +100,27 @@ public interface CharacterMapper {
      */
     @Named("mapDebutEntity")
     default DebutEntity mapDebutEntity(final Integer id) {
-        if (id == null) return null;
         final var entity = new DebutEntity();
         entity.setId(id);
         return entity;
+    }
+
+    @Named("mapFruitEntityList")
+    default List<FruitEntity> mapFruitEntityList(final List<Integer> ids) {
+        return ids.stream().map(id -> {
+            final var entity = new FruitEntity();
+            entity.setId(id);
+            return entity;
+        }).toList();
+    }
+
+    @Named("mapHakiEntityList")
+    default List<HakiEntity> mapHakiEntityList(final List<Integer> ids) {
+        return ids.stream().map(id -> {
+            final var entity = new HakiEntity();
+            entity.setId(id);
+            return entity;
+        }).toList();
     }
 
 }

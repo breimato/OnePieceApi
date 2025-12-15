@@ -34,3 +34,8 @@ properties:
   firstAppearanceId:
     description: "First Appearance (Debut) ID"
     type: integer
+  hakiIds:
+    description: "List of Haki IDs"
+    type: array
+    items:
+      type: integer

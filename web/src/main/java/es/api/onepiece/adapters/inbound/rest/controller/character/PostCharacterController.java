@@ -15,8 +15,8 @@ import jakarta.validation.Valid;
 /**
  * The Class CreateCharacterController.
  */
-@RestController
 @Validated
+@RestController
 @RequiredArgsConstructor
 public class PostCharacterController implements CreateCharacterV1Api {
 
@@ -35,7 +35,7 @@ public class PostCharacterController implements CreateCharacterV1Api {
 
         final var createCharacterVo = this.characterDtoMapper.toCreateCharacterVo(createCharacterRequestDto);
 
-        final var createdCharacter = this.createCharacterUseCase.create(createCharacterVo);
+        final var createdCharacter = this.createCharacterUseCase.execute(createCharacterVo);
 
         final var characterDto = this.characterDtoMapper.toCharacterV1Dto(createdCharacter);
 

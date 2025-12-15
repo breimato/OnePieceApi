@@ -15,5 +15,5 @@ public interface CreateCharacterPort {
      * @param createCharacterVo the create character vo
      * @return the character
      */
-    Character create(@Valid CreateCharacterVo createCharacterVo);
+    Character execute(@Valid CreateCharacterVo createCharacterVo);
 }

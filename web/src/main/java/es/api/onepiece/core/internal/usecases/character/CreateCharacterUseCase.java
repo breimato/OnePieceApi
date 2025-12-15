@@ -10,12 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import es.api.onepiece.core.internal.domain.debut.Debut;
-import es.api.onepiece.core.internal.domain.fruit.Fruit;
-import es.api.onepiece.core.internal.domain.character.Race;
 import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
-import java.util.stream.Collectors;
-import java.util.Collections;
 
 /**
  * The Class CreateCharacterUseCase.
@@ -35,11 +30,11 @@ public class CreateCharacterUseCase implements CreateCharacterPort {
      * {@inheritDoc}
      */
     @Override
-    public Character create(@Valid final CreateCharacterVo createCharacterVo) {
+    public Character execute(@Valid final CreateCharacterVo createCharacterVo) {
 
         this.validateFruits(createCharacterVo);
 
-        return this.createCharacterPersistencePort.create(createCharacterVo);
+        return this.createCharacterPersistencePort.execute(createCharacterVo);
 
     }
 

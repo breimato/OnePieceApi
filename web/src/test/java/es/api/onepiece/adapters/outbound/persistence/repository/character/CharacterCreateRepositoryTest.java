@@ -41,7 +41,7 @@ class CharacterCreateRepositoryTest {
      * Test create when vo has fruits then inserts character and fruits.
      */
     @Test
-    void testCreate_whenVoHasFruits_thenInsertsCharacterAndFruits() {
+    void testExecute_whenVoHasFruits_thenInsertsCharacterAndFruits() {
 
         // Given
         final var createCharacterVo = Instancio.create(CreateCharacterVo.class);
@@ -50,14 +50,16 @@ class CharacterCreateRepositoryTest {
 
         // When
         when(this.characterMapper.toCharacterEntityFromVo(createCharacterVo)).thenReturn(characterEntity);
+        when(this.characterMyBatisMapper.getCharacterById(characterEntity.getId())).thenReturn(characterEntity);
         when(this.characterMapper.toCharacter(characterEntity)).thenReturn(character);
 
-        final var result = this.characterCreateRepository.create(createCharacterVo);
+        final var result = this.characterCreateRepository.execute(createCharacterVo);
 
         // Then
         verify(this.characterMapper, times(1)).toCharacterEntityFromVo(createCharacterVo);
         verify(this.characterMyBatisMapper, times(1)).insertCharacter(characterEntity);
         verify(this.characterMyBatisMapper, times(1)).insertFruits(characterEntity.getId(), createCharacterVo.getFruitIds());
+        verify(this.characterMyBatisMapper, times(1)).getCharacterById(characterEntity.getId());
         verify(this.characterMapper, times(1)).toCharacter(characterEntity);
 
         assertThat(result).isEqualTo(character);
@@ -67,7 +69,7 @@ class CharacterCreateRepositoryTest {
      * Test create when vo has no fruits then inserts only character.
      */
     @Test
-    void testCreate_whenVoHasNoFruits_thenInsertsOnlyCharacter() {
+    void testExecute_whenVoHasNoFruits_thenInsertsOnlyCharacter() {
 
         // Given
         final var createCharacterVo = Instancio.create(CreateCharacterVo.class);
@@ -78,14 +80,16 @@ class CharacterCreateRepositoryTest {
 
         // When
         when(this.characterMapper.toCharacterEntityFromVo(createCharacterVo)).thenReturn(characterEntity);
+        when(this.characterMyBatisMapper.getCharacterById(characterEntity.getId())).thenReturn(characterEntity);
         when(this.characterMapper.toCharacter(characterEntity)).thenReturn(character);
 
-        final var result = this.characterCreateRepository.create(createCharacterVo);
+        final var result = this.characterCreateRepository.execute(createCharacterVo);
 
         // Then
         verify(this.characterMapper, times(1)).toCharacterEntityFromVo(createCharacterVo);
         verify(this.characterMyBatisMapper, times(1)).insertCharacter(characterEntity);
         verify(this.characterMyBatisMapper, times(0)).insertFruits(characterEntity.getId(), createCharacterVo.getFruitIds());
+        verify(this.characterMyBatisMapper, times(1)).getCharacterById(characterEntity.getId());
         verify(this.characterMapper, times(1)).toCharacter(characterEntity);
 
         assertThat(result).isEqualTo(character);

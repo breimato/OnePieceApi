@@ -32,7 +32,7 @@ public class CharacterCreateRepository implements CreateCharacterPersistencePort
      */
     @Override
     @Transactional
-    public Character create(@Valid final CreateCharacterVo createCharacterVo) {
+    public Character execute(@Valid final CreateCharacterVo createCharacterVo) {
 
         final var characterEntity = this.characterMapper.toCharacterEntityFromVo(createCharacterVo);
 
@@ -41,7 +41,12 @@ public class CharacterCreateRepository implements CreateCharacterPersistencePort
         if (CollectionUtils.isNotEmpty(createCharacterVo.getFruitIds())) {
             this.characterMyBatisMapper.insertFruits(characterEntity.getId(), createCharacterVo.getFruitIds());
         }
+        if (CollectionUtils.isNotEmpty(createCharacterVo.getHakiIds())) {
+            this.characterMyBatisMapper.insertHakis(characterEntity.getId(), createCharacterVo.getHakiIds());
+        }
 
-        return this.characterMapper.toCharacter(characterEntity);
+        final var createdCharacterEntity = this.characterMyBatisMapper.getCharacterById(characterEntity.getId());
+
+        return this.characterMapper.toCharacter(createdCharacterEntity);
     }
 }

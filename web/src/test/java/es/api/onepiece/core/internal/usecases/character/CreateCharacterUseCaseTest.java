@@ -39,7 +39,7 @@ class CreateCharacterUseCaseTest {
      * Test create when fruits are valid then creates character.
      */
     @Test
-    void testCreate_whenFruitsAreValid_thenCreatesCharacter() {
+    void testExecute_whenFruitsAreValid_thenCreatesCharacter() {
         // Given
         final var createCharacterVo = Instancio.create(CreateCharacterVo.class);
         createCharacterVo.setFruitIds(Collections.emptyList());
@@ -47,12 +47,12 @@ class CreateCharacterUseCaseTest {
         final var character = Instancio.create(Character.class);
 
         // When
-        when(this.createCharacterPersistencePort.create(createCharacterVo)).thenReturn(character);
+        when(this.createCharacterPersistencePort.execute(createCharacterVo)).thenReturn(character);
 
-        final var result = this.createCharacterUseCase.create(createCharacterVo);
+        final var result = this.createCharacterUseCase.execute(createCharacterVo);
 
         // Then
-        verify(this.createCharacterPersistencePort, times(1)).create(createCharacterVo);
+        verify(this.createCharacterPersistencePort, times(1)).execute(createCharacterVo);
 
         assertThat(result).isEqualTo(character);
     }
@@ -61,7 +61,7 @@ class CreateCharacterUseCaseTest {
      * Test create when fruits exceed limit then throws fruit exception.
      */
     @Test
-    void testCreate_whenFruitsExceedLimit_thenThrowsFruitException() {
+    void testExecute_whenFruitsExceedLimit_thenThrowsFruitException() {
         // Given
         final var createCharacterVo = Instancio.create(CreateCharacterVo.class);
         final var fruitIds = Instancio.ofList(Integer.class).size(3).create();
@@ -69,10 +69,10 @@ class CreateCharacterUseCaseTest {
 
         // When
         final var exception
-                = assertThrows(FruitException.class, () -> this.createCharacterUseCase.create(createCharacterVo));
+                = assertThrows(FruitException.class, () -> this.createCharacterUseCase.execute(createCharacterVo));
 
         // Then
-        verify(this.createCharacterPersistencePort, times(0)).create(createCharacterVo);
+        verify(this.createCharacterPersistencePort, times(0)).execute(createCharacterVo);
 
         assertEquals(ExceptionMessageConstants.FRUITS_LIMIT_EXCEEDED_CODE_ERROR, exception.getCode());
         assertEquals(ExceptionMessageConstants.FRUITS_LIMIT_EXCEEDED_MESSAGE_ERROR, exception.getMessage());

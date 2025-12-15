@@ -43,4 +43,7 @@ public class CreateCharacterVo {
 
     /** The fruit ids. */
     @NotNull private List<Integer> fruitIds;
+
+    /** The haki ids. */
+    @NotNull private List<Integer> hakiIds;
 }
