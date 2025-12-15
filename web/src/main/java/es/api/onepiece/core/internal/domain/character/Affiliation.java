@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import es.api.onepiece.core.internal.domain.character.enums.CharacterAffiliationRoleEnum;
+import es.api.onepiece.core.internal.domain.character.enums.CharacterAffiliationStatusEnum;
 import java.util.List;
 
 /**
@@ -46,4 +48,10 @@ public class Affiliation {
     /** The boats. */
     @Valid
     private List<Boat> boats;
+
+    /** The status. */
+    private CharacterAffiliationStatusEnum status;
+
+    /** The role. */
+    private CharacterAffiliationRoleEnum role;
 }

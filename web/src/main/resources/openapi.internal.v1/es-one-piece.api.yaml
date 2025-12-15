@@ -17,8 +17,6 @@ components:
       $ref: './components/ApiError.yaml'
     Character:
       $ref: './components/Character.yaml'
-    CharacterBasic:
-      $ref: './components/CharacterBasic.yaml'
     Fruit:
       $ref: './components/Fruit.yaml'
     Debut:
@@ -39,8 +37,6 @@ components:
       $ref: './components/CharacterTitle.yaml'
     Affiliation:
       $ref: './components/Affiliation.yaml'
-    CharacterAffiliation:
-      $ref: './components/CharacterAffiliation.yaml'
     Boat:
       $ref: './components/Boat.yaml'
     Sword:
@@ -49,6 +45,10 @@ components:
       $ref: './components/Transformation.yaml'
     Attack:
       $ref: './components/Attack.yaml'
+    CharacterBasic:
+      $ref: './components/CharacterBasic.yaml'
+    CharacterSummary:
+      $ref: './components/CharacterSummary.yaml'
   responses:
     400:
       description: Bad Request

@@ -50,7 +50,7 @@ public class Character extends BaseCharacter {
 
     /** The affiliations. */
     @Valid
-    private List<CharacterAffiliation> affiliations;
+    private List<Affiliation> affiliations;
 
     /** The transformations. */
     @Valid

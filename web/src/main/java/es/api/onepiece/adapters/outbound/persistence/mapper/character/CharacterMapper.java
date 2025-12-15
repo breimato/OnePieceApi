@@ -9,15 +9,11 @@ import es.api.onepiece.adapters.outbound.persistence.mapper.character.enums.Char
 import es.api.onepiece.adapters.outbound.persistence.mapper.debut.DebutMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.fruit.FruitMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.sword.SwordMapper;
-import es.api.onepiece.core.internal.domain.character.Character;
 import es.api.onepiece.core.internal.domain.character.CharacterSummary;
-import es.api.onepiece.core.internal.domain.character.Race;
-import es.api.onepiece.core.internal.domain.debut.Debut;
 import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitEntity;
 import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
 import org.mapstruct.*;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,7 +21,7 @@ import java.util.List;
  */
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring", uses = {
         FruitMapper.class, DebutMapper.class, RaceMapper.class, HakiMapper.class, CharacterTitleMapper.class,
-        JobMapper.class, CharacterAffiliationMapper.class, AttackMapper.class, TransformationMapper.class,
+        JobMapper.class, AttackMapper.class, TransformationMapper.class, AffiliationMapper.class,
         SwordMapper.class, CharacterStatusTypeEnumMapper.class })
 public interface CharacterMapper {
 
@@ -35,7 +31,7 @@ public interface CharacterMapper {
      * @param characterEntity the character entity
      * @return the character
      */
-    Character toCharacter(CharacterEntity characterEntity);
+    es.api.onepiece.core.internal.domain.character.Character toCharacter(CharacterEntity characterEntity);
 
     /**
      * To character list.
@@ -43,7 +39,7 @@ public interface CharacterMapper {
      * @param entities the entities
      * @return the list
      */
-    List<Character> toCharacterList(List<CharacterEntity> entities);
+    List<es.api.onepiece.core.internal.domain.character.Character> toCharacterList(List<CharacterEntity> entities);
 
     /**
      * To character summary.
@@ -51,7 +47,8 @@ public interface CharacterMapper {
      * @param entity the entity
      * @return the character summary
      */
-    CharacterSummary toCharacterSummary(CharacterSummaryEntity entity);
+    CharacterSummary toCharacterSummary(
+            CharacterSummaryEntity entity);
 
     /**
      * To character summary list.
@@ -67,7 +64,7 @@ public interface CharacterMapper {
      * @param character the character
      * @return the character entity
      */
-    CharacterEntity toCharacterEntity(Character character);
+    CharacterEntity toCharacterEntity(es.api.onepiece.core.internal.domain.character.Character character);
 
     /**
      * To character entity from vo.
@@ -124,4 +121,3 @@ public interface CharacterMapper {
     }
 
 }
-

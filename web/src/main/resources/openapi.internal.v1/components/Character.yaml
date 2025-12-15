@@ -52,7 +52,7 @@ properties:
     description: "Affiliations"
     type: array
     items:
-      $ref: 'CharacterAffiliation.yaml'
+      $ref: 'Affiliation.yaml'
   swords:
     description: "Swords"
     type: array

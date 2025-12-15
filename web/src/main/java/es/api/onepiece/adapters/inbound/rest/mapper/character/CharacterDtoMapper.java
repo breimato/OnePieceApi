@@ -24,7 +24,6 @@ import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeE
         TransformationDtoMapper.class,
         AttackDtoMapper.class,
         AffiliationDtoMapper.class,
-        CharacterAffiliationDtoMapper.class,
         BoatDtoMapper.class,
         CharacterBasicDtoMapper.class,
         FruitDtoMapper.class,
@@ -80,7 +79,7 @@ public interface CharacterDtoMapper {
      * @return the list
      */
     @Named("emptyListToNull")
-    default <T> List<T> emptyListToNull(List<T> list) {
+    default <T> List<T> emptyListToNull(final List<T> list) {
         return CollectionUtils.isEmpty(list) ? null : list;
     }
 }

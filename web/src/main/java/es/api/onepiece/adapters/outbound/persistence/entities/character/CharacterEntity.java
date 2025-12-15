@@ -23,7 +23,8 @@ import java.util.List;
 public class CharacterEntity extends BaseCharacterEntity implements Serializable {
 
     /** The Constant serialVersionUID. */
-    @Serial private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     /** The status id. */
     private String statusId;
@@ -73,6 +74,6 @@ public class CharacterEntity extends BaseCharacterEntity implements Serializable
 
     /** The affiliations. */
     @Valid
-    private List<CharacterAffiliationEntity> affiliations;
+    private List<AffiliationEntity> affiliations;
 
 }

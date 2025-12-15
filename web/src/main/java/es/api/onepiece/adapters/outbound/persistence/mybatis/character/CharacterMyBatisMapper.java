@@ -1,6 +1,7 @@
 package es.api.onepiece.adapters.outbound.persistence.mybatis.character;
 
 import es.api.onepiece.adapters.outbound.persistence.entities.character.*;
+import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterSummaryEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.debut.ChapterEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.debut.DebutEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.debut.EpisodeEntity;
@@ -44,7 +45,7 @@ public interface CharacterMyBatisMapper {
             from "character" c
             order by c.character_id
             """)
-    List<CharacterSummaryEntity> findAllSummary();
+    List<CharacterSummaryEntity> findAll();
 
     @Select("select name from character_status where id = #{id}")
     String getStatusNameById(Integer id);
@@ -86,11 +87,10 @@ public interface CharacterMyBatisMapper {
      *
      * @param characterEntity the entity
      */
-    @Insert(
-        """
-            insert into "character" (name, description, height_cm, age, bounty, image_url, status_id, first_appearance_id, race_id)
-            values (#{name}, #{description}, #{height}, #{age}, #{bounty}, #{image}, #{status.id}, #{debut.id}, #{race.id})
-        """)
+    @Insert("""
+                insert into "character" (name, description, height_cm, age, bounty, image_url, status_id, first_appearance_id, race_id)
+                values (#{name}, #{description}, #{height}, #{age}, #{bounty}, #{image}, #{status.id}, #{debut.id}, #{race.id})
+            """)
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "character_id")
     void insertCharacter(CharacterEntity characterEntity);
 
@@ -100,35 +100,33 @@ public interface CharacterMyBatisMapper {
      * @param characterId the character id
      * @param fruitIds    the fruit ids
      */
-    @Insert(
-            """
-                        <script>
-                        insert into character_fruit (character_id, fruit_id) VALUES
-                        <foreach collection='fruitIds' item='fruitId' separator=','>
-                            (#{characterId}, #{fruitId})
-                        </foreach>
-                        </script>
-                    """)
+    @Insert("""
+                <script>
+                insert into character_fruit (character_id, fruit_id) VALUES
+                <foreach collection='fruitIds' item='fruitId' separator=','>
+                    (#{characterId}, #{fruitId})
+                </foreach>
+                </script>
+            """)
     void insertFruits(@Param("characterId") Integer characterId,
-                      @Param("fruitIds") List<Integer> fruitIds);
+            @Param("fruitIds") List<Integer> fruitIds);
 
     /**
      * Insert character hakis in batch.
      *
      * @param characterId the character id
-     * @param hakiIds    the haki ids
+     * @param hakiIds     the haki ids
      */
-    @Insert(
-            """
-                        <script>
-                        insert into character_haki (character_id, haki_id) VALUES
-                        <foreach collection='hakiIds' item='hakiId' separator=','>
-                            (#{characterId}, #{hakiId})
-                        </foreach>
-                        </script>
-                    """)
+    @Insert("""
+                <script>
+                insert into character_haki (character_id, haki_id) VALUES
+                <foreach collection='hakiIds' item='hakiId' separator=','>
+                    (#{characterId}, #{hakiId})
+                </foreach>
+                </script>
+            """)
     void insertHakis(@Param("characterId") Integer characterId,
-                      @Param("hakiIds") List<Integer> hakiIds);
+            @Param("hakiIds") List<Integer> hakiIds);
 
     /**
      * Gets the character by id.
@@ -278,13 +276,12 @@ public interface CharacterMyBatisMapper {
     @Result(property = "id", column = "haki_id")
     @Result(property = "name", column = "name")
     @Result(property = "description", column = "description")
-    @Select(
-            """
-                        select h.id as haki_id, h.name, h.description
-                        from character_haki ch
-                        join haki h on h.id = ch.haki_id
-                        where ch.character_id = #{characterId}
-                    """)
+    @Select("""
+                select h.id as haki_id, h.name, h.description
+                from character_haki ch
+                join haki h on h.id = ch.haki_id
+                where ch.character_id = #{characterId}
+            """)
     List<HakiEntity> getHakisByCharacterId(Integer characterId);
 
     /**
@@ -296,13 +293,12 @@ public interface CharacterMyBatisMapper {
     @Result(property = "id", column = "title_id")
     @Result(property = "title", column = "title")
     @Result(property = "isActive", column = "is_active")
-    @Select(
-            """
-                        select ct.title_id, t.name as title, ct.is_active
-                        from character_title ct
-                        join title t on t.title_id = ct.title_id
-                        where ct.character_id = #{characterId}
-                    """)
+    @Select("""
+                select ct.title_id, t.name as title, ct.is_active
+                from character_title ct
+                join title t on t.title_id = ct.title_id
+                where ct.character_id = #{characterId}
+            """)
     List<CharacterTitleEntity> getTitlesByCharacterId(Integer characterId);
 
     /**
@@ -420,16 +416,15 @@ public interface CharacterMyBatisMapper {
      * @return the affiliations by character id
      */
 
-    @Result(property = "affiliation.id", column = "affiliation_id")
-    @Result(property = "affiliation.name", column = "affiliation_name")
-    @Result(property = "affiliation.description", column = "affiliation_description")
-    @Result(property = "affiliation.totalBounty", column = "affiliation_total_bounty")
-    @Result(property = "affiliation.isActive", column = "affiliation_is_active")
-    @Result(property = "affiliation.leader", column = "leader_id", one = @One(select = "getCharacterLeaderById"))
-    @Result(property = "affiliation.boats", column = "affiliation_id", many = @Many(select = "getBoatsByAffiliationId"))
+    @Result(property = "id", column = "affiliation_id")
+    @Result(property = "name", column = "affiliation_name")
+    @Result(property = "description", column = "affiliation_description")
+    @Result(property = "totalBounty", column = "affiliation_total_bounty")
+    @Result(property = "isActive", column = "affiliation_is_active")
+    @Result(property = "leader", column = "leader_id", one = @One(select = "getCharacterLeaderById"))
+    @Result(property = "boats", column = "affiliation_id", many = @Many(select = "getBoatsByAffiliationId"))
     @Result(property = "status", column = "status")
     @Result(property = "role", column = "role")
-
     @Select("""
             select
                 ca.affiliation_id,
@@ -446,7 +441,7 @@ public interface CharacterMyBatisMapper {
             left join role r on r.id = ca.role_id
             where ca.character_id = #{characterId}
             """)
-    List<CharacterAffiliationEntity> getAffiliationsByCharacterId(Integer characterId);
+    List<AffiliationEntity> getAffiliationsByCharacterId(Integer characterId);
 
     /**
      * Gets the boats by affiliation id.
@@ -496,7 +491,6 @@ public interface CharacterMyBatisMapper {
     @Result(property = "bounty", column = "bounty")
     @Result(property = "image", column = "image")
     BaseCharacterEntity getCharacterLeaderById(Integer id);
-
 
     /**
      * Gets the attack owner by id.

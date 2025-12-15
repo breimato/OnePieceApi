@@ -49,6 +49,13 @@ public class AffiliationEntity implements Serializable {
     @NotNull
     private Boolean isActive;
 
+    /** The status. */
+    @NotNull
+    private String status;
+
+    /** The role. */
+    private String role;
+
     /** The boats. */
     @Valid
     private List<BoatEntity> boats;

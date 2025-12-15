@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
  * The Class BaseCharacter.
  */
 @Data
-@SuperBuilder(toBuilder = true)
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseCharacter {

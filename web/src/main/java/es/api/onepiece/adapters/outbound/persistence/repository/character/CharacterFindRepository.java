@@ -28,7 +28,7 @@ public class CharacterFindRepository implements FindCharactersPersistencePort {
      */
     @Override
     public List<CharacterSummary> findAll() {
-        final var characterSummaryEntities = this.characterMyBatisMapper.findAllSummary();
+        final var characterSummaryEntities = this.characterMyBatisMapper.findAll();
         return this.characterMapper.toCharacterSummaryList(characterSummaryEntities);
     }
 

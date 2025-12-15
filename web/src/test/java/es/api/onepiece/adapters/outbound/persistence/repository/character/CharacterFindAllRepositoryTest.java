@@ -44,14 +44,14 @@ class CharacterFindAllRepositoryTest {
         final var domainCharacterSummaries = Instancio.ofList(CharacterSummary.class).size(3).create();
 
         // When
-        when(this.characterMyBatisMapper.findAllSummary()).thenReturn(characterSummaryEntities);
+        when(this.characterMyBatisMapper.findAll()).thenReturn(characterSummaryEntities);
         when(this.characterMapper.toCharacterSummaryList(characterSummaryEntities))
                 .thenReturn(domainCharacterSummaries);
 
         final var result = this.characterFindRepository.findAll();
 
         // Then
-        verify(this.characterMyBatisMapper).findAllSummary();
+        verify(this.characterMyBatisMapper).findAll();
         verify(this.characterMapper).toCharacterSummaryList(characterSummaryEntities);
         assertEquals(domainCharacterSummaries, result);
     }
