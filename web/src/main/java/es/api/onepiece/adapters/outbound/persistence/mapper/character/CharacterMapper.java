@@ -27,22 +27,12 @@ import java.util.List;
 public interface CharacterMapper {
 
     /**
-     * To character list.
-     *
-     * @param entities the entities
-     * @return the list
-     */
-    List<Character> toCharacterList(List<CharacterEntity> entities);
-
-    /**
      * To base character.
      *
-     * @param entity the entity
+     * @param baseCharacterEntity the base character entity
      * @return the base character
      */
-    @Mapping(target = "status", expression = "java(es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum.getByName(entity.getStatusName()))")
-    @Mapping(target = "affiliation", source = "affiliationName")
-    BaseCharacter toBaseCharacter(BaseCharacterEntity entity);
+    BaseCharacter toBaseCharacter(BaseCharacterEntity baseCharacterEntity);
 
     /**
      * To base character list.
@@ -63,12 +53,20 @@ public interface CharacterMapper {
     Character toCharacter(CharacterEntity entity);
 
     /**
+     * To character list.
+     *
+     * @param entities the entities
+     * @return the list
+     */
+    List<Character> toCharacterList(List<CharacterEntity> entities);
+
+    /**
      * To character entity.
      *
      * @param character the character
      * @return the character entity
      */
-    CharacterEntity toCharacterEntity(es.api.onepiece.core.internal.domain.character.Character character);
+    CharacterEntity toCharacterEntity(Character character);
 
     /**
      * To character entity from vo.
@@ -78,6 +76,8 @@ public interface CharacterMapper {
      * @param createCharacterVo the create character vo
      * @return the character entity
      */
+    @Mapping(target = "raceId", source = "raceId")
+    @Mapping(target = "debutId", source = "debutId")
     @Mapping(target = "race", source = "raceId", qualifiedByName = "mapRaceEntity")
     @Mapping(target = "debut", source = "debutId", qualifiedByName = "mapDebutEntity")
     @Mapping(target = "fruits", source = "fruitIds", qualifiedByName = "mapFruitEntityList")

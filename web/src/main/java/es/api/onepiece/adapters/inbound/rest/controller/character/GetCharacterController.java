@@ -1,6 +1,6 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character;
 
-import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterBasicDtoMapper;
+import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterDtoMapper;
 import es.api.onepiece.core.internal.usecases.character.GetCharactersUseCase;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.GetCharactersV1Api;
@@ -22,7 +22,7 @@ public class GetCharacterController implements GetCharactersV1Api {
     private final GetCharactersUseCase getCharactersUseCase;
 
     /** The character dto mapper. */
-    private final CharacterBasicDtoMapper characterBasicDtoMapper;
+    private final CharacterDtoMapper characterDtoMapper;
 
     /**
      * {@inheritDoc}
@@ -32,7 +32,7 @@ public class GetCharacterController implements GetCharactersV1Api {
 
         final var characters = this.getCharactersUseCase.findAll();
 
-        final var charactersDto = this.characterBasicDtoMapper.toCharacterBasicDtoList(characters);
+        final var charactersDto = this.characterDtoMapper.toCharacterDtoList(characters);
 
         final var getCharactersV1ResponseDto = GetCharactersV1ResponseDto.builder().characters(charactersDto).build();
 

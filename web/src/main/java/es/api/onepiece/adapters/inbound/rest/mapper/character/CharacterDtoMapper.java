@@ -25,7 +25,6 @@ import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeE
         AttackDtoMapper.class,
         AffiliationDtoMapper.class,
         BoatDtoMapper.class,
-        CharacterBasicDtoMapper.class,
         FruitDtoMapper.class,
         JobDtoMapper.class,
         RaceDtoMapper.class,
@@ -51,12 +50,25 @@ public interface CharacterDtoMapper {
     CharacterDto toCharacterV1Dto(Character character);
 
     /**
-     * To character V 1 dto list.
+     * To character dto (from BaseCharacter).
      *
-     * @param characters the characters
-     * @return the list
+     * @param baseCharacter the base character
+     * @return the character dto
      */
-    List<CharacterDto> toCharacterV1DtoList(List<Character> characters);
+    @Mapping(target = "fruits", source = "fruitList", qualifiedByName = "mapFruitList")
+    @Mapping(target = "hakis", source = "hakiList", qualifiedByName = "mapHakiList")
+    @Mapping(target = "transformations", source = "transformationList", qualifiedByName = "mapTransformationList")
+    @Mapping(target = "affiliations", source = "affiliation", qualifiedByName = "mapAffiliationString")
+    @Mapping(target = "titles", ignore = true)
+    @Mapping(target = "jobs", ignore = true)
+    @Mapping(target = "swords", ignore = true)
+    @Mapping(target = "attacks", ignore = true)
+    @Mapping(target = "race", ignore = true)
+    @Mapping(target = "debut", ignore = true)
+    CharacterDto toCharacterDto(es.api.onepiece.core.internal.domain.character.BaseCharacter baseCharacter);
+
+    List<CharacterDto> toCharacterDtoList(
+            List<es.api.onepiece.core.internal.domain.character.BaseCharacter> baseCharacters);
 
     /**
      * To create character vo.
@@ -81,5 +93,51 @@ public interface CharacterDtoMapper {
     @Named("emptyListToNull")
     default <T> List<T> emptyListToNull(final List<T> list) {
         return CollectionUtils.isEmpty(list) ? null : list;
+    }
+
+    @Named("mapFruitList")
+    default List<org.openapitools.model.FruitDto> mapFruitList(List<String> fruitNames) {
+        if (CollectionUtils.isEmpty(fruitNames)) {
+            return null;
+        }
+        return fruitNames.stream().map(name -> {
+            org.openapitools.model.FruitDto dto = new org.openapitools.model.FruitDto();
+            dto.setName(name);
+            return dto;
+        }).toList();
+    }
+
+    @Named("mapHakiList")
+    default List<org.openapitools.model.HakiDto> mapHakiList(List<String> hakiNames) {
+        if (CollectionUtils.isEmpty(hakiNames)) {
+            return null;
+        }
+        return hakiNames.stream().map(name -> {
+            org.openapitools.model.HakiDto dto = new org.openapitools.model.HakiDto();
+            dto.setName(name);
+            return dto;
+        }).toList();
+    }
+
+    @Named("mapTransformationList")
+    default List<org.openapitools.model.TransformationDto> mapTransformationList(List<String> transformationNames) {
+        if (CollectionUtils.isEmpty(transformationNames)) {
+            return null;
+        }
+        return transformationNames.stream().map(name -> {
+            org.openapitools.model.TransformationDto dto = new org.openapitools.model.TransformationDto();
+            dto.setName(name);
+            return dto;
+        }).toList();
+    }
+
+    @Named("mapAffiliationString")
+    default List<org.openapitools.model.AffiliationDto> mapAffiliationString(String affiliationName) {
+        if (affiliationName == null) {
+            return null;
+        }
+        org.openapitools.model.AffiliationDto dto = new org.openapitools.model.AffiliationDto();
+        dto.setName(affiliationName);
+        return java.util.List.of(dto);
     }
 }

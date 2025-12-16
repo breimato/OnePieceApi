@@ -1,6 +1,5 @@
 package es.api.onepiece.core.internal.domain.character;
 
-import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum;
 import es.api.onepiece.core.internal.domain.debut.Debut;
 import es.api.onepiece.core.internal.domain.fruit.Fruit;
 import es.api.onepiece.core.internal.domain.sword.Sword;
