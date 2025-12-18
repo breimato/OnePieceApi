@@ -60,6 +60,6 @@ public class BaseCharacterEntity implements Serializable {
     /** The transformation list. */
     private List<String> transformationList;
 
-    /** The affiliation name. */
-    private String affiliationName;
+    /** The affiliation. */
+    private String affiliation;
 }
