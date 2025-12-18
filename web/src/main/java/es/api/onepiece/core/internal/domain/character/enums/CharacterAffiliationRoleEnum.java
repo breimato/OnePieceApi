@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Objects;
+
 /**
  * The Enum CharacterAffiliationRoleEnum.
  */
@@ -33,6 +35,10 @@ public enum CharacterAffiliationRoleEnum {
      * @return the by name
      */
     public static CharacterAffiliationRoleEnum getByName(final String name) {
+
+        if (Objects.isNull(name)) {
+            return null;
+        }
         try {
             return CharacterAffiliationRoleEnum.valueOf(name);
         } catch (final CharacterException exception) {

@@ -1,7 +1,9 @@
 package es.api.onepiece.adapters.inbound.rest.mapper.character;
 
+import es.api.onepiece.core.internal.vo.character.CreateCharacterAffiliationVo;
 import org.apache.commons.collections4.CollectionUtils;
 import org.mapstruct.*;
+import org.openapitools.model.CharacterAffiliationDto;
 import org.openapitools.model.CharacterDto;
 import es.api.onepiece.core.internal.domain.character.Character;
 import es.api.onepiece.core.internal.domain.character.CharacterSummary;
@@ -79,6 +81,16 @@ public interface CharacterDtoMapper {
     @Mapping(target = "status", source = "statusId")
     @Mapping(target = "debutId", source = "firstAppearanceId")
     CreateCharacterVo toCreateCharacterVo(CreateCharacterRequestDto createCharacterRequestDto);
+
+    /**
+     * To create character affiliation vo.
+     *
+     * @param characterAffiliationDto the character affiliation dto
+     * @return the create character affiliation vo
+     */
+    CreateCharacterAffiliationVo toCreateCharacterAffiliationVo(
+            CharacterAffiliationDto characterAffiliationDto);
+
 
     default CharacterStatusTypeEnum mapStatusId(final Integer statusId) {
         return CharacterStatusTypeEnum.getById(statusId);

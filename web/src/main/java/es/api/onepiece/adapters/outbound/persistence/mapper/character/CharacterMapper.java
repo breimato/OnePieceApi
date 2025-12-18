@@ -105,7 +105,7 @@ public interface CharacterMapper {
         if (entity == null) {
             return null;
         }
-        return CharacterStatusTypeEnum.getByName(entity.getStatus());
+        return CharacterStatusTypeEnum.getById(entity.getId());
     }
 
     /**

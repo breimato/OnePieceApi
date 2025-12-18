@@ -1,0 +1,13 @@
+description: Character Affiliation Input
+type: object
+properties:
+  affiliationId:
+    description: "Affiliation ID"
+    type: integer
+  statusId:
+    description: "Affiliation Status ID"
+    type: integer
+  roleId:
+    description: "Affiliation Role ID (optional)"
+    type: integer
+

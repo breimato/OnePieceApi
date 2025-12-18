@@ -49,11 +49,11 @@ properties:
     type: array
     items:
       type: integer
-  affiliationIds:
-    description: "List of Affiliation IDs"
+  characterAffiliations:
+    description: "List of Character Affiliations"
     type: array
     items:
-      type: integer
+      $ref: '../components/CharacterAffiliation.yaml'
   swordIds:
     description: "List of Sword IDs"
     type: array
