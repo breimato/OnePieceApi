@@ -48,8 +48,8 @@ public class BaseCharacterEntity implements Serializable {
     /** The image. */
     private String image;
 
-    /** The status name. */
-    private String statusName;
+    /** The status. */
+    private String status;
 
     /** The fruit list. */
     private List<String> fruitList;
