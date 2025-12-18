@@ -4,6 +4,7 @@ import es.api.onepiece.core.internal.domain.character.CharacterSummary;
 import es.api.onepiece.core.internal.domain.character.Character;
 import es.api.onepiece.core.ports.inbound.character.GetCharactersPort;
 import es.api.onepiece.core.ports.outbound.character.FindCharactersPersistencePort;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -31,7 +32,7 @@ public class GetCharactersUseCase implements GetCharactersPort {
      * {@inheritDoc}
      */
     @Override
-    public Character findById(final Integer id) {
+    public Character findById(@NotNull final Integer id) {
         return this.findCharactersPersistencePort.findById(id);
     }
 }

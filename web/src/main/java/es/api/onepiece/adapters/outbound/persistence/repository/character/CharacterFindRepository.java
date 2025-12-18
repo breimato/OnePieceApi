@@ -5,6 +5,7 @@ import es.api.onepiece.adapters.outbound.persistence.mapper.character.CharacterM
 import es.api.onepiece.core.internal.domain.character.CharacterSummary;
 import es.api.onepiece.core.internal.domain.character.Character;
 import es.api.onepiece.core.ports.outbound.character.FindCharactersPersistencePort;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -36,7 +37,7 @@ public class CharacterFindRepository implements FindCharactersPersistencePort {
      * {@inheritDoc}
      */
     @Override
-    public Character findById(final Integer id) {
+    public Character findById(@NotNull final Integer id) {
         final var characterEntity = this.characterMyBatisMapper.getCharacterById(id);
         return this.characterMapper.toCharacter(characterEntity);
     }
