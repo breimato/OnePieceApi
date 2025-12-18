@@ -107,3 +107,4 @@ public interface CharacterDtoMapper {
         return CollectionUtils.isEmpty(list) ? null : list;
     }
 }
+

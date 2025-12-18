@@ -164,8 +164,8 @@ public interface CharacterMyBatisMapper {
         /**
          * Insert character affiliations in batch.
          *
-         * @param characterId   the character id
-         * @param affiliations  the affiliations
+         * @param characterId  the character id
+         * @param affiliations the affiliations
          */
         @Insert("""
                             <script>
