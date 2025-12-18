@@ -1,7 +1,7 @@
 package es.api.onepiece.core.ports.outbound.character;
 
 import java.util.List;
-import es.api.onepiece.core.internal.domain.character.BaseCharacter;
+import es.api.onepiece.core.internal.domain.character.CharacterSummary;
 import es.api.onepiece.core.internal.domain.character.Character;
 
 /**
@@ -14,7 +14,7 @@ public interface FindCharactersPersistencePort {
      *
      * @return the list
      */
-    List<BaseCharacter> findAll();
+    List<CharacterSummary> findAll();
 
     /**
      * Find by id.

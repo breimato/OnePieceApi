@@ -27,23 +27,24 @@ public interface CharacterMyBatisMapper {
             @Result(property = "age", column = "age"),
             @Result(property = "bounty", column = "bounty"),
             @Result(property = "image", column = "image_url"),
-            @Result(property = "statusName", column = "status_name"),
-            @Result(property = "affiliationName", column = "affiliation_name"),
-            @Result(property = "fruitList", column = "character_id", many = @Many(select = "getFruitNamesByCharacterId")),
-            @Result(property = "hakiList", column = "character_id", many = @Many(select = "getHakiNamesByCharacterId")),
-            @Result(property = "transformationList", column = "character_id", many = @Many(select = "getTransformationNamesByCharacterId"))
+            @Result(property = "status", column = "status_id", one = @One(select = "getStatusById")),
+            @Result(property = "fruits", javaType = List.class, column = "character_id", many = @Many(select = "getFruitsByCharacterId")),
+            @Result(property = "hakis", javaType = List.class, column = "character_id", many = @Many(select = "getHakisByCharacterId")),
+            @Result(property = "transformations", javaType = List.class, column = "character_id", many = @Many(select = "getTransformationsByCharacterId")),
+            @Result(property = "affiliations", javaType = List.class, column = "character_id", many = @Many(select = "getAffiliationsByCharacterId")),
+            @Result(property = "titles", javaType = List.class, column = "character_id", many = @Many(select = "getTitlesByCharacterId")),
+            @Result(property = "jobs", javaType = List.class, column = "character_id", many = @Many(select = "getJobsByCharacterId")),
+            @Result(property = "swords", javaType = List.class, column = "character_id", many = @Many(select = "getSwordsByCharacterId")),
+            @Result(property = "attacks", javaType = List.class, column = "character_id", many = @Many(select = "getAttacksByCharacterId"))
     })
     @Select("""
             select
                 c.character_id, c.name, c.description, c.height_cm, c.age, c.bounty,
-                c.image_url,
-                cs.name as status_name,
-                (select a.name from character_affiliation ca join affiliation a on a.affiliation_id = ca.affiliation_id where ca.character_id = c.character_id limit 1) as affiliation_name
+                c.image_url, c.status_id
             from "character" c
-            left join character_status cs on cs.id = c.status_id
             order by c.character_id
             """)
-    List<BaseCharacterEntity> findAll();
+    List<CharacterSummaryEntity> findAll();
 
     @Select("select name from character_status where id = #{id}")
     String getStatusNameById(Integer id);
@@ -76,9 +77,8 @@ public interface CharacterMyBatisMapper {
             from character_affiliation ca
             join affiliation a on a.affiliation_id = ca.affiliation_id
             where ca.character_id = #{characterId}
-            limit 1
             """)
-    String getAffiliationNameByCharacterId(Integer characterId);
+    List<String> getAffiliationNamesByCharacterId(Integer characterId);
 
     /**
      * Insert character.
@@ -137,10 +137,11 @@ public interface CharacterMyBatisMapper {
     @Result(property = "description", column = "description")
     @Result(property = "height", column = "height_cm")
     @Result(property = "age", column = "age")
-    @Result(property = "statusName", column = "status_name")
-    @Result(property = "affiliationName", column = "affiliation_name")
     @Result(property = "bounty", column = "bounty")
     @Result(property = "image", column = "image_url")
+    @Result(property = "statusId", column = "status_id")
+    @Result(property = "raceId", column = "race_id")
+    @Result(property = "debutId", column = "first_appearance_id")
     @Result(property = "status", column = "status_id", one = @One(select = "getStatusById"))
     @Result(property = "race", javaType = RaceEntity.class, column = "race_id", one = @One(select = "getRaceById"))
     @Result(property = "debut", javaType = DebutEntity.class, column = "first_appearance_id", one = @One(select = "getDebutById"))
@@ -155,11 +156,8 @@ public interface CharacterMyBatisMapper {
     @Select("""
             select
                 c.character_id, c.name, c.description, c.height_cm, c.age, c.bounty,
-                c.image_url, c.status_id, c.first_appearance_id, c.race_id,
-                cs.name as status_name,
-                (select a.name from character_affiliation ca join affiliation a on a.affiliation_id = ca.affiliation_id where ca.character_id = c.character_id limit 1) as affiliation_name
+                c.image_url, c.status_id, c.first_appearance_id, c.race_id
             from "character" c
-            left join character_status cs on cs.id = c.status_id
             where c.character_id = #{id}
             """)
     CharacterEntity getCharacterById(Integer id);
@@ -478,22 +476,16 @@ public interface CharacterMyBatisMapper {
                 c.character_id,
                 c.name,
                 c.description,
-                c.height_cm as height,
-                c.age,
-                c.bounty,
                 c.image_url as image
-            from character c
+            from "character" c
             where c.character_id = #{id}
             """)
 
     @Result(property = "id", column = "character_id")
     @Result(property = "name", column = "name")
     @Result(property = "description", column = "description")
-    @Result(property = "height", column = "height")
-    @Result(property = "age", column = "age")
-    @Result(property = "bounty", column = "bounty")
     @Result(property = "image", column = "image")
-    BaseCharacterEntity getCharacterLeaderById(Integer id);
+    LeaderEntity getCharacterLeaderById(Integer id);
 
     /**
      * Gets the attack owner by id.
@@ -516,5 +508,5 @@ public interface CharacterMyBatisMapper {
             from "character" c
             where c.character_id = #{id}
             """)
-    List<BaseCharacterEntity> getAttackOwnerById(Integer id);
+    List<CharacterSummaryEntity> getAttackOwnerById(Integer id);
 }

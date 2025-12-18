@@ -1,9 +1,9 @@
 package es.api.onepiece.adapters.outbound.persistence.repository.character;
 
-import es.api.onepiece.adapters.outbound.persistence.entities.character.BaseCharacterEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterSummaryEntity;
 import es.api.onepiece.adapters.outbound.persistence.mapper.character.CharacterMapper;
 import es.api.onepiece.adapters.outbound.persistence.mybatis.character.CharacterMyBatisMapper;
-import es.api.onepiece.core.internal.domain.character.BaseCharacter;
+import es.api.onepiece.core.internal.domain.character.CharacterSummary;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,19 +40,19 @@ class CharacterFindAllRepositoryTest {
     void testFindAll_whenCharactersExist_thenMapsAndReturnsDomainList() {
 
         // Given
-        final var baseCharacterEntities = Instancio.ofList(BaseCharacterEntity.class).size(3).create();
-        final var baseCharacters = Instancio.ofList(BaseCharacter.class).size(3).create();
+        final var characterSummaryEntities = Instancio.ofList(CharacterSummaryEntity.class).size(3).create();
+        final var characterSummaries = Instancio.ofList(CharacterSummary.class).size(3).create();
 
         // When
-        when(this.characterMyBatisMapper.findAll()).thenReturn(baseCharacterEntities);
-        when(this.characterMapper.toBaseCharacterList(baseCharacterEntities))
-                .thenReturn(baseCharacters);
+        when(this.characterMyBatisMapper.findAll()).thenReturn(characterSummaryEntities);
+        when(this.characterMapper.toCharacterSummaryList(characterSummaryEntities))
+                .thenReturn(characterSummaries);
 
         final var result = this.characterFindRepository.findAll();
 
         // Then
         verify(this.characterMyBatisMapper).findAll();
-        verify(this.characterMapper).toBaseCharacterList(baseCharacterEntities);
-        assertEquals(baseCharacters, result);
+        verify(this.characterMapper).toCharacterSummaryList(characterSummaryEntities);
+        assertEquals(characterSummaries, result);
     }
 }

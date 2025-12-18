@@ -4,10 +4,11 @@ import es.api.onepiece.adapters.outbound.persistence.entities.debut.DebutEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.sword.SwordEntity;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -16,18 +17,42 @@ import java.util.List;
 /**
  * The Class CharacterEntity.
  */
-@Getter
-@Setter
+@Data
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CharacterEntity extends BaseCharacterEntity implements Serializable {
+public class CharacterEntity implements Serializable {
 
     /** The Constant serialVersionUID. */
     @Serial
     private static final long serialVersionUID = 1L;
 
+    /** The id. */
+    @NotNull
+    private Integer id;
+
+    /** The name. */
+    @NotNull
+    private String name;
+
+    /** The description. */
+    @NotNull
+    private String description;
+
+    /** The height. */
+    private Integer height;
+
+    /** The age. */
+    private Integer age;
+
+    /** The bounty. */
+    private Long bounty;
+
+    /** The image. */
+    private String image;
+
     /** The status id. */
-    private String statusId;
+    private Integer statusId;
 
     /** The race id. */
     private Integer raceId;
@@ -75,5 +100,4 @@ public class CharacterEntity extends BaseCharacterEntity implements Serializable
     /** The affiliations. */
     @Valid
     private List<AffiliationEntity> affiliations;
-
 }

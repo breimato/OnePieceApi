@@ -30,8 +30,7 @@ public class AffiliationEntity implements Serializable {
     private Integer id;
 
     /** The leader. */
-    @NotNull
-    private BaseCharacterEntity leader;
+    private LeaderEntity leader;
 
     /** The name. */
     @NotNull

@@ -26,23 +26,23 @@ public class AttackEntity implements Serializable {
     /** The id. */
     @NotNull
     private Integer id;
-    
+
     /** The name. */
     @NotNull
     private String name;
-    
+
     /** The description. */
     @NotNull
     private String description;
-    
+
     /** The debut. */
     @NotNull
     private DebutEntity debut;
-    
+
     /** The character. */
     @NotNull
-    private BaseCharacterEntity character;
-    
+    private CharacterSummaryEntity character;
+
     /** The transformation. */
     private TransformationEntity transformation;
 }

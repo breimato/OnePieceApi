@@ -1,7 +1,8 @@
 package es.api.onepiece.adapters.outbound.persistence.mapper.character;
 
-import es.api.onepiece.adapters.outbound.persistence.entities.character.BaseCharacterEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterSummaryEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterStatusEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.character.HakiEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.character.RaceEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.debut.DebutEntity;
@@ -10,8 +11,9 @@ import es.api.onepiece.adapters.outbound.persistence.mapper.character.enums.Char
 import es.api.onepiece.adapters.outbound.persistence.mapper.debut.DebutMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.fruit.FruitMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.sword.SwordMapper;
-import es.api.onepiece.core.internal.domain.character.BaseCharacter;
 import es.api.onepiece.core.internal.domain.character.Character;
+import es.api.onepiece.core.internal.domain.character.CharacterSummary;
+import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum;
 import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
 import org.mapstruct.*;
 
@@ -27,20 +29,21 @@ import java.util.List;
 public interface CharacterMapper {
 
     /**
-     * To base character.
+     * To character summary.
      *
-     * @param baseCharacterEntity the base character entity
-     * @return the base character
+     * @param entity the entity
+     * @return the character summary
      */
-    BaseCharacter toBaseCharacter(BaseCharacterEntity baseCharacterEntity);
+    @Mapping(target = "status", source = "status", qualifiedByName = "mapStatusEntity")
+    CharacterSummary toCharacterSummary(CharacterSummaryEntity entity);
 
     /**
-     * To base character list.
+     * To character summary list.
      *
      * @param entities the entities
      * @return the list
      */
-    List<BaseCharacter> toBaseCharacterList(List<BaseCharacterEntity> entities);
+    List<CharacterSummary> toCharacterSummaryList(List<CharacterSummaryEntity> entities);
 
     /**
      * To character.
@@ -48,8 +51,7 @@ public interface CharacterMapper {
      * @param entity the entity
      * @return the character
      */
-    @Mapping(target = "status", expression = "java(es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum.getByName(entity.getStatusName()))")
-    @Mapping(target = "affiliation", source = "affiliationName")
+    @Mapping(target = "status", source = "status", qualifiedByName = "mapStatusEntity")
     Character toCharacter(CharacterEntity entity);
 
     /**
@@ -70,23 +72,55 @@ public interface CharacterMapper {
 
     /**
      * To character entity from vo.
-     * Mapeamos manualmente race y debut porque los nombres y tipos no coinciden.
-     * Ignoramos las listas porque se guardan en tablas separadas.
      *
      * @param createCharacterVo the create character vo
      * @return the character entity
      */
     @Mapping(target = "raceId", source = "raceId")
     @Mapping(target = "debutId", source = "debutId")
+    @Mapping(target = "statusId", source = "status.id")
     @Mapping(target = "race", source = "raceId", qualifiedByName = "mapRaceEntity")
     @Mapping(target = "debut", source = "debutId", qualifiedByName = "mapDebutEntity")
+    @Mapping(target = "status", source = "status", qualifiedByName = "mapStatusEnumToEntity")
     @Mapping(target = "fruits", source = "fruitIds", qualifiedByName = "mapFruitEntityList")
     @Mapping(target = "hakis", source = "hakiIds", qualifiedByName = "mapHakiEntityList")
     CharacterEntity toCharacterEntityFromVo(CreateCharacterVo createCharacterVo);
 
     /**
+     * Map status string to enum.
+     */
+    @Named("mapStatusString")
+    default CharacterStatusTypeEnum mapStatusString(final String status) {
+        if (status == null) {
+            return null;
+        }
+        return CharacterStatusTypeEnum.getByName(status);
+    }
+
+    /**
+     * Map status entity to enum.
+     */
+    @Named("mapStatusEntity")
+    default CharacterStatusTypeEnum mapStatusEntity(final CharacterStatusEntity entity) {
+        if (entity == null) {
+            return null;
+        }
+        return CharacterStatusTypeEnum.getByName(entity.getStatus());
+    }
+
+    /**
+     * Map status enum to entity.
+     */
+    @Named("mapStatusEnumToEntity")
+    default CharacterStatusEntity mapStatusEnumToEntity(final CharacterStatusTypeEnum statusEnum) {
+        if (statusEnum == null) {
+            return null;
+        }
+        return new CharacterStatusEntity(statusEnum.getId(), statusEnum.name());
+    }
+
+    /**
      * Map race entity using ID.
-     * Creates a proxy entity just for the Foreign Key reference.
      */
     @Named("mapRaceEntity")
     default RaceEntity mapRaceEntity(final Integer id) {
@@ -97,7 +131,6 @@ public interface CharacterMapper {
 
     /**
      * Map debut entity using ID.
-     * Creates a proxy entity just for the Foreign Key reference.
      */
     @Named("mapDebutEntity")
     default DebutEntity mapDebutEntity(final Integer id) {
@@ -108,6 +141,9 @@ public interface CharacterMapper {
 
     @Named("mapFruitEntityList")
     default List<FruitEntity> mapFruitEntityList(final List<Integer> ids) {
+        if (ids == null) {
+            return null;
+        }
         return ids.stream().map(id -> {
             final var entity = new FruitEntity();
             entity.setId(id);
@@ -117,11 +153,13 @@ public interface CharacterMapper {
 
     @Named("mapHakiEntityList")
     default List<HakiEntity> mapHakiEntityList(final List<Integer> ids) {
+        if (ids == null) {
+            return null;
+        }
         return ids.stream().map(id -> {
             final var entity = new HakiEntity();
             entity.setId(id);
             return entity;
         }).toList();
     }
-
 }

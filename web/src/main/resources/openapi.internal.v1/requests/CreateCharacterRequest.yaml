@@ -39,3 +39,33 @@ properties:
     type: array
     items:
       type: integer
+  titleIds:
+    description: "List of Title IDs"
+    type: array
+    items:
+      type: integer
+  jobIds:
+    description: "List of Job IDs"
+    type: array
+    items:
+      type: integer
+  affiliationIds:
+    description: "List of Affiliation IDs"
+    type: array
+    items:
+      type: integer
+  swordIds:
+    description: "List of Sword IDs"
+    type: array
+    items:
+      type: integer
+  transformationIds:
+    description: "List of Transformation IDs"
+    type: array
+    items:
+      type: integer
+  attackIds:
+    description: "List of Attack IDs"
+    type: array
+    items:
+      type: integer

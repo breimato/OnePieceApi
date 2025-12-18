@@ -1,5 +1,6 @@
 package es.api.onepiece.core.internal.domain.character;
 
+import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum;
 import es.api.onepiece.core.internal.domain.debut.Debut;
 import es.api.onepiece.core.internal.domain.fruit.Fruit;
 import es.api.onepiece.core.internal.domain.sword.Sword;
@@ -9,7 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -17,11 +17,37 @@ import java.util.List;
  * The Class Character.
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Character extends BaseCharacter {
+public class Character {
+
+    /** The id. */
+    @NotNull
+    private Integer id;
+
+    /** The name. */
+    @NotNull
+    private String name;
+
+    /** The description. */
+    @NotNull
+    private String description;
+
+    /** The height. */
+    private Integer height;
+
+    /** The age. */
+    private Integer age;
+
+    /** The bounty. */
+    private Long bounty;
+
+    /** The image. */
+    private String image;
+
+    /** The status. */
+    private CharacterStatusTypeEnum status;
 
     /** The race. */
     @NotNull
@@ -62,5 +88,4 @@ public class Character extends BaseCharacter {
     /** The debut. */
     @NotNull
     private Debut debut;
-
 }

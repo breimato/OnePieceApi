@@ -26,8 +26,7 @@ public class Affiliation {
     private Integer id;
 
     /** The leader. */
-    @NotNull
-    private BaseCharacter leader;
+    private Leader leader;
 
     /** The name. */
     @NotNull

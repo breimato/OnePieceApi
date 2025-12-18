@@ -1,6 +1,6 @@
 package es.api.onepiece.core.internal.usecases.character;
 
-import es.api.onepiece.core.internal.domain.character.BaseCharacter;
+import es.api.onepiece.core.internal.domain.character.CharacterSummary;
 import es.api.onepiece.core.internal.domain.character.Character;
 import es.api.onepiece.core.ports.inbound.character.GetCharactersPort;
 import es.api.onepiece.core.ports.outbound.character.FindCharactersPersistencePort;
@@ -23,7 +23,7 @@ public class GetCharactersUseCase implements GetCharactersPort {
      * {@inheritDoc}
      */
     @Override
-    public List<BaseCharacter> findAll() {
+    public List<CharacterSummary> findAll() {
         return this.findCharactersPersistencePort.findAll();
     }
 

@@ -15,7 +15,7 @@ import org.mapstruct.ReportingPolicy;
  */
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring", uses = {
         BoatMapper.class, CharacterAffiliationRoleEnumMapper.class,
-        CharacterAffiliationStatusEnumMapper.class })
+        CharacterAffiliationStatusEnumMapper.class, LeaderMapper.class })
 public interface AffiliationMapper {
 
     /**

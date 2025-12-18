@@ -6,7 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterDtoMapper;
-import es.api.onepiece.core.internal.domain.character.BaseCharacter;
+import es.api.onepiece.core.internal.domain.character.CharacterSummary;
 import es.api.onepiece.core.internal.usecases.character.GetCharactersUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,19 +61,19 @@ class GetCharacterControllerTest {
     void testGetCharacters_whenValidParams_thenReturnsOk() throws Exception {
 
         // Given
-        final var baseCharacterList = Instancio.ofList(BaseCharacter.class).size(3).create();
+        final var characterSummaryList = Instancio.ofList(CharacterSummary.class).size(3).create();
         final var characterDtoList = Instancio.ofList(CharacterDto.class).size(3).create();
 
         // When
-        when(this.getCharactersUseCase.findAll()).thenReturn(baseCharacterList);
-        when(this.characterDtoMapper.toCharacterDtoList(baseCharacterList))
+        when(this.getCharactersUseCase.findAll()).thenReturn(characterSummaryList);
+        when(this.characterDtoMapper.toCharacterDtoList(characterSummaryList))
                 .thenReturn(characterDtoList);
 
         final var response = this.mockMvc.perform(get(URL).accept(MediaType.APPLICATION_JSON));
 
         // Then
         verify(this.getCharactersUseCase, times(1)).findAll();
-        verify(this.characterDtoMapper, times(1)).toCharacterDtoList(baseCharacterList);
+        verify(this.characterDtoMapper, times(1)).toCharacterDtoList(characterSummaryList);
 
         response
                 .andExpect(status().isOk())
