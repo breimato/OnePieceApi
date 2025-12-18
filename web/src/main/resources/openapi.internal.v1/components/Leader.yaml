@@ -1,0 +1,15 @@
+description: Leader V1 (simplified character info)
+type: object
+properties:
+  id:
+    description: "Leader Identification"
+    type: integer
+  name:
+    description: "Leader Name"
+    type: string
+  description:
+    description: "Leader Description"
+    type: string
+  image:
+    description: "Leader Image URL"
+    type: string

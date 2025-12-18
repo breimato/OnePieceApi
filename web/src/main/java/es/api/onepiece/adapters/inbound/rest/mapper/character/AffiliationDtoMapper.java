@@ -13,7 +13,7 @@ import java.util.List;
  * The Interface AffiliationDtoMapper.
  */
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring", uses = {
-        BoatDtoMapper.class })
+        BoatDtoMapper.class, LeaderDtoMapper.class })
 public interface AffiliationDtoMapper {
 
     /**
@@ -22,6 +22,7 @@ public interface AffiliationDtoMapper {
      * @param affiliation the affiliation
      * @return the affiliation dto
      */
+    @Mapping(target = "leader", source = "leader")
     @Mapping(target = "role", source = "role")
     @Mapping(target = "status", source = "status")
     AffiliationDto toAffiliationDto(Affiliation affiliation);

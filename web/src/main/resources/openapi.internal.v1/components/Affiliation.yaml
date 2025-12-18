@@ -6,7 +6,7 @@ properties:
     type: integer
   leader:
     description: "Affiliation Leader (basic info)"
-    $ref: 'Character.yaml'
+    $ref: 'Leader.yaml'
   name:
     description: "Affiliation Name"
     type: string
