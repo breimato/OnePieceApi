@@ -76,7 +76,7 @@ public interface CharacterDtoMapper {
      * @param characterSummaryList the character summaries
      * @return the list
      */
-    List<CharacterDto> toCharacterDtoList(List<CharacterSummary> characterSummaryList);
+    List<CharacterDto> summaryToCharacterDtoList(List<CharacterSummary> characterSummaryList);
 
     /**
      * To create character vo.

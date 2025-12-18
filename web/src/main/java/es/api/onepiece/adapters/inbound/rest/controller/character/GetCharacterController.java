@@ -32,7 +32,7 @@ public class GetCharacterController implements GetCharactersV1Api {
 
         final var characters = this.getCharactersUseCase.findAll();
 
-        final var charactersDto = this.characterDtoMapper.toCharacterDtoList(characters);
+        final var charactersDto = this.characterDtoMapper.summaryToCharacterDtoList(characters);
 
         final var getCharactersV1ResponseDto = GetCharactersV1ResponseDto.builder().characters(charactersDto).build();
 
