@@ -32,9 +32,9 @@ class GetCharacterByIdControllerTest {
     /** The mock mvc. */
     MockMvc mockMvc;
 
-    /** The get character controller. */
+    /** The get character by id controller. */
     @InjectMocks
-    GetCharacterController getCharacterController;
+    GetCharacterByIdController getCharacterByIdController;
 
     /** The get characters use case. */
     @Mock
@@ -49,7 +49,7 @@ class GetCharacterByIdControllerTest {
      */
     @BeforeEach
     void setUp() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(this.getCharacterController).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(this.getCharacterByIdController).build();
     }
 
     /**
@@ -66,11 +66,13 @@ class GetCharacterByIdControllerTest {
         final var characterDto = Instancio.create(CharacterDto.class);
 
         // When
-        when(this.getCharactersUseCase.findById(characterId)).thenReturn(character);
+        when(this.getCharactersUseCase.findById(characterId))
+                .thenReturn(character);
         when(this.characterDtoMapper.toCharacterV1Dto(character))
                 .thenReturn(characterDto);
 
-        final var response = this.mockMvc.perform(get(URL).accept(MediaType.APPLICATION_JSON));
+        final var response = this.mockMvc.perform(get(URL, characterId)
+                .accept(MediaType.APPLICATION_JSON));
 
         // Then
         verify(this.getCharactersUseCase, times(1)).findById(characterId);

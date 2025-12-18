@@ -34,6 +34,7 @@ public class CreateCharacterUseCase implements CreateCharacterPort {
 
         this.validateFruits(createCharacterVo);
 
+        // TODO: Validate service for fruits, hakis, transformations, attacks, addiliations, etc.
         return this.createCharacterPersistencePort.execute(createCharacterVo);
 
     }
