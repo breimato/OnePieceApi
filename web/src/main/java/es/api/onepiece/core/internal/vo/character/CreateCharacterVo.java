@@ -65,7 +65,7 @@ public class CreateCharacterVo {
     private List<Integer> jobIds;
 
     /** The character affiliations. */
-    private List<CreateCharacterAffiliationVo> characterAffiliations;
+    private List<CharacterAffiliationVo> characterAffiliations;
 
     /** The sword ids. */
     private List<Integer> swordIds;

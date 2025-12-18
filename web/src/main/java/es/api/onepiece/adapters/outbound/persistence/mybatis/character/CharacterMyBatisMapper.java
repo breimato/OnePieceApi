@@ -5,7 +5,7 @@ import es.api.onepiece.adapters.outbound.persistence.entities.debut.*;
 import es.api.onepiece.adapters.outbound.persistence.entities.fruit.*;
 import es.api.onepiece.adapters.outbound.persistence.entities.sword.*;
 import es.api.onepiece.adapters.outbound.persistence.entities.boat.*;
-import es.api.onepiece.core.internal.vo.character.CreateCharacterAffiliationVo;
+import es.api.onepiece.core.internal.vo.character.CharacterAffiliationVo;
 import org.apache.ibatis.annotations.*;
 import java.util.List;
 
@@ -176,7 +176,7 @@ public interface CharacterMyBatisMapper {
                             </script>
                         """)
         void insertAffiliations(@Param("characterId") Integer characterId,
-                        @Param("affiliations") List<CreateCharacterAffiliationVo> affiliations);
+                        @Param("affiliations") List<CharacterAffiliationVo> affiliations);
 
         /**
          * Insert character swords in batch.

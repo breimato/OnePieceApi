@@ -1,6 +1,6 @@
 package es.api.onepiece.adapters.inbound.rest.mapper.character;
 
-import es.api.onepiece.core.internal.vo.character.CreateCharacterAffiliationVo;
+import es.api.onepiece.core.internal.vo.character.CharacterAffiliationVo;
 import org.apache.commons.collections4.CollectionUtils;
 import org.mapstruct.*;
 import org.openapitools.model.CharacterAffiliationDto;
@@ -94,7 +94,7 @@ public interface CharacterDtoMapper {
      * @param characterAffiliationDto the character affiliation dto
      * @return the create character affiliation vo
      */
-    CreateCharacterAffiliationVo toCreateCharacterAffiliationVo(
+    CharacterAffiliationVo toCreateCharacterAffiliationVo(
             CharacterAffiliationDto characterAffiliationDto);
 
 

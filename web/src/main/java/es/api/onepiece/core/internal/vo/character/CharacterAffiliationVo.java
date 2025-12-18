@@ -11,7 +11,7 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 @Data
-public class CreateCharacterAffiliationVo {
+public class CharacterAffiliationVo {
 
     /** The affiliation id. */
     @NotNull
