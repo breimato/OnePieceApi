@@ -37,7 +37,7 @@ public class PostCharacterController implements CreateCharacterV1Api {
 
         final var createdCharacter = this.createCharacterUseCase.execute(createCharacterVo);
 
-        final var characterDto = this.characterDtoMapper.toCharacterV1Dto(createdCharacter);
+        final var characterDto = this.characterDtoMapper.toCharacterDto(createdCharacter);
 
         final var createCharacterV1ResponseDto = CreateCharacterV1ResponseDto.builder()
                 .character(characterDto)

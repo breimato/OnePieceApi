@@ -50,7 +50,7 @@ public interface CharacterDtoMapper {
     @Mapping(target = "swords", source = "swords", qualifiedByName = "emptyListToNull")
     @Mapping(target = "transformations", source = "transformations", qualifiedByName = "emptyListToNull")
     @Mapping(target = "attacks", source = "attacks", qualifiedByName = "emptyListToNull")
-    CharacterDto toCharacterV1Dto(Character character);
+    CharacterDto toCharacterDto(Character character);
 
     /**
      * To character dto (from CharacterSummary).
@@ -68,9 +68,15 @@ public interface CharacterDtoMapper {
     @Mapping(target = "attacks", source = "attacks", qualifiedByName = "emptyListToNull")
     @Mapping(target = "race", ignore = true)
     @Mapping(target = "debut", ignore = true)
-    CharacterDto toCharacterDto(CharacterSummary characterSummary);
+    CharacterDto summaryToCharacterDto(CharacterSummary characterSummary);
 
-    List<CharacterDto> toCharacterDtoList(List<CharacterSummary> characterSummaries);
+    /**
+     * To character dto list.
+     *
+     * @param characterSummaryList the character summaries
+     * @return the list
+     */
+    List<CharacterDto> toCharacterDtoList(List<CharacterSummary> characterSummaryList);
 
     /**
      * To create character vo.

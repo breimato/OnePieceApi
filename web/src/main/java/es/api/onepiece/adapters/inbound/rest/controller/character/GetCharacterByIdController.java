@@ -32,7 +32,7 @@ public class GetCharacterByIdController implements GetCharacterByIdV1Api {
 
         final var character = this.getCharactersUseCase.findById(id);
 
-        final var characterDto = this.characterDtoMapper.toCharacterV1Dto(character);
+        final var characterDto = this.characterDtoMapper.toCharacterDto(character);
 
         final var getCharacterByIdV1ResponseDto = GetCharacterByIdV1ResponseDto.builder()
                 .character(characterDto)

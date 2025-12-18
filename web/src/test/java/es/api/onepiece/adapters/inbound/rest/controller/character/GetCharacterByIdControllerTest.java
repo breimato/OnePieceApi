@@ -68,7 +68,7 @@ class GetCharacterByIdControllerTest {
         // When
         when(this.getCharactersUseCase.findById(characterId))
                 .thenReturn(character);
-        when(this.characterDtoMapper.toCharacterV1Dto(character))
+        when(this.characterDtoMapper.toCharacterDto(character))
                 .thenReturn(characterDto);
 
         final var response = this.mockMvc.perform(get(URL, characterId)
@@ -76,7 +76,7 @@ class GetCharacterByIdControllerTest {
 
         // Then
         verify(this.getCharactersUseCase, times(1)).findById(characterId);
-        verify(this.characterDtoMapper, times(1)).toCharacterV1Dto(character);
+        verify(this.characterDtoMapper, times(1)).toCharacterDto(character);
 
         response
                 .andExpect(status().isOk())

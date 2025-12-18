@@ -50,14 +50,14 @@ class PostCharacterControllerTest {
         // When
         when(this.characterDtoMapper.toCreateCharacterVo(createCharacterRequestDto)).thenReturn(createCharacterVo);
         when(this.createCharacterUseCase.execute(createCharacterVo)).thenReturn(character);
-        when(this.characterDtoMapper.toCharacterV1Dto(character)).thenReturn(characterDto);
+        when(this.characterDtoMapper.toCharacterDto(character)).thenReturn(characterDto);
 
         final var response = this.postCharacterController.createCharacterV1(createCharacterRequestDto);
 
         // Then
         verify(this.characterDtoMapper, times(1)).toCreateCharacterVo(createCharacterRequestDto);
         verify(this.createCharacterUseCase, times(1)).execute(createCharacterVo);
-        verify(this.characterDtoMapper, times(1)).toCharacterV1Dto(character);
+        verify(this.characterDtoMapper, times(1)).toCharacterDto(character);
 
         assertThat(response).isNotNull();
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
