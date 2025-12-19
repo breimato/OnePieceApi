@@ -75,4 +75,52 @@ public class ExceptionMessageConstants {
     /** The Constant FRUITS_LIMIT_EXCEEDED_MESSAGE_ERROR. */
     public static final String FRUITS_LIMIT_EXCEEDED_MESSAGE_ERROR = "A character cannot have more than 2 fruits";
 
+    /** The Constant HAKIS_LIMIT_EXCEEDED_CODE_ERROR. */
+    public static final String HAKIS_LIMIT_EXCEEDED_CODE_ERROR = "OP-HAKI-002";
+
+    /** The Constant HAKIS_LIMIT_EXCEEDED_MESSAGE_ERROR. */
+    public static final String HAKIS_LIMIT_EXCEEDED_MESSAGE_ERROR = "A character cannot have more than 3 hakis";
+
+    /** The Constant FRUIT_CANNOT_BE_DUPLICATED_CODE_ERROR. */
+    public static final String FRUIT_CANNOT_BE_DUPLICATED_CODE_ERROR = "OP-FRUIT-003";
+
+    /** The Constant FRUIT_CANNOT_BE_DUPLICATED_MESSAGE_ERROR. */
+    public static final String FRUIT_CANNOT_BE_DUPLICATED_MESSAGE_ERROR = "Fruit IDs cannot be duplicated";
+
+    /** The Constant HAKI_CANNOT_BE_DUPLICATED_CODE_ERROR. */
+    public static final String HAKI_CANNOT_BE_DUPLICATED_CODE_ERROR = "OP-HAKI-003";
+
+    /** The Constant HAKI_CANNOT_BE_DUPLICATED_MESSAGE_ERROR. */
+    public static final String HAKI_CANNOT_BE_DUPLICATED_MESSAGE_ERROR = "Haki IDs cannot be duplicated";
+
+    /** The Constant TITLE_CANNOT_BE_DUPLICATED_CODE_ERROR. */
+    public static final String TITLE_CANNOT_BE_DUPLICATED_CODE_ERROR = "OP-CH-006";
+
+    /** The Constant TITLE_CANNOT_BE_DUPLICATED_MESSAGE_ERROR. */
+    public static final String TITLE_CANNOT_BE_DUPLICATED_MESSAGE_ERROR = "Title IDs cannot be duplicated";
+
+    /** The Constant JOB_CANNOT_BE_DUPLICATED_CODE_ERROR. */
+    public static final String JOB_CANNOT_BE_DUPLICATED_CODE_ERROR = "OP-JOB-001";
+
+    /** The Constant JOB_CANNOT_BE_DUPLICATED_MESSAGE_ERROR. */
+    public static final String JOB_CANNOT_BE_DUPLICATED_MESSAGE_ERROR = "Job IDs cannot be duplicated";
+
+    /** The Constant SWORD_CANNOT_BE_DUPLICATED_CODE_ERROR. */
+    public static final String SWORD_CANNOT_BE_DUPLICATED_CODE_ERROR = "OP-SWORD-002";
+
+    /** The Constant SWORD_CANNOT_BE_DUPLICATED_MESSAGE_ERROR. */
+    public static final String SWORD_CANNOT_BE_DUPLICATED_MESSAGE_ERROR = "Sword IDs cannot be duplicated";
+
+    /** The Constant TRANSFORMATION_CANNOT_BE_DUPLICATED_CODE_ERROR. */
+    public static final String TRANSFORMATION_CANNOT_BE_DUPLICATED_CODE_ERROR = "OP-TRANS-001";
+
+    /** The Constant TRANSFORMATION_CANNOT_BE_DUPLICATED_MESSAGE_ERROR. */
+    public static final String TRANSFORMATION_CANNOT_BE_DUPLICATED_MESSAGE_ERROR = "Transformation IDs cannot be duplicated";
+
+    /** The Constant ATTACK_CANNOT_BE_DUPLICATED_CODE_ERROR. */
+    public static final String ATTACK_CANNOT_BE_DUPLICATED_CODE_ERROR = "OP-ATTACK-001";
+
+    /** The Constant ATTACK_CANNOT_BE_DUPLICATED_MESSAGE_ERROR. */
+    public static final String ATTACK_CANNOT_BE_DUPLICATED_MESSAGE_ERROR = "Attack IDs cannot be duplicated";
+
 }

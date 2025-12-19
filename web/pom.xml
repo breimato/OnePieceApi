@@ -88,6 +88,11 @@
             <artifactId>flyway-database-postgresql</artifactId>
             <version>10.20.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.17.0</version>
+        </dependency>
 
         <!-- Testing básico (hereda del padre si está) -->
         <dependency>

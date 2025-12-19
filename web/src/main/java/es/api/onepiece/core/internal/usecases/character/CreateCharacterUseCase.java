@@ -1,16 +1,14 @@
 package es.api.onepiece.core.internal.usecases.character;
 
-import es.api.onepiece.core.exceptions.FruitException;
-import es.api.onepiece.core.exceptions.constants.ExceptionMessageConstants;
 import es.api.onepiece.core.internal.domain.character.Character;
+import es.api.onepiece.core.internal.services.CharacterValidationService;
+import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
 import es.api.onepiece.core.ports.inbound.character.CreateCharacterPort;
 import es.api.onepiece.core.ports.outbound.character.CreateCharacterPersistencePort;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
-import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
 
 /**
  * The Class CreateCharacterUseCase.
@@ -20,38 +18,18 @@ import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
 @RequiredArgsConstructor
 public class CreateCharacterUseCase implements CreateCharacterPort {
 
-    /** The Constant MAX_FRUITS_PER_CHARACTER. */
-    private static final int MAX_FRUITS_PER_CHARACTER = 2;
-
     /** The create character persistence port. */
     private final CreateCharacterPersistencePort createCharacterPersistencePort;
+
+    /** The validate character service. */
+    private final CharacterValidationService characterValidationService;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public Character execute(@Valid final CreateCharacterVo createCharacterVo) {
-
-        this.validateFruits(createCharacterVo);
-
-        // TODO: Validate service for fruits, hakis, transformations, attacks, addiliations, etc.
+        this.characterValidationService.checkCreationRules(createCharacterVo);
         return this.createCharacterPersistencePort.execute(createCharacterVo);
-
-    }
-
-    /**
-     * Validate fruits.
-     *
-     * @param createCharacterVo the create character vo
-     * @throws FruitException if character has more than MAX_FRUITS_PER_CHARACTER
-     */
-    private void validateFruits(final CreateCharacterVo createCharacterVo) {
-        if (createCharacterVo.getFruitIds().size() > MAX_FRUITS_PER_CHARACTER) {
-
-            log.error(ExceptionMessageConstants.FRUITS_LIMIT_EXCEEDED_MESSAGE_ERROR);
-            throw new FruitException(
-                    ExceptionMessageConstants.FRUITS_LIMIT_EXCEEDED_CODE_ERROR,
-                    ExceptionMessageConstants.FRUITS_LIMIT_EXCEEDED_MESSAGE_ERROR);
-        }
     }
 }

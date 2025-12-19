@@ -97,7 +97,6 @@ public interface CharacterDtoMapper {
     CharacterAffiliationVo toCreateCharacterAffiliationVo(
             CharacterAffiliationDto characterAffiliationDto);
 
-
     default CharacterStatusTypeEnum mapStatusId(final Integer statusId) {
         return CharacterStatusTypeEnum.getById(statusId);
     }
@@ -113,4 +112,3 @@ public interface CharacterDtoMapper {
         return CollectionUtils.isEmpty(list) ? null : list;
     }
 }
-

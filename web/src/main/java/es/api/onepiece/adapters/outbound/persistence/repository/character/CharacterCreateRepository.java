@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 
-
 /**
  * The Class CharacterCreateRepository.
  */
@@ -37,7 +36,7 @@ public class CharacterCreateRepository implements CreateCharacterPersistencePort
 
         this.characterMyBatisMapper.insertCharacter(characterEntity);
 
-        this.validateCharacterInformation(characterEntity, createCharacterVo);
+        this.insertRelatedEntities(characterEntity, createCharacterVo);
 
         final var createdCharacterEntity = this.characterMyBatisMapper.getCharacterById(characterEntity.getId());
 
@@ -45,13 +44,13 @@ public class CharacterCreateRepository implements CreateCharacterPersistencePort
     }
 
     /**
-     * Validate character information.
+     * Insert related entities.
      *
-     * @param characterEntity the character entity
+     * @param characterEntity   the character entity
      * @param createCharacterVo the create character vo
      */
-    private void validateCharacterInformation(final CharacterEntity characterEntity,
-                                              final CreateCharacterVo createCharacterVo) {
+    private void insertRelatedEntities(final CharacterEntity characterEntity,
+            final CreateCharacterVo createCharacterVo) {
 
         if (CollectionUtils.isNotEmpty(createCharacterVo.getFruitIds())) {
             this.characterMyBatisMapper.insertFruits(characterEntity.getId(), createCharacterVo.getFruitIds());
