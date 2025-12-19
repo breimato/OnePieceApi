@@ -67,7 +67,7 @@ class CharacterUpdateRepositoryTest {
 
                 // When
                 when(this.characterMapper.toCharacterEntityFromUpdateVo(updateCharacterVo)).thenReturn(characterEntity);
-                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(true);
+                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(Boolean.TRUE);
                 when(this.characterMyBatisMapper.getCharacterById(characterId)).thenReturn(updatedCharacterEntity);
                 when(this.characterMapper.toCharacter(updatedCharacterEntity)).thenReturn(character);
 
@@ -136,7 +136,7 @@ class CharacterUpdateRepositoryTest {
 
                 // When
                 when(this.characterMapper.toCharacterEntityFromUpdateVo(updateCharacterVo)).thenReturn(characterEntity);
-                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(true);
+                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(Boolean.TRUE);
                 when(this.characterMyBatisMapper.getCharacterById(characterId)).thenReturn(updatedCharacterEntity);
                 when(this.characterMapper.toCharacter(updatedCharacterEntity)).thenReturn(character);
 
@@ -204,7 +204,7 @@ class CharacterUpdateRepositoryTest {
 
                 // When
                 when(this.characterMapper.toCharacterEntityFromUpdateVo(updateCharacterVo)).thenReturn(characterEntity);
-                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(true);
+                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(Boolean.TRUE);
                 when(this.characterMyBatisMapper.getCharacterById(characterId)).thenReturn(updatedCharacterEntity);
                 when(this.characterMapper.toCharacter(updatedCharacterEntity)).thenReturn(character);
 
@@ -264,7 +264,7 @@ class CharacterUpdateRepositoryTest {
 
                 // When
                 when(this.characterMapper.toCharacterEntityFromUpdateVo(updateCharacterVo)).thenReturn(characterEntity);
-                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(true);
+                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(Boolean.TRUE);
                 doThrow(new DataIntegrityViolationException(FRUIT_UPDATE_MESSAGE_ERROR))
                                 .when(this.characterMyBatisMapper).deleteFruitsByCharacterId(characterId);
 
@@ -291,7 +291,7 @@ class CharacterUpdateRepositoryTest {
 
                 // When
                 when(this.characterMapper.toCharacterEntityFromUpdateVo(updateCharacterVo)).thenReturn(characterEntity);
-                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(true);
+                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(Boolean.TRUE);
                 doThrow(new DataIntegrityViolationException(HAKI_UPDATE_MESSAGE_ERROR))
                                 .when(this.characterMyBatisMapper).deleteHakisByCharacterId(characterId);
 
@@ -319,7 +319,7 @@ class CharacterUpdateRepositoryTest {
 
                 // When
                 when(this.characterMapper.toCharacterEntityFromUpdateVo(updateCharacterVo)).thenReturn(characterEntity);
-                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(true);
+                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(Boolean.TRUE);
                 doThrow(new DataIntegrityViolationException(TITLE_UPDATE_MESSAGE_ERROR))
                                 .when(this.characterMyBatisMapper).deleteTitlesByCharacterId(characterId);
 
@@ -348,7 +348,7 @@ class CharacterUpdateRepositoryTest {
 
                 // When
                 when(this.characterMapper.toCharacterEntityFromUpdateVo(updateCharacterVo)).thenReturn(characterEntity);
-                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(true);
+                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(Boolean.TRUE);
                 doThrow(new DataIntegrityViolationException(JOB_UPDATE_MESSAGE_ERROR))
                                 .when(this.characterMyBatisMapper).deleteJobsByCharacterId(characterId);
 
@@ -378,7 +378,7 @@ class CharacterUpdateRepositoryTest {
 
                 // When
                 when(this.characterMapper.toCharacterEntityFromUpdateVo(updateCharacterVo)).thenReturn(characterEntity);
-                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(true);
+                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(Boolean.TRUE);
                 doThrow(new DataIntegrityViolationException(AFFILIATION_UPDATE_MESSAGE_ERROR))
                                 .when(this.characterMyBatisMapper).deleteAffiliationsByCharacterId(characterId);
 
@@ -409,7 +409,7 @@ class CharacterUpdateRepositoryTest {
 
                 // When
                 when(this.characterMapper.toCharacterEntityFromUpdateVo(updateCharacterVo)).thenReturn(characterEntity);
-                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(true);
+                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(Boolean.TRUE);
                 doThrow(new DataIntegrityViolationException(SWORD_UPDATE_MESSAGE_ERROR))
                                 .when(this.characterMyBatisMapper).deleteSwordsByCharacterId(characterId);
 
@@ -441,7 +441,7 @@ class CharacterUpdateRepositoryTest {
 
                 // When
                 when(this.characterMapper.toCharacterEntityFromUpdateVo(updateCharacterVo)).thenReturn(characterEntity);
-                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(true);
+                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(Boolean.TRUE);
                 doThrow(new DataIntegrityViolationException(ATTACK_UPDATE_MESSAGE_ERROR))
                                 .when(this.characterMyBatisMapper).deleteAttacksByCharacterId(characterId);
 
@@ -475,7 +475,7 @@ class CharacterUpdateRepositoryTest {
 
                 // When
                 when(this.characterMapper.toCharacterEntityFromUpdateVo(updateCharacterVo)).thenReturn(characterEntity);
-                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(true);
+                when(this.findCharacterPersistencePort.exists(characterId)).thenReturn(Boolean.TRUE);
                 doThrow(new DataIntegrityViolationException(TRANSFORMATION_UPDATE_MESSAGE_ERROR))
                                 .when(this.characterMyBatisMapper).deleteTransformationsByCharacterId(characterId);
 
