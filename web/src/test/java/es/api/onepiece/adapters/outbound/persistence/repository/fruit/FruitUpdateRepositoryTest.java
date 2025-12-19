@@ -4,6 +4,7 @@ import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitEntity;
 import es.api.onepiece.adapters.outbound.persistence.mapper.fruit.FruitMapper;
 import es.api.onepiece.adapters.outbound.persistence.mybatis.fruit.FruitMyBatisMapper;
 import es.api.onepiece.core.exceptions.FruitException;
+import es.api.onepiece.core.exceptions.constants.ExceptionMessageConstants;
 import es.api.onepiece.core.internal.domain.fruit.Fruit;
 import es.api.onepiece.core.internal.vo.fruit.UpdateFruitVo;
 import org.instancio.Instancio;
@@ -85,7 +86,7 @@ class FruitUpdateRepositoryTest {
         // Then
         verify(this.fruitMyBatisMapper, times(1)).exists(updateFruitVo.getId());
 
-        assertThat(exception.getCode()).isEqualTo(FruitException.FRUIT_NOT_FOUND_CODE_ERROR);
-        assertThat(exception.getMessage()).isEqualTo(FruitException.FRUIT_NOT_FOUND_MESSAGE);
+        assertThat(exception.getCode()).isEqualTo(ExceptionMessageConstants.FRUIT_NOT_FOUND_CODE_ERROR);
+        assertThat(exception.getMessage()).isEqualTo(ExceptionMessageConstants.FRUIT_NOT_FOUND_MESSAGE_ERROR);
     }
 }

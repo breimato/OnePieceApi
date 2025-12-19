@@ -14,12 +14,6 @@ public class FruitException extends RuntimeException {
   @Serial
   private static final long serialVersionUID = 1L;
 
-  /** The Constant FRUIT_NOT_FOUND_CODE_ERROR. */
-  public static final String FRUIT_NOT_FOUND_CODE_ERROR = "FRUIT_NOT_FOUND";
-
-  /** The Constant FRUIT_NOT_FOUND_MESSAGE. */
-  public static final String FRUIT_NOT_FOUND_MESSAGE = "Fruit not found";
-
   /** The code. */
   private final String code;
 

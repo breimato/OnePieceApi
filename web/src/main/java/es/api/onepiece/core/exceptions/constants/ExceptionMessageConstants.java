@@ -129,6 +129,12 @@ public class ExceptionMessageConstants {
     /** The Constant FRUIT_UPDATE_MESSAGE_ERROR. */
     public static final String FRUIT_UPDATE_MESSAGE_ERROR = "Error updating Fruits.";
 
+    /** The Constant FRUIT_NOT_FOUND_CODE_ERROR. */
+    public static final String FRUIT_NOT_FOUND_CODE_ERROR = "OP-FRUIT-005";
+
+    /** The Constant FRUIT_NOT_FOUND_MESSAGE_ERROR. */
+    public static final String FRUIT_NOT_FOUND_MESSAGE_ERROR = "Fruit not found";
+
     /** The Constant HAKI_UPDATE_CODE_ERROR. */
     public static final String HAKI_UPDATE_CODE_ERROR = "OP-HAKI-004";
 

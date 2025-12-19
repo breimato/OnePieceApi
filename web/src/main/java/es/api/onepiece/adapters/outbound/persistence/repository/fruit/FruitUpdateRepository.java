@@ -3,6 +3,7 @@ package es.api.onepiece.adapters.outbound.persistence.repository.fruit;
 import es.api.onepiece.adapters.outbound.persistence.mapper.fruit.FruitMapper;
 import es.api.onepiece.adapters.outbound.persistence.mybatis.fruit.FruitMyBatisMapper;
 import es.api.onepiece.core.exceptions.FruitException;
+import es.api.onepiece.core.exceptions.constants.ExceptionMessageConstants;
 import es.api.onepiece.core.internal.domain.fruit.Fruit;
 import es.api.onepiece.core.internal.vo.fruit.UpdateFruitVo;
 import es.api.onepiece.core.ports.outbound.fruit.UpdateFruitPersistencePort;
@@ -33,7 +34,7 @@ public class FruitUpdateRepository implements UpdateFruitPersistencePort {
     public Fruit execute(@Valid final UpdateFruitVo updateFruitVo) {
 
         if (BooleanUtils.isFalse(this.fruitMyBatisMapper.exists(updateFruitVo.getId()))) {
-            throw new FruitException(FruitException.FRUIT_NOT_FOUND_CODE_ERROR, FruitException.FRUIT_NOT_FOUND_MESSAGE);
+            throw new FruitException(ExceptionMessageConstants.FRUIT_NOT_FOUND_CODE_ERROR, ExceptionMessageConstants.FRUIT_NOT_FOUND_MESSAGE_ERROR);
         }
 
         final var fruitEntity = this.fruitMapper.toFruitEntity(updateFruitVo);
