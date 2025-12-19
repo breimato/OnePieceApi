@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 /**
@@ -78,4 +79,24 @@ class CharacterFindRepositoryTest {
         verify(this.characterMapper, times(1)).toCharacter(characterEntity);
         assertEquals(character, result);
     }
+
+    /**
+     * Test exists when character exists then returns true.
+     */
+    @Test
+    void testExists_whenCharacterExists_thenReturnsTrue() {
+
+        // Given
+        final var id = Instancio.create(Integer.class);
+
+        // When
+        when(this.characterMyBatisMapper.exists(id)).thenReturn(true);
+
+        final var result = this.characterFindRepository.exists(id);
+
+        // Then
+        verify(this.characterMyBatisMapper, times(1)).exists(id);
+        assertTrue(result);
+    }
+
 }

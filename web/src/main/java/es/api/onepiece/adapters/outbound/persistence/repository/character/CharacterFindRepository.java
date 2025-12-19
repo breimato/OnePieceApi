@@ -41,4 +41,9 @@ public class CharacterFindRepository implements FindCharactersPersistencePort {
         final var characterEntity = this.characterMyBatisMapper.getCharacterById(id);
         return this.characterMapper.toCharacter(characterEntity);
     }
+
+    @Override
+    public boolean exists(@NotNull final Integer id) {
+        return this.characterMyBatisMapper.exists(id);
+    }
 }

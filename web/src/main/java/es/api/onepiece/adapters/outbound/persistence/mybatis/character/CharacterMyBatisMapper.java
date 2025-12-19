@@ -81,6 +81,15 @@ public interface CharacterMyBatisMapper {
                         """)
         List<String> getAffiliationNamesByCharacterId(Integer characterId);
 
+
+        /**
+         * Exists boolean.
+         *
+         * @param id the id
+         * @return the boolean
+         */
+        @Select("select count(1) > 0 from character where character_id = #{id}")
+        boolean exists(Integer id);
         /**
          * Insert character.
          *

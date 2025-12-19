@@ -8,11 +8,13 @@ import es.api.onepiece.core.exceptions.HakiException;
 import es.api.onepiece.core.exceptions.SwordException;
 import es.api.onepiece.core.internal.domain.character.Character;
 import es.api.onepiece.core.internal.vo.character.UpdateCharacterVo;
+import es.api.onepiece.core.ports.outbound.character.FindCharactersPersistencePort;
 import es.api.onepiece.core.ports.outbound.character.UpdateCharacterPersistencePort;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +31,9 @@ import static es.api.onepiece.core.exceptions.constants.ExceptionMessageConstant
 @RequiredArgsConstructor
 public class CharacterUpdateRepository implements UpdateCharacterPersistencePort {
 
+    /** The Find character persistence port. */
+    private final FindCharactersPersistencePort findCharacterPersistencePort;
+
     /** The character my batis mapper. */
     private final CharacterMyBatisMapper characterMyBatisMapper;
 
@@ -43,6 +48,10 @@ public class CharacterUpdateRepository implements UpdateCharacterPersistencePort
     public Character execute(@Valid final UpdateCharacterVo updateCharacterVo) {
 
         final var characterEntity = this.characterMapper.toCharacterEntityFromUpdateVo(updateCharacterVo);
+
+        if (BooleanUtils.isFalse(this.findCharacterPersistencePort.exists(updateCharacterVo.getId()))) {
+            throw new CharacterException(CHARACTER_NOT_FOUND_CODE_ERROR, CHARACTER_NOT_FOUND_MESSAGE_ERROR);
+        }
 
         this.characterMyBatisMapper.updateCharacter(characterEntity);
         this.updateRelatedEntities(updateCharacterVo.getId(), updateCharacterVo);

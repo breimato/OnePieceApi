@@ -24,4 +24,12 @@ public interface FindCharactersPersistencePort {
      * @return the character
      */
     Character findById(@NotNull Integer id);
+
+    /**
+     * Exists.
+     *
+     * @param id the id
+     * @return the boolean
+     */
+    boolean exists(@NotNull Integer id);
 }
