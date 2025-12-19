@@ -28,7 +28,7 @@ The project follows a **Hexagonal Architecture** (also known as Ports and Adapte
 
 ## � Database Schema
 
-![Database Schema](docs/img/database_schema.png)
+![Database Schema](docs/img/BBDD_model.svg)
 
 ## �🛠 Setup & Installation
 
