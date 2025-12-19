@@ -66,14 +66,14 @@ class GetCharacterControllerTest {
 
         // When
         when(this.getCharactersUseCase.findAll()).thenReturn(characterSummaryList);
-        when(this.characterDtoMapper.summaryToCharacterDtoList(characterSummaryList))
+        when(this.characterDtoMapper.fromSummaryToCharacterDtoList(characterSummaryList))
                 .thenReturn(characterDtoList);
 
         final var response = this.mockMvc.perform(get(URL).accept(MediaType.APPLICATION_JSON));
 
         // Then
         verify(this.getCharactersUseCase, times(1)).findAll();
-        verify(this.characterDtoMapper, times(1)).summaryToCharacterDtoList(characterSummaryList);
+        verify(this.characterDtoMapper, times(1)).fromSummaryToCharacterDtoList(characterSummaryList);
 
         response
                 .andExpect(status().isOk())

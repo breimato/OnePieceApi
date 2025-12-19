@@ -53,7 +53,7 @@ public interface CharacterDtoMapper {
     CharacterDto toCharacterDto(Character character);
 
     /**
-     * To character dto (from CharacterSummary).
+     * To character dto (from Character Summary).
      *
      * @param characterSummary the character summary
      * @return the character dto
@@ -68,15 +68,15 @@ public interface CharacterDtoMapper {
     @Mapping(target = "attacks", source = "attacks", qualifiedByName = "emptyListToNull")
     @Mapping(target = "race", ignore = true)
     @Mapping(target = "debut", ignore = true)
-    CharacterDto summaryToCharacterDto(CharacterSummary characterSummary);
+    CharacterDto fromSummaryToCharacterDto(CharacterSummary characterSummary);
 
     /**
-     * To character dto list.
+     * From summary to character dto list.
      *
-     * @param characterSummaryList the character summaries
+     * @param characterSummaryList the character summary list
      * @return the list
      */
-    List<CharacterDto> summaryToCharacterDtoList(List<CharacterSummary> characterSummaryList);
+    List<CharacterDto> fromSummaryToCharacterDtoList(List<CharacterSummary> characterSummaryList);
 
     /**
      * To create character vo.
@@ -94,9 +94,14 @@ public interface CharacterDtoMapper {
      * @param characterAffiliationDto the character affiliation dto
      * @return the create character affiliation vo
      */
-    CharacterAffiliationVo toCreateCharacterAffiliationVo(
-            CharacterAffiliationDto characterAffiliationDto);
+    CharacterAffiliationVo toCreateCharacterAffiliationVo(CharacterAffiliationDto characterAffiliationDto);
 
+    /**
+     * Map status id.
+     *
+     * @param statusId the status id
+     * @return the character status type enum
+     */
     default CharacterStatusTypeEnum mapStatusId(final Integer statusId) {
         return CharacterStatusTypeEnum.getById(statusId);
     }
@@ -107,7 +112,6 @@ public interface CharacterDtoMapper {
      * @param list the list
      * @return the list
      */
-    @Named("emptyListToNull")
     default <T> List<T> emptyListToNull(final List<T> list) {
         return CollectionUtils.isEmpty(list) ? null : list;
     }
