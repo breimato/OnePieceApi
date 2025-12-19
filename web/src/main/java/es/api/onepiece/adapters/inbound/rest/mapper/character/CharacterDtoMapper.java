@@ -16,7 +16,6 @@ import java.util.List;
 
 import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
 import org.openapitools.model.CreateCharacterRequestDto;
-import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum;
 
 /**
  * The Interface CharacterDtoMapper.
@@ -71,14 +70,6 @@ public interface CharacterDtoMapper {
     CharacterDto fromSummaryToCharacterDto(CharacterSummary characterSummary);
 
     /**
-     * From summary to character dto list.
-     *
-     * @param characterSummaryList the character summary list
-     * @return the list
-     */
-    List<CharacterDto> fromSummaryToCharacterDtoList(List<CharacterSummary> characterSummaryList);
-
-    /**
      * To create character vo.
      *
      * @param createCharacterRequestDto the create character request dto
@@ -87,6 +78,16 @@ public interface CharacterDtoMapper {
     @Mapping(target = "status", source = "statusId")
     @Mapping(target = "debutId", source = "firstAppearanceId")
     CreateCharacterVo toCreateCharacterVo(CreateCharacterRequestDto createCharacterRequestDto);
+
+
+    /**
+     * From summary to character dto list.
+     *
+     * @param characterSummaryList the character summary list
+     * @return the list
+     */
+    List<CharacterDto> fromSummaryToCharacterDtoList(List<CharacterSummary> characterSummaryList);
+
 
     /**
      * To create character affiliation vo.
@@ -97,21 +98,12 @@ public interface CharacterDtoMapper {
     CharacterAffiliationVo toCreateCharacterAffiliationVo(CharacterAffiliationDto characterAffiliationDto);
 
     /**
-     * Map status id.
-     *
-     * @param statusId the status id
-     * @return the character status type enum
-     */
-    default CharacterStatusTypeEnum mapStatusId(final Integer statusId) {
-        return CharacterStatusTypeEnum.getById(statusId);
-    }
-
-    /**
      * Empty list to null.
      *
      * @param list the list
      * @return the list
      */
+    @Named("emptyListToNull")
     default <T> List<T> emptyListToNull(final List<T> list) {
         return CollectionUtils.isEmpty(list) ? null : list;
     }
