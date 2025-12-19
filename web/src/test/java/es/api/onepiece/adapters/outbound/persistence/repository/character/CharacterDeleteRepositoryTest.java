@@ -44,8 +44,8 @@ class CharacterDeleteRepositoryTest {
         verify(this.characterMyBatisMapper, times(1)).deleteJobsByCharacterId(id);
         verify(this.characterMyBatisMapper, times(1)).deleteAffiliationsByCharacterId(id);
         verify(this.characterMyBatisMapper, times(1)).deleteSwordsByCharacterId(id);
-        verify(this.characterMyBatisMapper, times(1)).unlinkTransformationsByCharacterId(id);
-        verify(this.characterMyBatisMapper, times(1)).unlinkAttacksByCharacterId(id);
+        verify(this.characterMyBatisMapper, times(1)).deleteAttacksByCharacterId(id);
+        verify(this.characterMyBatisMapper, times(1)).deleteTransformationsByCharacterId(id);
         verify(this.characterMyBatisMapper, times(1)).deleteCharacter(id);
     }
 }

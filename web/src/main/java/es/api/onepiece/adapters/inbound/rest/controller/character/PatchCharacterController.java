@@ -3,6 +3,7 @@ package es.api.onepiece.adapters.inbound.rest.controller.character;
 import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterDtoMapper;
 import es.api.onepiece.core.internal.usecases.character.UpdateCharacterUseCase;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.UpdateCharacterV1Api;
 import org.openapitools.model.UpdateCharacterRequestDto;
@@ -30,7 +31,7 @@ public class PatchCharacterController implements UpdateCharacterV1Api {
      */
     @Override
     public ResponseEntity<UpdateCharacterV1ResponseDto> updateCharacterV1(
-            final Integer id,
+            @NotNull final Integer id,
             @Valid final UpdateCharacterRequestDto updateCharacterRequestDto) {
 
         final var updateCharacterVo = this.characterDtoMapper.toUpdateCharacterVo(id, updateCharacterRequestDto);

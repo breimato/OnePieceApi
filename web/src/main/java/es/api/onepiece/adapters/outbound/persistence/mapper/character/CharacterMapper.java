@@ -136,6 +136,9 @@ public interface CharacterMapper {
      */
     @Named("mapRaceEntity")
     default RaceEntity mapRaceEntity(final Integer id) {
+        if (Objects.isNull(id)) {
+            return null;
+        }
         final var raceEntity = new RaceEntity();
         raceEntity.setId(id);
         return raceEntity;
@@ -149,6 +152,9 @@ public interface CharacterMapper {
      */
     @Named("mapDebutEntity")
     default DebutEntity mapDebutEntity(final Integer id) {
+        if (Objects.isNull(id)) {
+            return null;
+        }
         final var debutEntity = new DebutEntity();
         debutEntity.setId(id);
         return debutEntity;

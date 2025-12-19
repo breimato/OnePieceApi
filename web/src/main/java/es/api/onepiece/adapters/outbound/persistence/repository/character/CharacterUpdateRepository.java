@@ -88,17 +88,17 @@ public class CharacterUpdateRepository implements UpdateCharacterPersistencePort
                 this.characterMyBatisMapper.insertSwords(characterId, updateCharacterVo.getSwordIds());
             }
         }
+        if (Objects.nonNull(updateCharacterVo.getAttackIds())) {
+            this.characterMyBatisMapper.deleteAttacksByCharacterId(characterId);
+            if (CollectionUtils.isNotEmpty(updateCharacterVo.getAttackIds())) {
+                this.characterMyBatisMapper.insertAttacks(characterId, updateCharacterVo.getAttackIds());
+            }
+        }
         if (Objects.nonNull(updateCharacterVo.getTransformationIds())) {
-            this.characterMyBatisMapper.unlinkTransformationsByCharacterId(characterId);
+            this.characterMyBatisMapper.deleteTransformationsByCharacterId(characterId);
             if (CollectionUtils.isNotEmpty(updateCharacterVo.getTransformationIds())) {
                 this.characterMyBatisMapper.insertTransformations(characterId,
                         updateCharacterVo.getTransformationIds());
-            }
-        }
-        if (Objects.nonNull(updateCharacterVo.getAttackIds())) {
-            this.characterMyBatisMapper.unlinkAttacksByCharacterId(characterId);
-            if (CollectionUtils.isNotEmpty(updateCharacterVo.getAttackIds())) {
-                this.characterMyBatisMapper.insertAttacks(characterId, updateCharacterVo.getAttackIds());
             }
         }
     }

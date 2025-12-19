@@ -29,8 +29,8 @@ public class CharacterDeleteRepository implements DeleteCharacterPersistencePort
         this.characterMyBatisMapper.deleteJobsByCharacterId(id);
         this.characterMyBatisMapper.deleteAffiliationsByCharacterId(id);
         this.characterMyBatisMapper.deleteSwordsByCharacterId(id);
-        this.characterMyBatisMapper.unlinkTransformationsByCharacterId(id);
-        this.characterMyBatisMapper.unlinkAttacksByCharacterId(id);
+        this.characterMyBatisMapper.deleteAttacksByCharacterId(id);
+        this.characterMyBatisMapper.deleteTransformationsByCharacterId(id);
         this.characterMyBatisMapper.deleteCharacter(id);
     }
 }
