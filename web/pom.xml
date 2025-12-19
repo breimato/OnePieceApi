@@ -178,6 +178,7 @@
                                 <exclude>**/*MapperImpl.class</exclude>
                                 <exclude>**/enums/**</exclude>
                                 <exclude>**/exceptions/**</exclude>
+                                <exclude>**/handler/**</exclude>
                                 <exclude>**/dto/**</exclude>
                                 <exclude>**/*Vo.class</exclude>
                                 <exclude>**/ApplicationMain.class</exclude>
