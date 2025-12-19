@@ -154,6 +154,43 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.12</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <excludes>
+                                <!-- OpenAPI Generated Classes -->
+                                <exclude>org/openapitools/**</exclude>
+                                <!-- MapStruct (Interfaces and Implementations) -->
+                                <exclude>**/mapper/**</exclude>
+                                <exclude>**/*Mapper.class</exclude>
+                                <exclude>**/*MapperImpl.class</exclude>
+                                <!-- Enums -->
+                                <exclude>**/enums/**</exclude>
+                                <!-- Exceptions -->
+                                <exclude>**/exceptions/**</exclude>
+                                <!-- DTOs and VO (Value Objects for request) -->
+                                <exclude>**/dto/**</exclude>
+                                <exclude>**/*Vo.class</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- Compilador con annotation processors para Lombok y MapStruct -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -183,7 +220,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-                    <argLine>-XX:+EnableDynamicAgentLoading</argLine>
+                    <argLine>@{argLine} -XX:+EnableDynamicAgentLoading</argLine>
                 </configuration>
             </plugin>
 
