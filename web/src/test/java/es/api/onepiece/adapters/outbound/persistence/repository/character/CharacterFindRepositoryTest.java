@@ -1,5 +1,6 @@
 package es.api.onepiece.adapters.outbound.persistence.repository.character;
 
+import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.character.CharacterSummaryEntity;
 import es.api.onepiece.adapters.outbound.persistence.mapper.character.CharacterMapper;
 import es.api.onepiece.adapters.outbound.persistence.mybatis.character.CharacterMyBatisMapper;
@@ -12,14 +13,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * The Class CharacterFindAllRepositoryTest.
  */
 @ExtendWith(MockitoExtension.class)
-class CharacterFindAllRepositoryTest {
+class CharacterFindRepositoryTest {
 
     /** The get character repository. */
     @InjectMocks
@@ -51,8 +51,31 @@ class CharacterFindAllRepositoryTest {
         final var result = this.characterFindRepository.findAll();
 
         // Then
-        verify(this.characterMyBatisMapper).findAll();
-        verify(this.characterMapper).toCharacterSummaryList(characterSummaryEntities);
+        verify(this.characterMyBatisMapper, times(1)).findAll();
+        verify(this.characterMapper, times(1)).toCharacterSummaryList(characterSummaryEntities);
         assertEquals(characterSummaries, result);
+    }
+
+    /**
+     * Test find by id when character exists then maps and returns domain.
+     */
+    @Test
+    void testFindById_whenCharacterExists_thenMapsAndReturnsDomain() {
+
+        // Given
+        final var id = Instancio.create(Integer.class);
+        final var characterEntity = Instancio.create(CharacterEntity.class);
+        final var character = Instancio.create(es.api.onepiece.core.internal.domain.character.Character.class);
+
+        // When
+        when(this.characterMyBatisMapper.getCharacterById(id)).thenReturn(characterEntity);
+        when(this.characterMapper.toCharacter(characterEntity)).thenReturn(character);
+
+        final var result = this.characterFindRepository.findById(id);
+
+        // Then
+        verify(this.characterMyBatisMapper, times(1)).getCharacterById(id);
+        verify(this.characterMapper, times(1)).toCharacter(characterEntity);
+        assertEquals(character, result);
     }
 }

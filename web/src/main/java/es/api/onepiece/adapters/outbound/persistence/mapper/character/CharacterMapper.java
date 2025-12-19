@@ -15,9 +15,14 @@ import es.api.onepiece.core.internal.domain.character.Character;
 import es.api.onepiece.core.internal.domain.character.CharacterSummary;
 import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum;
 import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
-import org.mapstruct.*;
+import org.mapstruct.Builder;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
+import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The Interface CharacterMapper.
@@ -25,42 +30,34 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring", uses = {
         FruitMapper.class, DebutMapper.class, RaceMapper.class, HakiMapper.class, CharacterTitleMapper.class,
         JobMapper.class, AttackMapper.class, TransformationMapper.class, AffiliationMapper.class,
-        SwordMapper.class, CharacterStatusTypeEnumMapper.class })
+        SwordMapper.class, CharacterStatusTypeEnumMapper.class})
 public interface CharacterMapper {
 
     /**
      * To character summary.
      *
-     * @param entity the entity
+     * @param characterSummaryEntity the character summary entity
      * @return the character summary
      */
     @Mapping(target = "status", source = "status", qualifiedByName = "mapStatusEntity")
-    CharacterSummary toCharacterSummary(CharacterSummaryEntity entity);
+    CharacterSummary toCharacterSummary(CharacterSummaryEntity characterSummaryEntity);
 
     /**
      * To character summary list.
      *
-     * @param entities the entities
+     * @param characterSummaryEntities the character summary entities
      * @return the list
      */
-    List<CharacterSummary> toCharacterSummaryList(List<CharacterSummaryEntity> entities);
+    List<CharacterSummary> toCharacterSummaryList(List<CharacterSummaryEntity> characterSummaryEntities);
 
     /**
      * To character.
      *
-     * @param entity the entity
+     * @param characterEntity the character entity
      * @return the character
      */
     @Mapping(target = "status", source = "status", qualifiedByName = "mapStatusEntity")
-    Character toCharacter(CharacterEntity entity);
-
-    /**
-     * To character list.
-     *
-     * @param entities the entities
-     * @return the list
-     */
-    List<Character> toCharacterList(List<CharacterEntity> entities);
+    Character toCharacter(CharacterEntity characterEntity);
 
     /**
      * To character entity.
@@ -87,79 +84,87 @@ public interface CharacterMapper {
     CharacterEntity toCharacterEntityFromVo(CreateCharacterVo createCharacterVo);
 
     /**
-     * Map status string to enum.
-     */
-    @Named("mapStatusString")
-    default CharacterStatusTypeEnum mapStatusString(final String status) {
-        if (status == null) {
-            return null;
-        }
-        return CharacterStatusTypeEnum.getByName(status);
-    }
-
-    /**
      * Map status entity to enum.
+     *
+     * @param characterStatusEntity the character status entity
+     * @return the character status type enum
      */
     @Named("mapStatusEntity")
-    default CharacterStatusTypeEnum mapStatusEntity(final CharacterStatusEntity entity) {
-        if (entity == null) {
+    default CharacterStatusTypeEnum mapStatusEntity(final CharacterStatusEntity characterStatusEntity) {
+        if (Objects.isNull(characterStatusEntity)) {
             return null;
         }
-        return CharacterStatusTypeEnum.getById(entity.getId());
+        return CharacterStatusTypeEnum.getById(characterStatusEntity.getId());
     }
 
     /**
      * Map status enum to entity.
+     * @param characterStatusTypeEnum the character status type enum
+     * @return the character status entity
      */
     @Named("mapStatusEnumToEntity")
-    default CharacterStatusEntity mapStatusEnumToEntity(final CharacterStatusTypeEnum statusEnum) {
-        if (statusEnum == null) {
+    default CharacterStatusEntity mapStatusEnumToEntity(final CharacterStatusTypeEnum characterStatusTypeEnum) {
+        if (Objects.isNull(characterStatusTypeEnum)) {
             return null;
         }
-        return new CharacterStatusEntity(statusEnum.getId(), statusEnum.name());
+        return new CharacterStatusEntity(characterStatusTypeEnum.getId(), characterStatusTypeEnum.name());
     }
 
     /**
      * Map race entity using ID.
+     * @param id the id
+     * @return the race entity
      */
     @Named("mapRaceEntity")
     default RaceEntity mapRaceEntity(final Integer id) {
-        final var entity = new RaceEntity();
-        entity.setId(id);
-        return entity;
+        final var raceEntity = new RaceEntity();
+        raceEntity.setId(id);
+        return raceEntity;
     }
 
     /**
      * Map debut entity using ID.
+     * @param id the id
+     * @return the debut entity
      */
     @Named("mapDebutEntity")
     default DebutEntity mapDebutEntity(final Integer id) {
-        final var entity = new DebutEntity();
-        entity.setId(id);
-        return entity;
+        final var debutEntity = new DebutEntity();
+        debutEntity.setId(id);
+        return debutEntity;
     }
 
+    /**
+     * Map fruit entity list using IDs.
+     * @param ids the ids
+     * @return the list of fruit entities
+     */
     @Named("mapFruitEntityList")
     default List<FruitEntity> mapFruitEntityList(final List<Integer> ids) {
-        if (ids == null) {
+        if (Objects.isNull(ids)) {
             return null;
         }
         return ids.stream().map(id -> {
-            final var entity = new FruitEntity();
-            entity.setId(id);
-            return entity;
+            final var fruitEntity = new FruitEntity();
+            fruitEntity.setId(id);
+            return fruitEntity;
         }).toList();
     }
 
+    /**
+     * Map haki entity list using IDs.
+     * @param ids the ids
+     * @return the list of haki entities
+     */
     @Named("mapHakiEntityList")
     default List<HakiEntity> mapHakiEntityList(final List<Integer> ids) {
-        if (ids == null) {
+        if (Objects.isNull(ids)) {
             return null;
         }
         return ids.stream().map(id -> {
-            final var entity = new HakiEntity();
-            entity.setId(id);
-            return entity;
+            final var hakiEntity = new HakiEntity();
+            hakiEntity.setId(id);
+            return hakiEntity;
         }).toList();
     }
 }

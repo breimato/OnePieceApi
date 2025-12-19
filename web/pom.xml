@@ -172,19 +172,15 @@
                         </goals>
                         <configuration>
                             <excludes>
-                                <!-- OpenAPI Generated Classes -->
                                 <exclude>org/openapitools/**</exclude>
-                                <!-- MapStruct (Interfaces and Implementations) -->
                                 <exclude>**/mapper/**</exclude>
                                 <exclude>**/*Mapper.class</exclude>
                                 <exclude>**/*MapperImpl.class</exclude>
-                                <!-- Enums -->
                                 <exclude>**/enums/**</exclude>
-                                <!-- Exceptions -->
                                 <exclude>**/exceptions/**</exclude>
-                                <!-- DTOs and VO (Value Objects for request) -->
                                 <exclude>**/dto/**</exclude>
                                 <exclude>**/*Vo.class</exclude>
+                                <exclude>**/ApplicationMain.class</exclude>
                             </excludes>
                         </configuration>
                     </execution>

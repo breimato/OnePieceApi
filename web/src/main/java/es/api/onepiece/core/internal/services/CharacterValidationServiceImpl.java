@@ -56,6 +56,10 @@ public class CharacterValidationServiceImpl implements CharacterValidationServic
      */
     private void validateFruits(final List<Integer> fruitIds) {
 
+        if (CollectionUtils.isEmpty(fruitIds)) {
+            return;
+        }
+
         if (fruitIds.size() > MAX_FRUITS_PER_CHARACTER) {
             log.error(ExceptionMessageConstants.FRUITS_LIMIT_EXCEEDED_MESSAGE_ERROR);
             throw new FruitException(
@@ -68,7 +72,6 @@ public class CharacterValidationServiceImpl implements CharacterValidationServic
                     ExceptionMessageConstants.FRUIT_CANNOT_BE_DUPLICATED_CODE_ERROR,
                     ExceptionMessageConstants.FRUIT_CANNOT_BE_DUPLICATED_MESSAGE_ERROR);
         }
-
     }
 
     /**
@@ -95,7 +98,6 @@ public class CharacterValidationServiceImpl implements CharacterValidationServic
                     ExceptionMessageConstants.HAKI_CANNOT_BE_DUPLICATED_CODE_ERROR,
                     ExceptionMessageConstants.HAKI_CANNOT_BE_DUPLICATED_MESSAGE_ERROR);
         }
-
     }
 
     /**
