@@ -23,3 +23,20 @@ get:
   operationId: "GetCharacterByIdV1"
   summary: "Get Character By Id V1"
   description: "Get Character By Id V1"
+delete:
+  tags:
+    - delete-character-v1
+  parameters:
+    - name: id
+      in: path
+      description: Character Id
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '204':
+      description: "No Content - Character deleted"
+  operationId: "DeleteCharacterV1"
+  summary: "Delete Character V1"
+  description: "Delete Character V1"
