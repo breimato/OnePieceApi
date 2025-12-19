@@ -1,6 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character;
 
 import es.api.onepiece.core.internal.usecases.character.DeleteCharacterUseCase;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.DeleteCharacterV1Api;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class DeleteCharacterController implements DeleteCharacterV1Api {
      * {@inheritDoc}
      */
     @Override
-    public ResponseEntity<Void> deleteCharacterV1(final Integer id) {
+    public ResponseEntity<Void> deleteCharacterV1(@NotNull final Integer id) {
         this.deleteCharacterUseCase.execute(id);
         return ResponseEntity.noContent().build();
     }

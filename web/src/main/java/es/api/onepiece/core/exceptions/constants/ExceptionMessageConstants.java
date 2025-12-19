@@ -123,4 +123,52 @@ public class ExceptionMessageConstants {
     /** The Constant ATTACK_CANNOT_BE_DUPLICATED_MESSAGE_ERROR. */
     public static final String ATTACK_CANNOT_BE_DUPLICATED_MESSAGE_ERROR = "Attack IDs cannot be duplicated";
 
+    /** The Constant FRUIT_UPDATE_CODE_ERROR. */
+    public static final String FRUIT_UPDATE_CODE_ERROR = "OP-FRUIT-004";
+
+    /** The Constant FRUIT_UPDATE_MESSAGE_ERROR. */
+    public static final String FRUIT_UPDATE_MESSAGE_ERROR = "Error updating Fruits.";
+
+    /** The Constant HAKI_UPDATE_CODE_ERROR. */
+    public static final String HAKI_UPDATE_CODE_ERROR = "OP-HAKI-004";
+
+    /** The Constant HAKI_UPDATE_MESSAGE_ERROR. */
+    public static final String HAKI_UPDATE_MESSAGE_ERROR = "Error updating Hakis.";
+
+    /** The Constant TITLE_UPDATE_CODE_ERROR. */
+    public static final String TITLE_UPDATE_CODE_ERROR = "OP-CH-007";
+
+    /** The Constant TITLE_UPDATE_MESSAGE_ERROR. */
+    public static final String TITLE_UPDATE_MESSAGE_ERROR = "Error updating Titles.";
+
+    /** The Constant JOB_UPDATE_CODE_ERROR. */
+    public static final String JOB_UPDATE_CODE_ERROR = "OP-JOB-002";
+
+    /** The Constant JOB_UPDATE_MESSAGE_ERROR. */
+    public static final String JOB_UPDATE_MESSAGE_ERROR = "Error updating Jobs.";
+
+    /** The Constant AFFILIATION_UPDATE_CODE_ERROR. */
+    public static final String AFFILIATION_UPDATE_CODE_ERROR = "OP-CH-008";
+
+    /** The Constant AFFILIATION_UPDATE_MESSAGE_ERROR. */
+    public static final String AFFILIATION_UPDATE_MESSAGE_ERROR = "Error updating Affiliations.";
+
+    /** The Constant SWORD_UPDATE_CODE_ERROR. */
+    public static final String SWORD_UPDATE_CODE_ERROR = "OP-SWORD-003";
+
+    /** The Constant SWORD_UPDATE_MESSAGE_ERROR. */
+    public static final String SWORD_UPDATE_MESSAGE_ERROR = "Error updating Swords.";
+
+    /** The Constant ATTACK_UPDATE_CODE_ERROR. */
+    public static final String ATTACK_UPDATE_CODE_ERROR = "OP-ATTACK-002";
+
+    /** The Constant ATTACK_UPDATE_MESSAGE_ERROR. */
+    public static final String ATTACK_UPDATE_MESSAGE_ERROR = "Error updating Attacks.";
+
+    /** The Constant TRANSFORMATION_UPDATE_CODE_ERROR. */
+    public static final String TRANSFORMATION_UPDATE_CODE_ERROR = "OP-TRANS-002";
+
+    /** The Constant TRANSFORMATION_UPDATE_MESSAGE_ERROR. */
+    public static final String TRANSFORMATION_UPDATE_MESSAGE_ERROR = "Error updating Transformations.";
+
 }

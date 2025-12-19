@@ -2,6 +2,7 @@ package es.api.onepiece.adapters.inbound.rest.controller.character;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterDtoMapper;
 import es.api.onepiece.core.internal.usecases.character.GetCharactersUseCase;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.GetCharacterByIdV1Api;
 import org.openapitools.model.GetCharacterByIdV1ResponseDto;
@@ -28,7 +29,7 @@ public class GetCharacterByIdController implements GetCharacterByIdV1Api {
      * {@inheritDoc}
      */
     @Override
-    public ResponseEntity<GetCharacterByIdV1ResponseDto> getCharacterByIdV1(final Integer id) {
+    public ResponseEntity<GetCharacterByIdV1ResponseDto> getCharacterByIdV1(@NotNull final Integer id) {
 
         final var character = this.getCharactersUseCase.findById(id);
 
