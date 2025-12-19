@@ -32,6 +32,7 @@ class GetCharactersUseCaseTest {
      */
     @Test
     void testFindAll_whenCharactersExist_thenReturnsDomainList() {
+
         // Given
         final var characterSummaryList = Instancio.ofList(CharacterSummary.class).size(3).create();
 

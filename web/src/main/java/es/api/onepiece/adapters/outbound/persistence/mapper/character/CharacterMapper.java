@@ -15,6 +15,7 @@ import es.api.onepiece.core.internal.domain.character.Character;
 import es.api.onepiece.core.internal.domain.character.CharacterSummary;
 import es.api.onepiece.core.internal.domain.character.enums.CharacterStatusTypeEnum;
 import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
+import es.api.onepiece.core.internal.vo.character.UpdateCharacterVo;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -30,7 +31,7 @@ import java.util.Objects;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true), componentModel = "spring", uses = {
         FruitMapper.class, DebutMapper.class, RaceMapper.class, HakiMapper.class, CharacterTitleMapper.class,
         JobMapper.class, AttackMapper.class, TransformationMapper.class, AffiliationMapper.class,
-        SwordMapper.class, CharacterStatusTypeEnumMapper.class})
+        SwordMapper.class, CharacterStatusTypeEnumMapper.class })
 public interface CharacterMapper {
 
     /**
@@ -84,6 +85,22 @@ public interface CharacterMapper {
     CharacterEntity toCharacterEntityFromVo(CreateCharacterVo createCharacterVo);
 
     /**
+     * To character entity from update vo.
+     *
+     * @param updateCharacterVo the update character vo
+     * @return the character entity
+     */
+    @Mapping(target = "raceId", source = "raceId")
+    @Mapping(target = "debutId", source = "debutId")
+    @Mapping(target = "statusId", source = "status.id")
+    @Mapping(target = "race", source = "raceId", qualifiedByName = "mapRaceEntity")
+    @Mapping(target = "debut", source = "debutId", qualifiedByName = "mapDebutEntity")
+    @Mapping(target = "status", source = "status", qualifiedByName = "mapStatusEnumToEntity")
+    @Mapping(target = "fruits", source = "fruitIds", qualifiedByName = "mapFruitEntityList")
+    @Mapping(target = "hakis", source = "hakiIds", qualifiedByName = "mapHakiEntityList")
+    CharacterEntity toCharacterEntityFromUpdateVo(UpdateCharacterVo updateCharacterVo);
+
+    /**
      * Map status entity to enum.
      *
      * @param characterStatusEntity the character status entity
@@ -99,6 +116,7 @@ public interface CharacterMapper {
 
     /**
      * Map status enum to entity.
+     * 
      * @param characterStatusTypeEnum the character status type enum
      * @return the character status entity
      */
@@ -112,6 +130,7 @@ public interface CharacterMapper {
 
     /**
      * Map race entity using ID.
+     * 
      * @param id the id
      * @return the race entity
      */
@@ -124,6 +143,7 @@ public interface CharacterMapper {
 
     /**
      * Map debut entity using ID.
+     * 
      * @param id the id
      * @return the debut entity
      */
@@ -136,6 +156,7 @@ public interface CharacterMapper {
 
     /**
      * Map fruit entity list using IDs.
+     * 
      * @param ids the ids
      * @return the list of fruit entities
      */
@@ -153,6 +174,7 @@ public interface CharacterMapper {
 
     /**
      * Map haki entity list using IDs.
+     * 
      * @param ids the ids
      * @return the list of haki entities
      */

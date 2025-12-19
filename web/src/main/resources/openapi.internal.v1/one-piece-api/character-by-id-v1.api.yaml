@@ -23,6 +23,40 @@ get:
   operationId: "GetCharacterByIdV1"
   summary: "Get Character By Id V1"
   description: "Get Character By Id V1"
+patch:
+  tags:
+    - update-character-v1
+  parameters:
+    - name: id
+      in: path
+      description: Character Id
+      required: true
+      schema:
+        type: integer
+        format: int32
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../requests/UpdateCharacterRequest.yaml'
+  responses:
+    '200':
+      description: "OK - Character successfully updated"
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/UpdateCharacterV1Response.yaml'
+    '400':
+      $ref: '../es-one-piece.api.yaml#/components/responses/400'
+    '404':
+      $ref: '../es-one-piece.api.yaml#/components/responses/404'
+    '500':
+      $ref: '../es-one-piece.api.yaml#/components/responses/500'
+  operationId: "UpdateCharacterV1"
+  summary: "Update Character V1"
+  description: "Partially update an existing character"
+
 delete:
   tags:
     - delete-character-v1

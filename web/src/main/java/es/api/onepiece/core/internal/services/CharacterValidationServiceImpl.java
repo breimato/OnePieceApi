@@ -6,6 +6,7 @@ import es.api.onepiece.core.exceptions.HakiException;
 import es.api.onepiece.core.exceptions.SwordException;
 import es.api.onepiece.core.exceptions.constants.ExceptionMessageConstants;
 import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
+import es.api.onepiece.core.internal.vo.character.UpdateCharacterVo;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,20 @@ public class CharacterValidationServiceImpl implements CharacterValidationServic
         this.validateSwords(createCharacterVo.getSwordIds());
         this.validateTransformations(createCharacterVo.getTransformationIds());
         this.validateAttacks(createCharacterVo.getAttackIds());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void checkUpdateRules(@Valid final UpdateCharacterVo updateCharacterVo) {
+        this.validateFruits(updateCharacterVo.getFruitIds());
+        this.validateHakis(updateCharacterVo.getHakiIds());
+        this.validateTitles(updateCharacterVo.getTitleIds());
+        this.validateJobs(updateCharacterVo.getJobIds());
+        this.validateSwords(updateCharacterVo.getSwordIds());
+        this.validateTransformations(updateCharacterVo.getTransformationIds());
+        this.validateAttacks(updateCharacterVo.getAttackIds());
     }
 
     /**

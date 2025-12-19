@@ -17,11 +17,15 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 class DeleteCharacterUseCaseTest {
 
-    /** The delete character persistence port. */
+    /**
+     * The delete character persistence port.
+     */
     @Mock
     DeleteCharacterPersistencePort deleteCharacterPersistencePort;
 
-    /** The delete character use case. */
+    /**
+     * The delete character use case.
+     */
     @InjectMocks
     DeleteCharacterUseCase deleteCharacterUseCase;
 

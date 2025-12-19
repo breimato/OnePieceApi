@@ -1,0 +1,71 @@
+description: Update Character Request V1
+type: object
+properties:
+  name:
+    description: "Character Name"
+    type: string
+  description:
+    description: "Character Description"
+    type: string
+  height:
+    description: "Character Height in cm"
+    type: integer
+  age:
+    description: "Character Age"
+    type: integer
+  bounty:
+    description: "Character Bounty"
+    type: integer
+    format: int64
+  image:
+    description: "Character Image URL"
+    type: string
+  statusId:
+    description: "Character Status ID"
+    type: integer
+  raceId:
+    description: "Race ID"
+    type: integer
+  fruitIds:
+    description: "List of Fruit IDs (maximum 2)"
+    type: array
+    items:
+      type: integer
+  firstAppearanceId:
+    description: "First Appearance (Debut) ID"
+    type: integer
+  hakiIds:
+    description: "List of Haki IDs"
+    type: array
+    items:
+      type: integer
+  titleIds:
+    description: "List of Title IDs"
+    type: array
+    items:
+      type: integer
+  jobIds:
+    description: "List of Job IDs"
+    type: array
+    items:
+      type: integer
+  characterAffiliations:
+    description: "List of Character Affiliations"
+    type: array
+    items:
+      $ref: '../components/CharacterAffiliation.yaml'
+  swordIds:
+    description: "List of Sword IDs"
+    type: array
+    items:
+      type: integer
+  transformationIds:
+    description: "List of Transformation IDs"
+    type: array
+    items:
+      type: integer
+  attackIds:
+    description: "List of Attack IDs"
+    type: array
+    items:
+      type: integer

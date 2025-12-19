@@ -15,7 +15,9 @@ import es.api.onepiece.adapters.inbound.rest.mapper.debut.DebutDtoMapper;
 import java.util.List;
 
 import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
+import es.api.onepiece.core.internal.vo.character.UpdateCharacterVo;
 import org.openapitools.model.CreateCharacterRequestDto;
+import org.openapitools.model.UpdateCharacterRequestDto;
 
 /**
  * The Interface CharacterDtoMapper.
@@ -79,7 +81,6 @@ public interface CharacterDtoMapper {
     @Mapping(target = "debutId", source = "firstAppearanceId")
     CreateCharacterVo toCreateCharacterVo(CreateCharacterRequestDto createCharacterRequestDto);
 
-
     /**
      * From summary to character dto list.
      *
@@ -88,7 +89,6 @@ public interface CharacterDtoMapper {
      */
     List<CharacterDto> fromSummaryToCharacterDtoList(List<CharacterSummary> characterSummaryList);
 
-
     /**
      * To create character affiliation vo.
      *
@@ -96,6 +96,33 @@ public interface CharacterDtoMapper {
      * @return the create character affiliation vo
      */
     CharacterAffiliationVo toCreateCharacterAffiliationVo(CharacterAffiliationDto characterAffiliationDto);
+
+    /**
+     * To update character vo.
+     *
+     * @param id                        the character id
+     * @param updateCharacterRequestDto the update character request dto
+     * @return the update character vo
+     */
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "status", source = "updateCharacterRequestDto.statusId")
+    @Mapping(target = "debutId", source = "updateCharacterRequestDto.firstAppearanceId")
+    @Mapping(target = "name", source = "updateCharacterRequestDto.name")
+    @Mapping(target = "description", source = "updateCharacterRequestDto.description")
+    @Mapping(target = "height", source = "updateCharacterRequestDto.height")
+    @Mapping(target = "age", source = "updateCharacterRequestDto.age")
+    @Mapping(target = "bounty", source = "updateCharacterRequestDto.bounty")
+    @Mapping(target = "image", source = "updateCharacterRequestDto.image")
+    @Mapping(target = "raceId", source = "updateCharacterRequestDto.raceId")
+    @Mapping(target = "fruitIds", source = "updateCharacterRequestDto.fruitIds")
+    @Mapping(target = "hakiIds", source = "updateCharacterRequestDto.hakiIds")
+    @Mapping(target = "titleIds", source = "updateCharacterRequestDto.titleIds")
+    @Mapping(target = "jobIds", source = "updateCharacterRequestDto.jobIds")
+    @Mapping(target = "characterAffiliations", source = "updateCharacterRequestDto.characterAffiliations")
+    @Mapping(target = "swordIds", source = "updateCharacterRequestDto.swordIds")
+    @Mapping(target = "transformationIds", source = "updateCharacterRequestDto.transformationIds")
+    @Mapping(target = "attackIds", source = "updateCharacterRequestDto.attackIds")
+    UpdateCharacterVo toUpdateCharacterVo(Integer id, UpdateCharacterRequestDto updateCharacterRequestDto);
 
     /**
      * Empty list to null.

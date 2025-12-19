@@ -94,6 +94,30 @@ public interface CharacterMyBatisMapper {
     void insertCharacter(CharacterEntity characterEntity);
 
     /**
+     * Update character.
+     *
+     * @param characterEntity the character entity
+     */
+    @Update("""
+                <script>
+                update "character"
+                <set>
+                    <if test="name != null">name = #{name},</if>
+                    <if test="description != null">description = #{description},</if>
+                    <if test="height != null">height_cm = #{height},</if>
+                    <if test="age != null">age = #{age},</if>
+                    <if test="bounty != null">bounty = #{bounty},</if>
+                    <if test="image != null">image_url = #{image},</if>
+                    <if test="status != null">status_id = #{status.id},</if>
+                    <if test="debut != null">first_appearance_id = #{debut.id},</if>
+                    <if test="race != null">race_id = #{race.id},</if>
+                </set>
+                where character_id = #{id}
+                </script>
+            """)
+    void updateCharacter(CharacterEntity characterEntity);
+
+    /**
      * Insert character fruits in batch.
      *
      * @param characterId the character id
