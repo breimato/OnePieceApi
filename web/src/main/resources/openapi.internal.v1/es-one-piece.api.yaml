@@ -10,6 +10,10 @@ paths:
     $ref: './one-piece-api/characters-v1.api.yaml'
   /api/v1/characters/{id}:
     $ref: './one-piece-api/character-by-id-v1.api.yaml'
+  /api/v1/fruits:
+    $ref: './one-piece-api/fruits-v1.api.yaml'
+  /api/v1/fruits/{id}:
+    $ref: './one-piece-api/fruit-by-id-v1.api.yaml'
 
 components:
   schemas:

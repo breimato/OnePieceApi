@@ -1,0 +1,8 @@
+description: Get Fruits V1 Response
+type: object
+properties:
+  fruits:
+    description: List of fruits
+    type: array
+    items:
+      $ref: '../components/Fruit.yaml'

@@ -1,0 +1,6 @@
+description: Get Fruit by Id V1 Response
+type: object
+properties:
+  fruit:
+    description: Fruit
+    $ref: '../components/Fruit.yaml'

@@ -1,0 +1,5 @@
+description: Update Fruit V1 Response
+type: object
+properties:
+  fruit:
+    $ref: '../components/Fruit.yaml'

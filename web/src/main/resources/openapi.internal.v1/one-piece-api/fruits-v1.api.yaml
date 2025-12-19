@@ -1,0 +1,40 @@
+summary: "Fruits V1"
+description: "Fruits v1"
+get:
+  tags:
+    - get-fruits-v1
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/GetFruitsV1Response.yaml'
+      description: "200 OK"
+    '204':
+      description: "No Content - No fruits were found"
+  operationId: "GetFruitsV1"
+  summary: "Get Fruits V1"
+  description: "Get Fruits V1"
+post:
+  tags:
+    - create-fruit-v1
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../requests/CreateFruitRequest.yaml'
+  responses:
+    '201':
+      description: "Created - Fruit successfully created"
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/CreateFruitV1Response.yaml'
+    '400':
+      $ref: '../es-one-piece.api.yaml#/components/responses/400'
+    '500':
+      $ref: '../es-one-piece.api.yaml#/components/responses/500'
+  operationId: "CreateFruitV1"
+  summary: "Create Fruit V1"
+  description: "Create a new fruit"

@@ -1,0 +1,15 @@
+description: Create Fruit Request V1
+type: object
+properties:
+  name:
+    description: "Fruit Name"
+    type: string
+  description:
+    description: "Fruit Description"
+    type: string
+  image:
+    description: "Fruit Image URL"
+    type: string
+  typeId:
+    description: "Fruit Type ID"
+    type: integer

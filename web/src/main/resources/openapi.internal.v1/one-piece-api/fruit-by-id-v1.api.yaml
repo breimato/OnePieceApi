@@ -1,0 +1,76 @@
+summary: "Get Fruit By Id V1"
+description: "Get Fruit By Id V1"
+get:
+  tags:
+    - get-fruit-by-id-v1
+  parameters:
+    - name: id
+      in: path
+      description: Fruit Id
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/GetFruitByIdV1Response.yaml'
+      description: "200 OK"
+    '404':
+      description: "Not Found - Fruit not found"
+  operationId: "GetFruitByIdV1"
+  summary: "Get Fruit By Id V1"
+  description: "Get Fruit By Id V1"
+patch:
+  tags:
+    - update-fruit-v1
+  parameters:
+    - name: id
+      in: path
+      description: Fruit Id
+      required: true
+      schema:
+        type: integer
+        format: int32
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../requests/UpdateFruitRequest.yaml'
+  responses:
+    '200':
+      description: "OK - Fruit successfully updated"
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/UpdateFruitV1Response.yaml'
+    '400':
+      $ref: '../es-one-piece.api.yaml#/components/responses/400'
+    '404':
+      $ref: '../es-one-piece.api.yaml#/components/responses/404'
+    '500':
+      $ref: '../es-one-piece.api.yaml#/components/responses/500'
+  operationId: "UpdateFruitV1"
+  summary: "Update Fruit V1"
+  description: "Partially update an existing fruit"
+
+delete:
+  tags:
+    - delete-fruit-v1
+  parameters:
+    - name: id
+      in: path
+      description: Fruit Id
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '204':
+      description: "No Content - Fruit deleted"
+  operationId: "DeleteFruitV1"
+  summary: "Delete Fruit V1"
+  description: "Delete Fruit V1"
