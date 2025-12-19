@@ -26,7 +26,11 @@ The project follows a **Hexagonal Architecture** (also known as Ports and Adapte
     - **Inbound (REST)**: Controllers and DTOs mapping external requests to the core.
     - **Outbound (Persistence)**: Repositories and MyBatis mappers implementation.
 
-## 🛠 Setup & Installation
+## � Database Schema
+
+![Database Schema](docs/img/database_schema.png)
+
+## �🛠 Setup & Installation
 
 ### Prerequisites
 
