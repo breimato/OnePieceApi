@@ -31,7 +31,14 @@ public class AttackFindRepository implements FindAttacksPersistencePort {
      */
     @Override
     public List<Attack> findAll() {
+
         final var attackEntities = this.attackMyBatisMapper.findAll();
+
+        if (Objects.isNull(attackEntities)) {
+            throw new CharacterException(
+                    ExceptionMessageConstants.ATTACK_NOT_FOUND_CODE_ERROR,
+                    ExceptionMessageConstants.ATTACK_NOT_FOUND_MESSAGE_ERROR);
+        }
         return this.attackMapper.toAttackList(attackEntities);
     }
 
@@ -40,9 +47,12 @@ public class AttackFindRepository implements FindAttacksPersistencePort {
      */
     @Override
     public Attack findById(@NotNull final Integer id) {
+
         final var attackEntity = this.attackMyBatisMapper.findById(id);
+
         if (Objects.isNull(attackEntity)) {
-            throw new CharacterException(ExceptionMessageConstants.ATTACK_NOT_FOUND_CODE_ERROR,
+            throw new CharacterException(
+                    ExceptionMessageConstants.ATTACK_NOT_FOUND_CODE_ERROR,
                     ExceptionMessageConstants.ATTACK_NOT_FOUND_MESSAGE_ERROR);
         }
         return this.attackMapper.toAttack(attackEntity);

@@ -24,4 +24,12 @@ public interface FindAttacksPersistencePort {
      * @return the attack
      */
     Attack findById(@NotNull Integer id);
+
+    /**
+     * Exists.
+     *
+     * @param id the id
+     * @return the boolean
+     */
+    boolean exists(@NotNull Integer id);
 }

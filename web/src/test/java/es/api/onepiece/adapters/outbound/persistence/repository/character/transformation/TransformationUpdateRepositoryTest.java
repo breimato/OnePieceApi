@@ -7,6 +7,7 @@ import es.api.onepiece.core.exceptions.CharacterException;
 import es.api.onepiece.core.exceptions.constants.ExceptionMessageConstants;
 import es.api.onepiece.core.internal.domain.character.Transformation;
 import es.api.onepiece.core.internal.vo.character.transformation.UpdateTransformationVo;
+import es.api.onepiece.core.ports.outbound.character.transformation.FindTransformationsPersistencePort;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,6 +39,10 @@ class TransformationUpdateRepositoryTest {
     @Mock
     TransformationMapper transformationMapper;
 
+    /** The find transformations persistence port. */
+    @Mock
+    FindTransformationsPersistencePort findTransformationsPersistencePort;
+
     /**
      * Test execute when transformation exists then updates transformation.
      */
@@ -50,7 +55,7 @@ class TransformationUpdateRepositoryTest {
         final var transformation = Instancio.create(Transformation.class);
 
         // When
-        when(this.transformationMyBatisMapper.exists(updateTransformationVo.getId())).thenReturn(true);
+        when(this.findTransformationsPersistencePort.exists(updateTransformationVo.getId())).thenReturn(true);
         when(this.transformationMapper.toTransformationEntity(updateTransformationVo)).thenReturn(transformationEntity);
         when(this.transformationMyBatisMapper.findById(updateTransformationVo.getId()))
                 .thenReturn(transformationEntity);
@@ -59,7 +64,7 @@ class TransformationUpdateRepositoryTest {
         final var result = this.transformationUpdateRepository.execute(updateTransformationVo);
 
         // Then
-        verify(this.transformationMyBatisMapper, times(1)).exists(updateTransformationVo.getId());
+        verify(this.findTransformationsPersistencePort, times(1)).exists(updateTransformationVo.getId());
         verify(this.transformationMapper, times(1)).toTransformationEntity(updateTransformationVo);
         verify(this.transformationMyBatisMapper, times(1)).updateTransformation(transformationEntity);
         verify(this.transformationMyBatisMapper, times(1)).findById(updateTransformationVo.getId());
@@ -78,13 +83,13 @@ class TransformationUpdateRepositoryTest {
         final var updateTransformationVo = Instancio.create(UpdateTransformationVo.class);
 
         // When
-        when(this.transformationMyBatisMapper.exists(updateTransformationVo.getId())).thenReturn(false);
+        when(this.findTransformationsPersistencePort.exists(updateTransformationVo.getId())).thenReturn(false);
 
         final var exception = assertThrows(CharacterException.class,
                 () -> this.transformationUpdateRepository.execute(updateTransformationVo));
 
         // Then
-        verify(this.transformationMyBatisMapper, times(1)).exists(updateTransformationVo.getId());
+        verify(this.findTransformationsPersistencePort, times(1)).exists(updateTransformationVo.getId());
 
         assertThat(exception.getCode()).isEqualTo(ExceptionMessageConstants.TRANSFORMATION_NOT_FOUND_CODE_ERROR);
         assertThat(exception.getMessage()).isEqualTo(ExceptionMessageConstants.TRANSFORMATION_NOT_FOUND_MESSAGE_ERROR);

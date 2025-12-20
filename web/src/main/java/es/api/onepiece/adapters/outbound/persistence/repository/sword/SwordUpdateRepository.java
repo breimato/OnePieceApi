@@ -33,8 +33,11 @@ public class SwordUpdateRepository implements UpdateSwordPersistencePort {
     @Transactional
     public Sword execute(@Valid final UpdateSwordVo updateSwordVo) {
 
-        if (BooleanUtils.isFalse(this.swordMyBatisMapper.exists(updateSwordVo.getId()))) {
-            throw new SwordException(ExceptionMessageConstants.SWORD_NOT_FOUND_CODE_ERROR,
+        final var swordExists = this.swordMyBatisMapper.exists(updateSwordVo.getId());
+
+        if (BooleanUtils.isFalse(swordExists)) {
+            throw new SwordException(
+                    ExceptionMessageConstants.SWORD_NOT_FOUND_CODE_ERROR,
                     ExceptionMessageConstants.SWORD_NOT_FOUND_MESSAGE_ERROR);
         }
 

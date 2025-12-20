@@ -2,6 +2,8 @@ package es.api.onepiece.adapters.outbound.persistence.repository.character;
 
 import es.api.onepiece.adapters.outbound.persistence.mybatis.character.CharacterMyBatisMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.character.CharacterMapper;
+import es.api.onepiece.core.exceptions.CharacterException;
+import es.api.onepiece.core.exceptions.constants.ExceptionMessageConstants;
 import es.api.onepiece.core.internal.domain.character.CharacterSummary;
 import es.api.onepiece.core.internal.domain.character.Character;
 import es.api.onepiece.core.ports.outbound.character.FindCharactersPersistencePort;
@@ -10,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The Class CharacterFindRepository.
@@ -29,7 +32,14 @@ public class CharacterFindRepository implements FindCharactersPersistencePort {
      */
     @Override
     public List<CharacterSummary> findAll() {
+
         final var characterSummaryEntities = this.characterMyBatisMapper.findAll();
+
+        if (Objects.isNull(characterSummaryEntities)){
+            throw new CharacterException(
+                    ExceptionMessageConstants.CHARACTER_NOT_FOUND_CODE_ERROR,
+                    ExceptionMessageConstants.CHARACTER_NOT_FOUND_MESSAGE_ERROR);
+        }
         return this.characterMapper.toCharacterSummaryList(characterSummaryEntities);
     }
 
@@ -38,7 +48,14 @@ public class CharacterFindRepository implements FindCharactersPersistencePort {
      */
     @Override
     public Character findById(@NotNull final Integer id) {
+
         final var characterEntity = this.characterMyBatisMapper.getCharacterById(id);
+
+        if (Objects.isNull(characterEntity)){
+            throw new CharacterException(
+                    ExceptionMessageConstants.CHARACTER_NOT_FOUND_CODE_ERROR,
+                    ExceptionMessageConstants.CHARACTER_NOT_FOUND_MESSAGE_ERROR);
+        }
         return this.characterMapper.toCharacter(characterEntity);
     }
 

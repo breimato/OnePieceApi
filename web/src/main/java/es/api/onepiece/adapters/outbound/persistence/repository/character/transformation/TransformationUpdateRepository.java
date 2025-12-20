@@ -6,6 +6,7 @@ import es.api.onepiece.core.exceptions.CharacterException;
 import es.api.onepiece.core.exceptions.constants.ExceptionMessageConstants;
 import es.api.onepiece.core.internal.domain.character.Transformation;
 import es.api.onepiece.core.internal.vo.character.transformation.UpdateTransformationVo;
+import es.api.onepiece.core.ports.outbound.character.transformation.FindTransformationsPersistencePort;
 import es.api.onepiece.core.ports.outbound.character.transformation.UpdateTransformationPersistencePort;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -20,6 +21,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class TransformationUpdateRepository implements UpdateTransformationPersistencePort {
 
+    /** The find transformations persistence port. */
+    private final FindTransformationsPersistencePort findTransformationsPersistencePort;
+
     /** The transformation my batis mapper. */
     private final TransformationMyBatisMapper transformationMyBatisMapper;
 
@@ -33,8 +37,12 @@ public class TransformationUpdateRepository implements UpdateTransformationPersi
     @Transactional
     public Transformation execute(@Valid final UpdateTransformationVo updateTransformationVo) {
 
-        if (BooleanUtils.isFalse(this.transformationMyBatisMapper.exists(updateTransformationVo.getId()))) {
-            throw new CharacterException(ExceptionMessageConstants.TRANSFORMATION_NOT_FOUND_CODE_ERROR,
+        final var transformationExists = this.findTransformationsPersistencePort
+                .exists(updateTransformationVo.getId());
+
+        if (BooleanUtils.isFalse(transformationExists)) {
+            throw new CharacterException(
+                    ExceptionMessageConstants.TRANSFORMATION_NOT_FOUND_CODE_ERROR,
                     ExceptionMessageConstants.TRANSFORMATION_NOT_FOUND_MESSAGE_ERROR);
         }
 

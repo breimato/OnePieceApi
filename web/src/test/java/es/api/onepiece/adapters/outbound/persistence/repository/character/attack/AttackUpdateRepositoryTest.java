@@ -8,6 +8,7 @@ import es.api.onepiece.core.exceptions.CharacterException;
 import es.api.onepiece.core.exceptions.constants.ExceptionMessageConstants;
 import es.api.onepiece.core.internal.domain.character.Attack;
 import es.api.onepiece.core.internal.vo.character.attack.UpdateAttackVo;
+import es.api.onepiece.core.ports.outbound.character.attack.FindAttacksPersistencePort;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -37,6 +38,10 @@ class AttackUpdateRepositoryTest {
     @Mock
     AttackMapper attackMapper;
 
+    /** The find attacks persistence port. */
+    @Mock
+    FindAttacksPersistencePort findAttacksPersistencePort;
+
     /**
      * Test execute when attack exists then updates attack.
      */
@@ -49,7 +54,7 @@ class AttackUpdateRepositoryTest {
         final var attack = Instancio.create(Attack.class);
 
         // When
-        when(this.attackMyBatisMapper.exists(updateAttackVo.getId())).thenReturn(true);
+        when(this.findAttacksPersistencePort.exists(updateAttackVo.getId())).thenReturn(true);
         when(this.attackMapper.toAttackEntity(updateAttackVo)).thenReturn(attackEntity);
         doNothing().when(this.attackMyBatisMapper).updateAttack(attackEntity);
         when(this.attackMyBatisMapper.findById(updateAttackVo.getId())).thenReturn(attackEntity);
@@ -58,7 +63,7 @@ class AttackUpdateRepositoryTest {
         final var result = this.attackUpdateRepository.execute(updateAttackVo);
 
         // Then
-        verify(this.attackMyBatisMapper, times(1)).exists(updateAttackVo.getId());
+        verify(this.findAttacksPersistencePort, times(1)).exists(updateAttackVo.getId());
         verify(this.attackMapper, times(1)).toAttackEntity(updateAttackVo);
         verify(this.attackMyBatisMapper, times(1)).updateAttack(attackEntity);
         verify(this.attackMyBatisMapper, times(1)).findById(updateAttackVo.getId());
@@ -77,13 +82,13 @@ class AttackUpdateRepositoryTest {
         final var updateAttackVo = Instancio.create(UpdateAttackVo.class);
 
         // When
-        when(this.attackMyBatisMapper.exists(updateAttackVo.getId())).thenReturn(false);
+        when(this.findAttacksPersistencePort.exists(updateAttackVo.getId())).thenReturn(false);
 
         final var exception = assertThrows(CharacterException.class,
                 () -> this.attackUpdateRepository.execute(updateAttackVo));
 
         // Then
-        verify(this.attackMyBatisMapper, times(1)).exists(updateAttackVo.getId());
+        verify(this.findAttacksPersistencePort, times(1)).exists(updateAttackVo.getId());
 
         assertThat(exception.getCode()).isEqualTo(ExceptionMessageConstants.ATTACK_NOT_FOUND_CODE_ERROR);
         assertThat(exception.getMessage()).isEqualTo(ExceptionMessageConstants.ATTACK_NOT_FOUND_MESSAGE_ERROR);

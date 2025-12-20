@@ -31,7 +31,14 @@ public class FruitFindRepository implements FindFruitsPersistencePort {
      */
     @Override
     public List<Fruit> findAll() {
+
         final var fruitEntities = this.fruitMyBatisMapper.findAll();
+
+        if (Objects.isNull(fruitEntities)) {
+            throw new FruitException(
+                    ExceptionMessageConstants.FRUIT_NOT_FOUND_CODE_ERROR,
+                    ExceptionMessageConstants.FRUIT_NOT_FOUND_MESSAGE_ERROR);
+        }
         return this.fruitMapper.toFruitList(fruitEntities);
     }
 
@@ -40,9 +47,13 @@ public class FruitFindRepository implements FindFruitsPersistencePort {
      */
     @Override
     public Fruit findById(@NotNull final Integer id) {
+
         final var fruitEntity = this.fruitMyBatisMapper.findById(id);
+
         if (Objects.isNull(fruitEntity)) {
-            throw new FruitException(ExceptionMessageConstants.FRUIT_NOT_FOUND_CODE_ERROR, ExceptionMessageConstants.FRUIT_NOT_FOUND_MESSAGE_ERROR);
+            throw new FruitException(
+                    ExceptionMessageConstants.FRUIT_NOT_FOUND_CODE_ERROR,
+                    ExceptionMessageConstants.FRUIT_NOT_FOUND_MESSAGE_ERROR);
         }
         return this.fruitMapper.toFruit(fruitEntity);
     }

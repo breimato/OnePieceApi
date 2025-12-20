@@ -60,6 +60,26 @@ class AttackFindRepositoryTest {
     }
 
     /**
+     * Test find all when list is null then throw exception.
+     */
+    @Test
+    void testFindAll_whenListIsNull_thenThrowException() {
+
+        // Given
+
+        // When
+        when(this.attackMyBatisMapper.findAll()).thenReturn(null);
+
+        final var exception = assertThrows(CharacterException.class, () -> this.attackFindRepository.findAll());
+
+        // Then
+        verify(this.attackMyBatisMapper, times(1)).findAll();
+
+        assertThat(exception.getCode()).isEqualTo(ExceptionMessageConstants.ATTACK_NOT_FOUND_CODE_ERROR);
+        assertThat(exception.getMessage()).isEqualTo(ExceptionMessageConstants.ATTACK_NOT_FOUND_MESSAGE_ERROR);
+    }
+
+    /**
      * Test find by id when attack exists then returns attack.
      */
     @Test

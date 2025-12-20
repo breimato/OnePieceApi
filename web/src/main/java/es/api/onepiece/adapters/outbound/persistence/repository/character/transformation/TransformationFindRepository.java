@@ -31,7 +31,14 @@ public class TransformationFindRepository implements FindTransformationsPersiste
      */
     @Override
     public List<Transformation> findAll() {
+
         final var transformationEntities = this.transformationMyBatisMapper.findAll();
+
+        if (Objects.isNull(transformationEntities)) {
+            throw new CharacterException(
+                    ExceptionMessageConstants.TRANSFORMATION_NOT_FOUND_CODE_ERROR,
+                    ExceptionMessageConstants.TRANSFORMATION_NOT_FOUND_MESSAGE_ERROR);
+        }
         return this.transformationMapper.toTransformationList(transformationEntities);
     }
 
@@ -40,9 +47,12 @@ public class TransformationFindRepository implements FindTransformationsPersiste
      */
     @Override
     public Transformation findById(@NotNull final Integer id) {
+
         final var transformationEntity = this.transformationMyBatisMapper.findById(id);
+
         if (Objects.isNull(transformationEntity)) {
-            throw new CharacterException(ExceptionMessageConstants.TRANSFORMATION_NOT_FOUND_CODE_ERROR,
+            throw new CharacterException(
+                    ExceptionMessageConstants.TRANSFORMATION_NOT_FOUND_CODE_ERROR,
                     ExceptionMessageConstants.TRANSFORMATION_NOT_FOUND_MESSAGE_ERROR);
         }
         return this.transformationMapper.toTransformation(transformationEntity);

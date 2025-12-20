@@ -31,7 +31,14 @@ public class SwordFindRepository implements FindSwordsPersistencePort {
      */
     @Override
     public List<Sword> findAll() {
+
         final var swordEntities = this.swordMyBatisMapper.findAll();
+
+        if (Objects.isNull(swordEntities)) {
+            throw new SwordException(
+                    ExceptionMessageConstants.SWORD_NOT_FOUND_CODE_ERROR,
+                    ExceptionMessageConstants.SWORD_NOT_FOUND_MESSAGE_ERROR);
+        }
         return this.swordMapper.toSwordList(swordEntities);
     }
 
@@ -40,9 +47,12 @@ public class SwordFindRepository implements FindSwordsPersistencePort {
      */
     @Override
     public Sword findById(@NotNull final Integer id) {
+
         final var swordEntity = this.swordMyBatisMapper.findById(id);
+
         if (Objects.isNull(swordEntity)) {
-            throw new SwordException(ExceptionMessageConstants.SWORD_NOT_FOUND_CODE_ERROR,
+            throw new SwordException(
+                    ExceptionMessageConstants.SWORD_NOT_FOUND_CODE_ERROR,
                     ExceptionMessageConstants.SWORD_NOT_FOUND_MESSAGE_ERROR);
         }
         return this.swordMapper.toSword(swordEntity);

@@ -6,10 +6,12 @@ import es.api.onepiece.core.exceptions.CharacterException;
 import es.api.onepiece.core.exceptions.constants.ExceptionMessageConstants;
 import es.api.onepiece.core.internal.domain.character.Attack;
 import es.api.onepiece.core.internal.vo.character.attack.UpdateAttackVo;
+import es.api.onepiece.core.ports.outbound.character.attack.FindAttacksPersistencePort;
 import es.api.onepiece.core.ports.outbound.character.attack.UpdateAttackPersistencePort;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,6 +20,9 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class AttackUpdateRepository implements UpdateAttackPersistencePort {
+
+    /** The find attacks persistence port. */
+    private final FindAttacksPersistencePort findAttacksPersistencePort;
 
     /** The attack my batis mapper. */
     private final AttackMyBatisMapper attackMyBatisMapper;
@@ -32,8 +37,12 @@ public class AttackUpdateRepository implements UpdateAttackPersistencePort {
     @Transactional
     public Attack execute(@Valid final UpdateAttackVo updateAttackVo) {
 
-        if (!this.attackMyBatisMapper.exists(updateAttackVo.getId())) {
-            throw new CharacterException(ExceptionMessageConstants.ATTACK_NOT_FOUND_CODE_ERROR,
+        final var attackExists = this.findAttacksPersistencePort.exists(updateAttackVo.getId());
+
+        if (BooleanUtils.isFalse(attackExists)) {
+
+            throw new CharacterException
+                    (ExceptionMessageConstants.ATTACK_NOT_FOUND_CODE_ERROR,
                     ExceptionMessageConstants.ATTACK_NOT_FOUND_MESSAGE_ERROR);
         }
 

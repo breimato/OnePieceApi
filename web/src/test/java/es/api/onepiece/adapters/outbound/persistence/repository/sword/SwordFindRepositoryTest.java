@@ -59,6 +59,26 @@ class SwordFindRepositoryTest {
     }
 
     /**
+     * Test find all when list is null then throw exception.
+     */
+    @Test
+    void testFindAll_whenListIsNull_thenThrowException() {
+
+        // Given
+
+        // When
+        when(this.swordMyBatisMapper.findAll()).thenReturn(null);
+
+        final var exception = assertThrows(SwordException.class, () -> this.swordFindRepository.findAll());
+
+        // Then
+        verify(this.swordMyBatisMapper, times(1)).findAll();
+
+        assertThat(exception.getCode()).isEqualTo(ExceptionMessageConstants.SWORD_NOT_FOUND_CODE_ERROR);
+        assertThat(exception.getMessage()).isEqualTo(ExceptionMessageConstants.SWORD_NOT_FOUND_MESSAGE_ERROR);
+    }
+
+    /**
      * Test find by id when sword exists then returns sword.
      */
     @Test

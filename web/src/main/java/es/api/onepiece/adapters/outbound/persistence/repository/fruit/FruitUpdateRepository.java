@@ -6,6 +6,7 @@ import es.api.onepiece.core.exceptions.FruitException;
 import es.api.onepiece.core.exceptions.constants.ExceptionMessageConstants;
 import es.api.onepiece.core.internal.domain.fruit.Fruit;
 import es.api.onepiece.core.internal.vo.fruit.UpdateFruitVo;
+import es.api.onepiece.core.ports.outbound.fruit.FindFruitsPersistencePort;
 import es.api.onepiece.core.ports.outbound.fruit.UpdateFruitPersistencePort;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -20,6 +21,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class FruitUpdateRepository implements UpdateFruitPersistencePort {
 
+    /** The find fruits persistence port. */
+    private final FindFruitsPersistencePort findFruitPersistencePort;
+
     /** The fruit my batis mapper. */
     private final FruitMyBatisMapper fruitMyBatisMapper;
 
@@ -33,8 +37,12 @@ public class FruitUpdateRepository implements UpdateFruitPersistencePort {
     @Transactional
     public Fruit execute(@Valid final UpdateFruitVo updateFruitVo) {
 
-        if (BooleanUtils.isFalse(this.fruitMyBatisMapper.exists(updateFruitVo.getId()))) {
-            throw new FruitException(ExceptionMessageConstants.FRUIT_NOT_FOUND_CODE_ERROR, ExceptionMessageConstants.FRUIT_NOT_FOUND_MESSAGE_ERROR);
+        final var fruitExists = this.findFruitPersistencePort.exists(updateFruitVo.getId());
+
+        if (BooleanUtils.isFalse(fruitExists)) {
+            throw new FruitException(
+                    ExceptionMessageConstants.FRUIT_NOT_FOUND_CODE_ERROR,
+                    ExceptionMessageConstants.FRUIT_NOT_FOUND_MESSAGE_ERROR);
         }
 
         final var fruitEntity = this.fruitMapper.toFruitEntity(updateFruitVo);
