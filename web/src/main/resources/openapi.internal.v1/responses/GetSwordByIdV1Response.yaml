@@ -1,0 +1,5 @@
+description: Get Sword By Id V1 Response
+type: object
+properties:
+  sword:
+    $ref: '../components/Sword.yaml'

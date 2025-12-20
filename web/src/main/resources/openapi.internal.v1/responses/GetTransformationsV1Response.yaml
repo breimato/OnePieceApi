@@ -1,0 +1,8 @@
+description: Get Transformations V1 Response
+type: object
+properties:
+  transformations:
+    description: List of transformations
+    type: array
+    items:
+      $ref: '../components/Transformation.yaml'

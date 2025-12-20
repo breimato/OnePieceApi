@@ -1,0 +1,76 @@
+summary: "Get Attack By Id V1"
+description: "Get Attack By Id V1"
+get:
+  tags:
+    - get-attack-by-id-v1
+  parameters:
+    - name: id
+      in: path
+      description: Attack Id
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/GetAttackByIdV1Response.yaml'
+      description: "200 OK"
+    '404':
+      description: "Not Found - Attack not found"
+  operationId: "GetAttackByIdV1"
+  summary: "Get Attack By Id V1"
+  description: "Get Attack By Id V1"
+patch:
+  tags:
+    - update-attack-v1
+  parameters:
+    - name: id
+      in: path
+      description: Attack Id
+      required: true
+      schema:
+        type: integer
+        format: int32
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../requests/UpdateAttackRequest.yaml'
+  responses:
+    '200':
+      description: "OK - Attack successfully updated"
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/UpdateAttackV1Response.yaml'
+    '400':
+      $ref: '../es-one-piece.api.yaml#/components/responses/400'
+    '404':
+      $ref: '../es-one-piece.api.yaml#/components/responses/404'
+    '500':
+      $ref: '../es-one-piece.api.yaml#/components/responses/500'
+  operationId: "UpdateAttackV1"
+  summary: "Update Attack V1"
+  description: "Partially update an existing attack"
+
+delete:
+  tags:
+    - delete-attack-v1
+  parameters:
+    - name: id
+      in: path
+      description: Attack Id
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '204':
+      description: "No Content - Attack deleted"
+  operationId: "DeleteAttackV1"
+  summary: "Delete Attack V1"
+  description: "Delete Attack V1"

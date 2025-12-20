@@ -1,0 +1,18 @@
+description: Create Attack Request V1
+type: object
+properties:
+  name:
+    description: "Attack Name"
+    type: string
+  description:
+    description: "Attack Description"
+    type: string
+  characterId:
+    description: "Character ID"
+    type: integer
+  transformationId:
+    description: "Transformation ID (optional)"
+    type: integer
+  debutId:
+    description: "Debut ID (first appearance)"
+    type: integer

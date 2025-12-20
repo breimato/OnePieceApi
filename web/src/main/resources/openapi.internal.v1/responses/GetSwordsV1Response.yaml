@@ -1,0 +1,7 @@
+description: Get Swords V1 Response
+type: object
+properties:
+  swords:
+    type: array
+    items:
+      $ref: '../components/Sword.yaml'

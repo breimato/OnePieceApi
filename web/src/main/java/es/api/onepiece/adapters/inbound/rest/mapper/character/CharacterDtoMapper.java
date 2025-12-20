@@ -10,7 +10,7 @@ import es.api.onepiece.core.internal.domain.character.CharacterSummary;
 import es.api.onepiece.adapters.inbound.rest.mapper.boat.BoatDtoMapper;
 import es.api.onepiece.adapters.inbound.rest.mapper.fruit.FruitDtoMapper;
 import es.api.onepiece.adapters.inbound.rest.mapper.sword.SwordDtoMapper;
-import es.api.onepiece.adapters.inbound.rest.mapper.debut.DebutDtoMapper;
+import es.api.onepiece.adapters.inbound.rest.mapper.DebutDtoMapper;
 
 import java.util.List;
 

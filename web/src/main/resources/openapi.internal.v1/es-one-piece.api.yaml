@@ -14,6 +14,18 @@ paths:
     $ref: './one-piece-api/fruits-v1.api.yaml'
   /api/v1/fruits/{id}:
     $ref: './one-piece-api/fruit-by-id-v1.api.yaml'
+  /api/v1/attacks:
+    $ref: './one-piece-api/attacks-v1.api.yaml'
+  /api/v1/attacks/{id}:
+    $ref: './one-piece-api/attack-by-id-v1.api.yaml'
+  /api/v1/swords:
+    $ref: './one-piece-api/swords-v1.api.yaml'
+  /api/v1/swords/{id}:
+    $ref: './one-piece-api/sword-by-id-v1.api.yaml'
+  /api/v1/transformations:
+    $ref: './one-piece-api/transformations-v1.api.yaml'
+  /api/v1/transformations/{id}:
+    $ref: './one-piece-api/transformation-by-id-v1.api.yaml'
 
 components:
   schemas:

@@ -1,0 +1,5 @@
+description: Create Attack V1 Response
+type: object
+properties:
+  attack:
+    $ref: '../components/Attack.yaml'

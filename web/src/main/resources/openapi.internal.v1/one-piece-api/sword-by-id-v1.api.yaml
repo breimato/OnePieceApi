@@ -1,0 +1,94 @@
+get:
+  tags:
+    - GetSwordByIdV1
+  summary: Get sword by ID
+  description: Returns a sword by its ID
+  operationId: getSwordByIdV1
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Sword ID
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/GetSwordByIdV1Response.yaml'
+    '404':
+      description: Sword not found
+      content:
+        application/json:
+          schema:
+            $ref: '../components/ApiError.yaml'
+    '500':
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '../components/ApiError.yaml'
+
+patch:
+  tags:
+    - UpdateSwordV1
+  summary: Update sword
+  description: Updates a sword partially
+  operationId: updateSwordV1
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Sword ID
+      schema:
+        type: integer
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../requests/UpdateSwordRequest.yaml'
+  responses:
+    '200':
+      description: Sword updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/UpdateSwordV1Response.yaml'
+    '404':
+      description: Sword not found
+      content:
+        application/json:
+          schema:
+            $ref: '../components/ApiError.yaml'
+    '500':
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '../components/ApiError.yaml'
+
+delete:
+  tags:
+    - DeleteSwordV1
+  summary: Delete sword
+  description: Deletes a sword by its ID
+  operationId: deleteSwordV1
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Sword ID
+      schema:
+        type: integer
+  responses:
+    '204':
+      description: Sword deleted successfully
+    '500':
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '../components/ApiError.yaml'

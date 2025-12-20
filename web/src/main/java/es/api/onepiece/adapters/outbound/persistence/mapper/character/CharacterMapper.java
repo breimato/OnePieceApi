@@ -8,7 +8,7 @@ import es.api.onepiece.adapters.outbound.persistence.entities.character.RaceEnti
 import es.api.onepiece.adapters.outbound.persistence.entities.debut.DebutEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.fruit.FruitEntity;
 import es.api.onepiece.adapters.outbound.persistence.mapper.character.enums.CharacterStatusTypeEnumMapper;
-import es.api.onepiece.adapters.outbound.persistence.mapper.debut.DebutMapper;
+import es.api.onepiece.adapters.outbound.persistence.mapper.DebutMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.fruit.FruitMapper;
 import es.api.onepiece.adapters.outbound.persistence.mapper.sword.SwordMapper;
 import es.api.onepiece.core.internal.domain.character.Character;

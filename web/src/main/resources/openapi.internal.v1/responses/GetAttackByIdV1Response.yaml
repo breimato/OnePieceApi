@@ -1,0 +1,5 @@
+description: Get Attack By Id V1 Response
+type: object
+properties:
+  attack:
+    $ref: '../components/Attack.yaml'

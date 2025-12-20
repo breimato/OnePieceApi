@@ -1,0 +1,40 @@
+summary: "Attacks V1"
+description: "Attacks v1"
+get:
+  tags:
+    - get-attacks-v1
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/GetAttacksV1Response.yaml'
+      description: "200 OK"
+    '204':
+      description: "No Content - No attacks were found"
+  operationId: "GetAttacksV1"
+  summary: "Get Attacks V1"
+  description: "Get Attacks V1"
+post:
+  tags:
+    - create-attack-v1
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../requests/CreateAttackRequest.yaml'
+  responses:
+    '201':
+      description: "Created - Attack successfully created"
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/CreateAttackV1Response.yaml'
+    '400':
+      $ref: '../es-one-piece.api.yaml#/components/responses/400'
+    '500':
+      $ref: '../es-one-piece.api.yaml#/components/responses/500'
+  operationId: "CreateAttackV1"
+  summary: "Create Attack V1"
+  description: "Create a new attack"

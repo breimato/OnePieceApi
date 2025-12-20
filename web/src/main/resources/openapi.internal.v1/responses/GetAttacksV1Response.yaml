@@ -1,0 +1,8 @@
+description: Get Attacks V1 Response
+type: object
+properties:
+  attacks:
+    type: array
+    description: "List of attacks"
+    items:
+      $ref: '../components/Attack.yaml'

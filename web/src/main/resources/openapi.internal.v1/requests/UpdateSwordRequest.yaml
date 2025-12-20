@@ -1,0 +1,21 @@
+description: Update Sword Request V1
+type: object
+properties:
+  name:
+    description: "Sword Name"
+    type: string
+  description:
+    description: "Sword Description"
+    type: string
+  blackSword:
+    description: "Is Black Sword"
+    type: boolean
+  statusId:
+    description: "Sword Status ID"
+    type: integer
+  categoryId:
+    description: "Sword Category ID"
+    type: integer
+  debutId:
+    description: "Sword Debut ID (Chapter Episode)"
+    type: integer

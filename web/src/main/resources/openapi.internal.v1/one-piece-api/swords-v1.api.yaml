@@ -1,0 +1,51 @@
+get:
+  tags:
+    - GetSwordsV1
+  summary: Get all swords
+  description: Returns a list of all swords
+  operationId: getSwordsV1
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/GetSwordsV1Response.yaml'
+    '500':
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '../components/ApiError.yaml'
+
+post:
+  tags:
+    - CreateSwordV1
+  summary: Create a new sword
+  description: Creates a new sword
+  operationId: createSwordV1
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../requests/CreateSwordRequest.yaml'
+  responses:
+    '201':
+      description: Sword created successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/CreateSwordV1Response.yaml'
+    '400':
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '../components/ApiError.yaml'
+    '500':
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '../components/ApiError.yaml'

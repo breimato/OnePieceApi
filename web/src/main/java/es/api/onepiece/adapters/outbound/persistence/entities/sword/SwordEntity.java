@@ -26,26 +26,25 @@ public class SwordEntity implements Serializable {
     /** The id. */
     @NotNull
     private Integer id;
-    
+
     /** The name. */
     @NotNull
     private String name;
-    
+
     /** The description. */
     @NotNull
     private String description;
-    
+
     /** The black sword. */
     @NotNull
     private Boolean blackSword;
-    
-    /** The sword status. */
-    @NotNull
-    private String swordStatus;
-    
+
+    /** The status. */
+    private SwordStatusEntity status;
+
     /** The category. */
     private SwordCategoryEntity category;
-    
+
     /** The debut. */
     @NotNull
     private DebutEntity debut;

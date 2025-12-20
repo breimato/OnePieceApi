@@ -165,6 +165,12 @@ public class ExceptionMessageConstants {
     /** The Constant SWORD_UPDATE_MESSAGE_ERROR. */
     public static final String SWORD_UPDATE_MESSAGE_ERROR = "Error updating Swords.";
 
+    /** The Constant SWORD_NOT_FOUND_CODE_ERROR. */
+    public static final String SWORD_NOT_FOUND_CODE_ERROR = "OP-SWORD-004";
+
+    /** The Constant SWORD_NOT_FOUND_MESSAGE_ERROR. */
+    public static final String SWORD_NOT_FOUND_MESSAGE_ERROR = "Sword not found";
+
     /** The Constant ATTACK_UPDATE_CODE_ERROR. */
     public static final String ATTACK_UPDATE_CODE_ERROR = "OP-ATTACK-002";
 
@@ -176,5 +182,17 @@ public class ExceptionMessageConstants {
 
     /** The Constant TRANSFORMATION_UPDATE_MESSAGE_ERROR. */
     public static final String TRANSFORMATION_UPDATE_MESSAGE_ERROR = "Error updating Transformations.";
+
+    /** The Constant TRANSFORMATION_NOT_FOUND_CODE_ERROR. */
+    public static final String TRANSFORMATION_NOT_FOUND_CODE_ERROR = "OP-TRANS-003";
+
+    /** The Constant TRANSFORMATION_NOT_FOUND_MESSAGE_ERROR. */
+    public static final String TRANSFORMATION_NOT_FOUND_MESSAGE_ERROR = "Transformation not found";
+
+    /** The Constant ATTACK_NOT_FOUND_CODE_ERROR. */
+    public static final String ATTACK_NOT_FOUND_CODE_ERROR = "OP-ATTACK-003";
+
+    /** The Constant ATTACK_NOT_FOUND_MESSAGE_ERROR. */
+    public static final String ATTACK_NOT_FOUND_MESSAGE_ERROR = "Attack not found";
 
 }

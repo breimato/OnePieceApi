@@ -1,0 +1,5 @@
+description: Create Sword V1 Response
+type: object
+properties:
+  sword:
+    $ref: '../components/Sword.yaml'

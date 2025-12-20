@@ -1,0 +1,15 @@
+description: Update Transformation Request V1
+type: object
+properties:
+  name:
+    description: "Transformation Name"
+    type: string
+  description:
+    description: "Transformation Description"
+    type: string
+  characterId:
+    description: "Character ID"
+    type: integer
+  debutId:
+    description: "Debut ID (First Appearance)"
+    type: integer

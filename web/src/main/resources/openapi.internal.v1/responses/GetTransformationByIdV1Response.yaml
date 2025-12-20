@@ -1,0 +1,5 @@
+description: Get Transformation By Id V1 Response
+type: object
+properties:
+  transformation:
+    $ref: '../components/Transformation.yaml'
