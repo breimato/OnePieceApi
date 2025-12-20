@@ -13,6 +13,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The Interface TransformationMapper.
@@ -66,7 +67,7 @@ public interface TransformationMapper {
      * @return the character entity
      */
     default CharacterEntity mapCharacter(Integer characterId) {
-        if (characterId == null) {
+        if (Objects.isNull(characterId)) {
             return null;
         }
         final var characterEntity = new CharacterEntity();
@@ -81,7 +82,7 @@ public interface TransformationMapper {
      * @return the debut entity
      */
     default DebutEntity mapDebut(Integer debutId) {
-        if (debutId == null) {
+        if (Objects.isNull(debutId)) {
             return null;
         }
         final var debutEntity = new DebutEntity();
