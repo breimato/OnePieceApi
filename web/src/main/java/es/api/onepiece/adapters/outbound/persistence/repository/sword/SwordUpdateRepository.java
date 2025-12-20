@@ -38,7 +38,7 @@ public class SwordUpdateRepository implements UpdateSwordPersistencePort {
                     ExceptionMessageConstants.SWORD_NOT_FOUND_MESSAGE_ERROR);
         }
 
-        final var swordEntity = this.swordMapper.toSwordEntity(updateSwordVo);
+        final var swordEntity = this.swordMapper.toSwordEntityFromUpdate(updateSwordVo);
 
         this.swordMyBatisMapper.updateSword(swordEntity);
 

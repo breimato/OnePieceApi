@@ -3,6 +3,7 @@ package es.api.onepiece.adapters.outbound.persistence.mapper.sword;
 import es.api.onepiece.adapters.outbound.persistence.entities.debut.DebutEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.sword.SwordCategoryEntity;
 import es.api.onepiece.adapters.outbound.persistence.entities.sword.SwordEntity;
+import es.api.onepiece.adapters.outbound.persistence.entities.sword.SwordStatusEntity;
 import es.api.onepiece.adapters.outbound.persistence.mapper.DebutMapper;
 import es.api.onepiece.core.internal.domain.sword.Sword;
 import es.api.onepiece.core.internal.vo.sword.CreateSwordVo;
@@ -60,7 +61,7 @@ public interface SwordMapper {
     @Mapping(target = "status", expression = "java(statusIdToSwordStatusEntity(updateSwordVo.getStatusId()))")
     @Mapping(target = "category", expression = "java(categoryIdToSwordCategoryEntity(updateSwordVo.getCategoryId()))")
     @Mapping(target = "debut", expression = "java(debutIdToDebutEntity(updateSwordVo.getDebutId()))")
-    SwordEntity toSwordEntity(UpdateSwordVo updateSwordVo);
+    SwordEntity toSwordEntityFromUpdate(UpdateSwordVo updateSwordVo);
 
     /**
      * Status id to sword status entity.
@@ -68,12 +69,12 @@ public interface SwordMapper {
      * @param statusId the status id
      * @return the sword status entity
      */
-    default es.api.onepiece.adapters.outbound.persistence.entities.sword.SwordStatusEntity statusIdToSwordStatusEntity(
+    default SwordStatusEntity statusIdToSwordStatusEntity(
             final Integer statusId) {
         if (Objects.isNull(statusId)) {
             return null;
         }
-        final var swordStatusEntity = new es.api.onepiece.adapters.outbound.persistence.entities.sword.SwordStatusEntity();
+        final var swordStatusEntity = new SwordStatusEntity();
         swordStatusEntity.setId(statusId);
         return swordStatusEntity;
     }
