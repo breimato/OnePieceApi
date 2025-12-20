@@ -1,0 +1,40 @@
+summary: "Transformations V1"
+description: "Transformations v1"
+get:
+  tags:
+    - get-transformations-v1
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/GetTransformationsV1Response.yaml'
+      description: "200 OK"
+    '204':
+      description: "No Content - No transformations were found"
+  operationId: "GetTransformationsV1"
+  summary: "Get Transformations V1"
+  description: "Get Transformations V1"
+post:
+  tags:
+    - create-transformation-v1
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../requests/CreateTransformationRequest.yaml'
+  responses:
+    '201':
+      description: "Created - Transformation successfully created"
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/CreateTransformationV1Response.yaml'
+    '400':
+      $ref: '../es-one-piece.api.yaml#/components/responses/400'
+    '500':
+      $ref: '../es-one-piece.api.yaml#/components/responses/500'
+  operationId: "CreateTransformationV1"
+  summary: "Create Transformation V1"
+  description: "Create a new transformation"

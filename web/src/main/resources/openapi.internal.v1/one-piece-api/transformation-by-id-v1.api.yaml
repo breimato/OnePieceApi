@@ -1,0 +1,76 @@
+summary: "Get Transformation By Id V1"
+description: "Get Transformation By Id V1"
+get:
+  tags:
+    - get-transformation-by-id-v1
+  parameters:
+    - name: id
+      in: path
+      description: Transformation Id
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/GetTransformationByIdV1Response.yaml'
+      description: "200 OK"
+    '404':
+      description: "Not Found - Transformation not found"
+  operationId: "GetTransformationByIdV1"
+  summary: "Get Transformation By Id V1"
+  description: "Get Transformation By Id V1"
+patch:
+  tags:
+    - update-transformation-v1
+  parameters:
+    - name: id
+      in: path
+      description: Transformation Id
+      required: true
+      schema:
+        type: integer
+        format: int32
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../requests/UpdateTransformationRequest.yaml'
+  responses:
+    '200':
+      description: "OK - Transformation successfully updated"
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/UpdateTransformationV1Response.yaml'
+    '400':
+      $ref: '../es-one-piece.api.yaml#/components/responses/400'
+    '404':
+      $ref: '../es-one-piece.api.yaml#/components/responses/404'
+    '500':
+      $ref: '../es-one-piece.api.yaml#/components/responses/500'
+  operationId: "UpdateTransformationV1"
+  summary: "Update Transformation V1"
+  description: "Partially update an existing transformation"
+
+delete:
+  tags:
+    - delete-transformation-v1
+  parameters:
+    - name: id
+      in: path
+      description: Transformation Id
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '204':
+      description: "No Content - Transformation deleted"
+  operationId: "DeleteTransformationV1"
+  summary: "Delete Transformation V1"
+  description: "Delete Transformation V1"
