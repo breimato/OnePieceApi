@@ -2,7 +2,7 @@ package es.api.onepiece.adapters.inbound.rest.controller.character.attack;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.AttackDtoMapper;
 import es.api.onepiece.core.internal.domain.character.Attack;
-import es.api.onepiece.core.internal.usecases.character.attack.CreateAttackUseCase;
+import es.api.onepiece.core.ports.inbound.character.attack.CreateAttackPort;
 import es.api.onepiece.core.internal.vo.character.attack.CreateAttackVo;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -27,9 +27,9 @@ class PostAttackControllerTest {
     @InjectMocks
     PostAttackController postAttackController;
 
-    /** The create attack use case. */
+    /** The create attack port. */
     @Mock
-    CreateAttackUseCase createAttackUseCase;
+    CreateAttackPort createAttackPort;
 
     /** The attack dto mapper. */
     @Mock
@@ -49,14 +49,14 @@ class PostAttackControllerTest {
 
         // When
         when(this.attackDtoMapper.toCreateAttackVo(createAttackRequestDto)).thenReturn(createAttackVo);
-        when(this.createAttackUseCase.execute(createAttackVo)).thenReturn(attack);
+        when(this.createAttackPort.execute(createAttackVo)).thenReturn(attack);
         when(this.attackDtoMapper.toAttackDto(attack)).thenReturn(attackDto);
 
         final var response = this.postAttackController.createAttackV1(createAttackRequestDto);
 
         // Then
         verify(this.attackDtoMapper, times(1)).toCreateAttackVo(createAttackRequestDto);
-        verify(this.createAttackUseCase, times(1)).execute(createAttackVo);
+        verify(this.createAttackPort, times(1)).execute(createAttackVo);
         verify(this.attackDtoMapper, times(1)).toAttackDto(attack);
 
         assertThat(response).isNotNull();

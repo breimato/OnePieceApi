@@ -1,6 +1,6 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character;
 
-import es.api.onepiece.core.internal.usecases.character.DeleteCharacterUseCase;
+import es.api.onepiece.core.ports.inbound.character.DeleteCharacterPort;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,9 +23,9 @@ class DeleteCharacterControllerTest {
     @InjectMocks
     DeleteCharacterController deleteCharacterController;
 
-    /** The delete character use case. */
+    /** The delete character port. */
     @Mock
-    DeleteCharacterUseCase deleteCharacterUseCase;
+    DeleteCharacterPort deleteCharacterPort;
 
     /**
      * Test delete character v1 when called then returns no content.
@@ -40,7 +40,7 @@ class DeleteCharacterControllerTest {
         final var response = this.deleteCharacterController.deleteCharacterV1(id);
 
         // Then
-        verify(this.deleteCharacterUseCase, times(1)).execute(id);
+        verify(this.deleteCharacterPort, times(1)).execute(id);
 
         assertThat(response).isNotNull();
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);

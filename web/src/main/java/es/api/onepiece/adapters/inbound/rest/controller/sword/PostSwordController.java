@@ -1,7 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.sword;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.sword.SwordDtoMapper;
-import es.api.onepiece.core.internal.usecases.sword.CreateSwordUseCase;
+import es.api.onepiece.core.ports.inbound.sword.CreateSwordPort;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.CreateSwordV1Api;
@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PostSwordController implements CreateSwordV1Api {
 
-    /** The create sword use case. */
-    private final CreateSwordUseCase createSwordUseCase;
+    /** The create sword port. */
+    private final CreateSwordPort createSwordPort;
 
     /** The sword dto mapper. */
     private final SwordDtoMapper swordDtoMapper;
@@ -35,7 +35,7 @@ public class PostSwordController implements CreateSwordV1Api {
 
         final var createSwordVo = this.swordDtoMapper.toCreateSwordVo(createSwordRequestDto);
 
-        final var createdSword = this.createSwordUseCase.execute(createSwordVo);
+        final var createdSword = this.createSwordPort.execute(createSwordVo);
 
         final var swordDto = this.swordDtoMapper.toSwordDto(createdSword);
 

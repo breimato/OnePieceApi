@@ -2,7 +2,7 @@ package es.api.onepiece.adapters.inbound.rest.controller.character;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterDtoMapper;
 import es.api.onepiece.core.internal.domain.character.Character;
-import es.api.onepiece.core.internal.usecases.character.CreateCharacterUseCase;
+import es.api.onepiece.core.ports.inbound.character.CreateCharacterPort;
 import es.api.onepiece.core.internal.vo.character.CreateCharacterVo;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -27,9 +27,9 @@ class PostCharacterControllerTest {
     @InjectMocks
     PostCharacterController postCharacterController;
 
-    /** The create character use case. */
+    /** The create character port. */
     @Mock
-    CreateCharacterUseCase createCharacterUseCase;
+    CreateCharacterPort createCharacterPort;
 
     /** The character dto mapper. */
     @Mock
@@ -49,14 +49,14 @@ class PostCharacterControllerTest {
 
         // When
         when(this.characterDtoMapper.toCreateCharacterVo(createCharacterRequestDto)).thenReturn(createCharacterVo);
-        when(this.createCharacterUseCase.execute(createCharacterVo)).thenReturn(character);
+        when(this.createCharacterPort.execute(createCharacterVo)).thenReturn(character);
         when(this.characterDtoMapper.toCharacterDto(character)).thenReturn(characterDto);
 
         final var response = this.postCharacterController.createCharacterV1(createCharacterRequestDto);
 
         // Then
         verify(this.characterDtoMapper, times(1)).toCreateCharacterVo(createCharacterRequestDto);
-        verify(this.createCharacterUseCase, times(1)).execute(createCharacterVo);
+        verify(this.createCharacterPort, times(1)).execute(createCharacterVo);
         verify(this.characterDtoMapper, times(1)).toCharacterDto(character);
 
         assertThat(response).isNotNull();

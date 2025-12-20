@@ -7,7 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterDtoMapper;
 import es.api.onepiece.core.internal.domain.character.CharacterSummary;
-import es.api.onepiece.core.internal.usecases.character.GetCharactersUseCase;
+import es.api.onepiece.core.ports.inbound.character.GetCharactersPort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,9 +36,9 @@ class GetCharacterControllerTest {
     @InjectMocks
     GetCharacterController getCharacterController;
 
-    /** The get characters use case. */
+    /** The get characters port. */
     @Mock
-    GetCharactersUseCase getCharactersUseCase;
+    GetCharactersPort getCharactersPort;
 
     /** The character dto mapper. */
     @Mock
@@ -65,14 +65,14 @@ class GetCharacterControllerTest {
         final var characterDtoList = Instancio.ofList(CharacterDto.class).size(3).create();
 
         // When
-        when(this.getCharactersUseCase.findAll()).thenReturn(characterSummaryList);
+        when(this.getCharactersPort.findAll()).thenReturn(characterSummaryList);
         when(this.characterDtoMapper.fromSummaryToCharacterDtoList(characterSummaryList))
                 .thenReturn(characterDtoList);
 
         final var response = this.mockMvc.perform(get(URL).accept(MediaType.APPLICATION_JSON));
 
         // Then
-        verify(this.getCharactersUseCase, times(1)).findAll();
+        verify(this.getCharactersPort, times(1)).findAll();
         verify(this.characterDtoMapper, times(1)).fromSummaryToCharacterDtoList(characterSummaryList);
 
         response

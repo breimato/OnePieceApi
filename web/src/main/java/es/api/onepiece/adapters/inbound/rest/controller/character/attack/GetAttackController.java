@@ -1,7 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character.attack;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.AttackDtoMapper;
-import es.api.onepiece.core.internal.usecases.character.attack.GetAttacksUseCase;
+import es.api.onepiece.core.ports.inbound.character.attack.GetAttacksPort;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.GetAttacksV1Api;
 import org.openapitools.model.GetAttacksV1ResponseDto;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class GetAttackController implements GetAttacksV1Api {
 
     /** The get attacks use case. */
-    private final GetAttacksUseCase getAttacksUseCase;
+    private final GetAttacksPort getAttacksPort;
 
     /** The attack dto mapper. */
     private final AttackDtoMapper attackDtoMapper;
@@ -30,7 +30,7 @@ public class GetAttackController implements GetAttacksV1Api {
     @Override
     public ResponseEntity<GetAttacksV1ResponseDto> getAttacksV1() {
 
-        final var attacks = this.getAttacksUseCase.findAll();
+        final var attacks = this.getAttacksPort.findAll();
 
         final var attacksDto = this.attackDtoMapper.toAttackDtoList(attacks);
 

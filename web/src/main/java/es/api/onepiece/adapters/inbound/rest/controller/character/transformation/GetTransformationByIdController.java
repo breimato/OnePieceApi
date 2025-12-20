@@ -1,7 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character.transformation;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.TransformationDtoMapper;
-import es.api.onepiece.core.internal.usecases.character.transformation.GetTransformationsUseCase;
+import es.api.onepiece.core.ports.inbound.character.transformation.GetTransformationsPort;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.GetTransformationByIdV1Api;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class GetTransformationByIdController implements GetTransformationByIdV1Api {
 
     /** The get transformations use case. */
-    private final GetTransformationsUseCase getTransformationsUseCase;
+    private final GetTransformationsPort getTransformationsPort;
 
     /** The transformation dto mapper. */
     private final TransformationDtoMapper transformationDtoMapper;
@@ -31,7 +31,7 @@ public class GetTransformationByIdController implements GetTransformationByIdV1A
     @Override
     public ResponseEntity<GetTransformationByIdV1ResponseDto> getTransformationByIdV1(@NotNull final Integer id) {
 
-        final var transformation = this.getTransformationsUseCase.findById(id);
+        final var transformation = this.getTransformationsPort.findById(id);
 
         final var transformationDto = this.transformationDtoMapper.toTransformationDto(transformation);
 

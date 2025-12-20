@@ -2,7 +2,7 @@ package es.api.onepiece.adapters.inbound.rest.controller.character;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterDtoMapper;
 import es.api.onepiece.core.internal.domain.character.Character;
-import es.api.onepiece.core.internal.usecases.character.UpdateCharacterUseCase;
+import es.api.onepiece.core.ports.inbound.character.UpdateCharacterPort;
 import es.api.onepiece.core.internal.vo.character.UpdateCharacterVo;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -27,9 +27,9 @@ class PatchCharacterControllerTest {
     @InjectMocks
     PatchCharacterController patchCharacterController;
 
-    /** The update character use case. */
+    /** The update character port. */
     @Mock
-    UpdateCharacterUseCase updateCharacterUseCase;
+    UpdateCharacterPort updateCharacterPort;
 
     /** The character dto mapper. */
     @Mock
@@ -50,14 +50,14 @@ class PatchCharacterControllerTest {
 
         // When
         when(this.characterDtoMapper.toUpdateCharacterVo(id, updateCharacterRequestDto)).thenReturn(updateCharacterVo);
-        when(this.updateCharacterUseCase.execute(updateCharacterVo)).thenReturn(character);
+        when(this.updateCharacterPort.execute(updateCharacterVo)).thenReturn(character);
         when(this.characterDtoMapper.toCharacterDto(character)).thenReturn(characterDto);
 
         final var response = this.patchCharacterController.updateCharacterV1(id, updateCharacterRequestDto);
 
         // Then
         verify(this.characterDtoMapper, times(1)).toUpdateCharacterVo(id, updateCharacterRequestDto);
-        verify(this.updateCharacterUseCase, times(1)).execute(updateCharacterVo);
+        verify(this.updateCharacterPort, times(1)).execute(updateCharacterVo);
         verify(this.characterDtoMapper, times(1)).toCharacterDto(character);
 
         assertThat(response).isNotNull();

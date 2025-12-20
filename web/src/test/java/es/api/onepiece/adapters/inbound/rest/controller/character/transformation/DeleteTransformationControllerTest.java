@@ -1,5 +1,6 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character.transformation;
-import es.api.onepiece.core.internal.usecases.character.transformation.DeleteTransformationUseCase;
+
+import es.api.onepiece.core.ports.inbound.character.transformation.DeleteTransformationPort;
 import es.api.onepiece.adapters.inbound.rest.controller.character.transformation.DeleteTransformationController;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -23,9 +24,9 @@ class DeleteTransformationControllerTest {
     @InjectMocks
     DeleteTransformationController deleteTransformationController;
 
-    /** The delete transformation use case. */
+    /** The delete transformation port. */
     @Mock
-    DeleteTransformationUseCase deleteTransformationUseCase;
+    DeleteTransformationPort deleteTransformationPort;
 
     /**
      * Test delete transformation v1 when called then returns no content.
@@ -40,7 +41,7 @@ class DeleteTransformationControllerTest {
         final var response = this.deleteTransformationController.deleteTransformationV1(id);
 
         // Then
-        verify(this.deleteTransformationUseCase, times(1)).execute(id);
+        verify(this.deleteTransformationPort, times(1)).execute(id);
 
         assertThat(response).isNotNull();
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);

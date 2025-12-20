@@ -2,7 +2,7 @@ package es.api.onepiece.adapters.inbound.rest.controller.fruit;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.fruit.FruitDtoMapper;
 import es.api.onepiece.core.internal.domain.fruit.Fruit;
-import es.api.onepiece.core.internal.usecases.fruit.UpdateFruitUseCase;
+import es.api.onepiece.core.ports.inbound.fruit.UpdateFruitPort;
 import es.api.onepiece.core.internal.vo.fruit.UpdateFruitVo;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -27,9 +27,9 @@ class PatchFruitControllerTest {
     @InjectMocks
     PatchFruitController patchFruitController;
 
-    /** The update fruit use case. */
+    /** The update fruit port. */
     @Mock
-    UpdateFruitUseCase updateFruitUseCase;
+    UpdateFruitPort updateFruitPort;
 
     /** The fruit dto mapper. */
     @Mock
@@ -50,14 +50,14 @@ class PatchFruitControllerTest {
 
         // When
         when(this.fruitDtoMapper.toUpdateFruitVo(id, updateFruitRequestDto)).thenReturn(updateFruitVo);
-        when(this.updateFruitUseCase.execute(updateFruitVo)).thenReturn(fruit);
+        when(this.updateFruitPort.execute(updateFruitVo)).thenReturn(fruit);
         when(this.fruitDtoMapper.toFruitDto(fruit)).thenReturn(fruitDto);
 
         final var response = this.patchFruitController.updateFruitV1(id, updateFruitRequestDto);
 
         // Then
         verify(this.fruitDtoMapper, times(1)).toUpdateFruitVo(id, updateFruitRequestDto);
-        verify(this.updateFruitUseCase, times(1)).execute(updateFruitVo);
+        verify(this.updateFruitPort, times(1)).execute(updateFruitVo);
         verify(this.fruitDtoMapper, times(1)).toFruitDto(fruit);
 
         assertThat(response).isNotNull();

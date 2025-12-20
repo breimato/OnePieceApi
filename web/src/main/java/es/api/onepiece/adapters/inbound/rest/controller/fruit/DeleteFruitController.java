@@ -1,6 +1,6 @@
 package es.api.onepiece.adapters.inbound.rest.controller.fruit;
 
-import es.api.onepiece.core.internal.usecases.fruit.DeleteFruitUseCase;
+import es.api.onepiece.core.ports.inbound.fruit.DeleteFruitPort;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.DeleteFruitV1Api;
@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class DeleteFruitController implements DeleteFruitV1Api {
 
-    /** The delete fruit use case. */
-    private final DeleteFruitUseCase deleteFruitUseCase;
+    /** The delete fruit port. */
+    private final DeleteFruitPort deleteFruitPort;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public ResponseEntity<Void> deleteFruitV1(@NotNull final Integer id) {
-        this.deleteFruitUseCase.execute(id);
+        this.deleteFruitPort.execute(id);
         return ResponseEntity.noContent().build();
     }
 }

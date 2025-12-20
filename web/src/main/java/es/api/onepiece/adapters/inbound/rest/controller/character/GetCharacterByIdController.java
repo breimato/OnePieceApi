@@ -1,7 +1,8 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterDtoMapper;
-import es.api.onepiece.core.internal.usecases.character.GetCharactersUseCase;
+import es.api.onepiece.core.ports.inbound.character.GetCharactersPort;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.GetCharacterByIdV1Api;
@@ -19,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class GetCharacterByIdController implements GetCharacterByIdV1Api {
 
-    /** The get characters use case. */
-    private final GetCharactersUseCase getCharactersUseCase;
+    /** The get characters port. */
+    private final GetCharactersPort getCharactersPort;
 
     /** The character dto mapper. */
     private final CharacterDtoMapper characterDtoMapper;
@@ -31,7 +32,7 @@ public class GetCharacterByIdController implements GetCharacterByIdV1Api {
     @Override
     public ResponseEntity<GetCharacterByIdV1ResponseDto> getCharacterByIdV1(@NotNull final Integer id) {
 
-        final var character = this.getCharactersUseCase.findById(id);
+        final var character = this.getCharactersPort.findById(id);
 
         final var characterDto = this.characterDtoMapper.toCharacterDto(character);
 

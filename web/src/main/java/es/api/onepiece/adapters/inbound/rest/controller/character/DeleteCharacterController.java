@@ -1,6 +1,6 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character;
 
-import es.api.onepiece.core.internal.usecases.character.DeleteCharacterUseCase;
+import es.api.onepiece.core.ports.inbound.character.DeleteCharacterPort;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.DeleteCharacterV1Api;
@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class DeleteCharacterController implements DeleteCharacterV1Api {
 
-    /** The delete character use case. */
-    private final DeleteCharacterUseCase deleteCharacterUseCase;
+    /** The delete character port. */
+    private final DeleteCharacterPort deleteCharacterPort;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public ResponseEntity<Void> deleteCharacterV1(@NotNull final Integer id) {
-        this.deleteCharacterUseCase.execute(id);
+        this.deleteCharacterPort.execute(id);
         return ResponseEntity.noContent().build();
     }
 }

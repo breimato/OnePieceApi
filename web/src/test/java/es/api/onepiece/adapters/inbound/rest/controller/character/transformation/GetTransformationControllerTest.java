@@ -3,7 +3,7 @@ package es.api.onepiece.adapters.inbound.rest.controller.character.transformatio
 import es.api.onepiece.adapters.inbound.rest.mapper.character.TransformationDtoMapper;
 import es.api.onepiece.adapters.inbound.rest.controller.character.transformation.GetTransformationController;
 import es.api.onepiece.core.internal.domain.character.Transformation;
-import es.api.onepiece.core.internal.usecases.character.transformation.GetTransformationsUseCase;
+import es.api.onepiece.core.ports.inbound.character.transformation.GetTransformationsPort;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,9 +26,9 @@ class GetTransformationControllerTest {
     @InjectMocks
     GetTransformationController getTransformationController;
 
-    /** The get transformations use case. */
+    /** The get transformations port. */
     @Mock
-    GetTransformationsUseCase getTransformationsUseCase;
+    GetTransformationsPort getTransformationsPort;
 
     /** The transformation dto mapper. */
     @Mock
@@ -45,13 +45,13 @@ class GetTransformationControllerTest {
         final var transformationsDto = Instancio.ofList(TransformationDto.class).size(3).create();
 
         // When
-        when(this.getTransformationsUseCase.findAll()).thenReturn(transformations);
+        when(this.getTransformationsPort.findAll()).thenReturn(transformations);
         when(this.transformationDtoMapper.toTransformationDtoList(transformations)).thenReturn(transformationsDto);
 
         final var response = this.getTransformationController.getTransformationsV1();
 
         // Then
-        verify(this.getTransformationsUseCase, times(1)).findAll();
+        verify(this.getTransformationsPort, times(1)).findAll();
         verify(this.transformationDtoMapper, times(1)).toTransformationDtoList(transformations);
 
         assertThat(response).isNotNull();

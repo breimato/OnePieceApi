@@ -1,7 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterDtoMapper;
-import es.api.onepiece.core.internal.usecases.character.GetCharactersUseCase;
+import es.api.onepiece.core.ports.inbound.character.GetCharactersPort;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.GetCharactersV1Api;
 import org.openapitools.model.GetCharactersV1ResponseDto;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class GetCharacterController implements GetCharactersV1Api {
 
-    /** The get characters use case. */
-    private final GetCharactersUseCase getCharactersUseCase;
+    /** The get characters port. */
+    private final GetCharactersPort getCharactersPort;
 
     /** The character dto mapper. */
     private final CharacterDtoMapper characterDtoMapper;
@@ -30,7 +30,7 @@ public class GetCharacterController implements GetCharactersV1Api {
     @Override
     public ResponseEntity<GetCharactersV1ResponseDto> getCharactersV1() {
 
-        final var characters = this.getCharactersUseCase.findAll();
+        final var characters = this.getCharactersPort.findAll();
 
         final var charactersDto = this.characterDtoMapper.fromSummaryToCharacterDtoList(characters);
 

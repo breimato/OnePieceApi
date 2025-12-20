@@ -1,7 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character.transformation;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.TransformationDtoMapper;
-import es.api.onepiece.core.internal.usecases.character.transformation.UpdateTransformationUseCase;
+import es.api.onepiece.core.ports.inbound.character.transformation.UpdateTransformationPort;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PatchTransformationController implements UpdateTransformationV1Api {
 
         /** The update transformation use case. */
-        private final UpdateTransformationUseCase updateTransformationUseCase;
+        private final UpdateTransformationPort updateTransformationPort;
 
         /** The transformation dto mapper. */
         private final TransformationDtoMapper transformationDtoMapper;
@@ -37,7 +37,7 @@ public class PatchTransformationController implements UpdateTransformationV1Api 
                 final var updateTransformationVo = this.transformationDtoMapper.toUpdateTransformationVo(id,
                                 updateTransformationRequestDto);
 
-                final var updatedTransformation = this.updateTransformationUseCase.execute(updateTransformationVo);
+                final var updatedTransformation = this.updateTransformationPort.execute(updateTransformationVo);
 
                 final var transformationDto = this.transformationDtoMapper.toTransformationDto(updatedTransformation);
 

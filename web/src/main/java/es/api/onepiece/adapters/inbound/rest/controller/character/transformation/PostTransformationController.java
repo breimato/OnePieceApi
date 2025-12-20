@@ -1,7 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character.transformation;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.TransformationDtoMapper;
-import es.api.onepiece.core.internal.usecases.character.transformation.CreateTransformationUseCase;
+import es.api.onepiece.core.ports.inbound.character.transformation.CreateTransformationPort;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.CreateTransformationV1Api;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PostTransformationController implements CreateTransformationV1Api {
 
         /** The create transformation use case. */
-        private final CreateTransformationUseCase createTransformationUseCase;
+        private final CreateTransformationPort createTransformationPort;
 
         /** The transformation dto mapper. */
         private final TransformationDtoMapper transformationDtoMapper;
@@ -36,7 +36,7 @@ public class PostTransformationController implements CreateTransformationV1Api {
                 final var createTransformationVo = this.transformationDtoMapper
                                 .toCreateTransformationVo(createTransformationRequestDto);
 
-                final var createdTransformation = this.createTransformationUseCase.execute(createTransformationVo);
+                final var createdTransformation = this.createTransformationPort.execute(createTransformationVo);
 
                 final var transformationDto = this.transformationDtoMapper.toTransformationDto(createdTransformation);
 

@@ -2,7 +2,7 @@ package es.api.onepiece.adapters.inbound.rest.controller.fruit;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.fruit.FruitDtoMapper;
 import es.api.onepiece.core.internal.domain.fruit.Fruit;
-import es.api.onepiece.core.internal.usecases.fruit.GetFruitsUseCase;
+import es.api.onepiece.core.ports.inbound.fruit.GetFruitsPort;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,9 +25,9 @@ class GetFruitByIdControllerTest {
     @InjectMocks
     GetFruitByIdController getFruitByIdController;
 
-    /** The get fruits use case. */
+    /** The get fruits port. */
     @Mock
-    GetFruitsUseCase getFruitsUseCase;
+    GetFruitsPort getFruitsPort;
 
     /** The fruit dto mapper. */
     @Mock
@@ -45,13 +45,13 @@ class GetFruitByIdControllerTest {
         final var fruitDto = Instancio.create(FruitDto.class);
 
         // When
-        when(this.getFruitsUseCase.findById(id)).thenReturn(fruit);
+        when(this.getFruitsPort.findById(id)).thenReturn(fruit);
         when(this.fruitDtoMapper.toFruitDto(fruit)).thenReturn(fruitDto);
 
         final var response = this.getFruitByIdController.getFruitByIdV1(id);
 
         // Then
-        verify(this.getFruitsUseCase, times(1)).findById(id);
+        verify(this.getFruitsPort, times(1)).findById(id);
         verify(this.fruitDtoMapper, times(1)).toFruitDto(fruit);
 
         assertThat(response).isNotNull();

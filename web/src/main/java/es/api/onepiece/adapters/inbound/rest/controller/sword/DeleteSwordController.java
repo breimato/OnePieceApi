@@ -1,6 +1,6 @@
 package es.api.onepiece.adapters.inbound.rest.controller.sword;
 
-import es.api.onepiece.core.internal.usecases.sword.DeleteSwordUseCase;
+import es.api.onepiece.core.ports.inbound.sword.DeleteSwordPort;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.DeleteSwordV1Api;
@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class DeleteSwordController implements DeleteSwordV1Api {
 
-    /** The delete sword use case. */
-    private final DeleteSwordUseCase deleteSwordUseCase;
+    /** The delete sword port. */
+    private final DeleteSwordPort deleteSwordPort;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public ResponseEntity<Void> deleteSwordV1(@NotNull final Integer id) {
-        this.deleteSwordUseCase.execute(id);
+        this.deleteSwordPort.execute(id);
         return ResponseEntity.noContent().build();
     }
 }

@@ -1,7 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.fruit;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.fruit.FruitDtoMapper;
-import es.api.onepiece.core.internal.usecases.fruit.CreateFruitUseCase;
+import es.api.onepiece.core.ports.inbound.fruit.CreateFruitPort;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.CreateFruitV1Api;
@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PostFruitController implements CreateFruitV1Api {
 
-    /** The create fruit use case. */
-    private final CreateFruitUseCase createFruitUseCase;
+    /** The create fruit port. */
+    private final CreateFruitPort createFruitPort;
 
     /** The fruit dto mapper. */
     private final FruitDtoMapper fruitDtoMapper;
@@ -35,7 +35,7 @@ public class PostFruitController implements CreateFruitV1Api {
 
         final var createFruitVo = this.fruitDtoMapper.toCreateFruitVo(createFruitRequestDto);
 
-        final var createdFruit = this.createFruitUseCase.execute(createFruitVo);
+        final var createdFruit = this.createFruitPort.execute(createFruitVo);
 
         final var fruitDto = this.fruitDtoMapper.toFruitDto(createdFruit);
 

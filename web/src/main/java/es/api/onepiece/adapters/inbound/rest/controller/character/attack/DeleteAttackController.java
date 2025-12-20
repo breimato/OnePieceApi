@@ -1,6 +1,6 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character.attack;
 
-import es.api.onepiece.core.internal.usecases.character.attack.DeleteAttackUseCase;
+import es.api.onepiece.core.ports.inbound.character.attack.DeleteAttackPort;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.DeleteAttackV1Api;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DeleteAttackController implements DeleteAttackV1Api {
 
     /** The delete attack use case. */
-    private final DeleteAttackUseCase deleteAttackUseCase;
+    private final DeleteAttackPort deleteAttackPort;
 
     /**
      * {@inheritDoc}
@@ -25,7 +25,7 @@ public class DeleteAttackController implements DeleteAttackV1Api {
     @Override
     public ResponseEntity<Void> deleteAttackV1(@NotNull final Integer id) {
 
-        this.deleteAttackUseCase.execute(id);
+        this.deleteAttackPort.execute(id);
 
         return ResponseEntity.noContent().build();
     }

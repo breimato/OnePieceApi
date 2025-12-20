@@ -1,7 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.sword;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.sword.SwordDtoMapper;
-import es.api.onepiece.core.internal.usecases.sword.UpdateSwordUseCase;
+import es.api.onepiece.core.ports.inbound.sword.UpdateSwordPort;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PatchSwordController implements UpdateSwordV1Api {
 
-    /** The update sword use case. */
-    private final UpdateSwordUseCase updateSwordUseCase;
+    /** The update sword port. */
+    private final UpdateSwordPort updateSwordPort;
 
     /** The sword dto mapper. */
     private final SwordDtoMapper swordDtoMapper;
@@ -36,7 +36,7 @@ public class PatchSwordController implements UpdateSwordV1Api {
 
         final var updateSwordVo = this.swordDtoMapper.toUpdateSwordVo(id, updateSwordRequestDto);
 
-        final var updatedSword = this.updateSwordUseCase.execute(updateSwordVo);
+        final var updatedSword = this.updateSwordPort.execute(updateSwordVo);
 
         final var swordDto = this.swordDtoMapper.toSwordDto(updatedSword);
 

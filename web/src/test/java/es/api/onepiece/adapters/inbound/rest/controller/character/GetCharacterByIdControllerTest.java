@@ -2,7 +2,7 @@ package es.api.onepiece.adapters.inbound.rest.controller.character;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterDtoMapper;
 import es.api.onepiece.core.internal.domain.character.Character;
-import es.api.onepiece.core.internal.usecases.character.GetCharactersUseCase;
+import es.api.onepiece.core.ports.inbound.character.GetCharactersPort;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,60 +26,60 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(MockitoExtension.class)
 class GetCharacterByIdControllerTest {
 
-    /** The Constant URL. */
-    static final String URL = "/api/v1/characters/{id}";
+        /** The Constant URL. */
+        static final String URL = "/api/v1/characters/{id}";
 
-    /** The mock mvc. */
-    MockMvc mockMvc;
+        /** The mock mvc. */
+        MockMvc mockMvc;
 
-    /** The get character by id controller. */
-    @InjectMocks
-    GetCharacterByIdController getCharacterByIdController;
+        /** The get character by id controller. */
+        @InjectMocks
+        GetCharacterByIdController getCharacterByIdController;
 
-    /** The get characters use case. */
-    @Mock
-    GetCharactersUseCase getCharactersUseCase;
+        /** The get characters port. */
+        @Mock
+        GetCharactersPort getCharactersPort;
 
-    /** The character dto mapper. */
-    @Mock
-    CharacterDtoMapper characterDtoMapper;
+        /** The character dto mapper. */
+        @Mock
+        CharacterDtoMapper characterDtoMapper;
 
-    /**
-     * Sets the up.
-     */
-    @BeforeEach
-    void setUp() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(this.getCharacterByIdController).build();
-    }
+        /**
+         * Sets the up.
+         */
+        @BeforeEach
+        void setUp() {
+                this.mockMvc = MockMvcBuilders.standaloneSetup(this.getCharacterByIdController).build();
+        }
 
-    /**
-     * Test get characters when valid params then returns ok.
-     *
-     * @throws Exception the exception
-     */
-    @Test
-    void testGetCharactersById_whenValidParams_thenReturnsOk() throws Exception {
+        /**
+         * Test get characters when valid params then returns ok.
+         *
+         * @throws Exception the exception
+         */
+        @Test
+        void testGetCharactersById_whenValidParams_thenReturnsOk() throws Exception {
 
-        // Given
-        final var characterId = Instancio.create(Integer.class);
-        final var character = Instancio.create(Character.class);
-        final var characterDto = Instancio.create(CharacterDto.class);
+                // Given
+                final var characterId = Instancio.create(Integer.class);
+                final var character = Instancio.create(Character.class);
+                final var characterDto = Instancio.create(CharacterDto.class);
 
-        // When
-        when(this.getCharactersUseCase.findById(characterId))
-                .thenReturn(character);
-        when(this.characterDtoMapper.toCharacterDto(character))
-                .thenReturn(characterDto);
+                // When
+                when(this.getCharactersPort.findById(characterId))
+                                .thenReturn(character);
+                when(this.characterDtoMapper.toCharacterDto(character))
+                                .thenReturn(characterDto);
 
-        final var response = this.mockMvc.perform(get(URL, characterId)
-                .accept(MediaType.APPLICATION_JSON));
+                final var response = this.mockMvc.perform(get(URL, characterId)
+                                .accept(MediaType.APPLICATION_JSON));
 
-        // Then
-        verify(this.getCharactersUseCase, times(1)).findById(characterId);
-        verify(this.characterDtoMapper, times(1)).toCharacterDto(character);
+                // Then
+                verify(this.getCharactersPort, times(1)).findById(characterId);
+                verify(this.characterDtoMapper, times(1)).toCharacterDto(character);
 
-        response
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
-    }
+                response
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        }
 }

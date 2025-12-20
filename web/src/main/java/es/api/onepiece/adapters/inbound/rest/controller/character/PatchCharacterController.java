@@ -1,7 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterDtoMapper;
-import es.api.onepiece.core.internal.usecases.character.UpdateCharacterUseCase;
+import es.api.onepiece.core.ports.inbound.character.UpdateCharacterPort;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PatchCharacterController implements UpdateCharacterV1Api {
 
-    /** The update character use case. */
-    private final UpdateCharacterUseCase updateCharacterUseCase;
+    /** The update character port. */
+    private final UpdateCharacterPort updateCharacterPort;
 
     /** The character dto mapper. */
     private final CharacterDtoMapper characterDtoMapper;
@@ -36,7 +36,7 @@ public class PatchCharacterController implements UpdateCharacterV1Api {
 
         final var updateCharacterVo = this.characterDtoMapper.toUpdateCharacterVo(id, updateCharacterRequestDto);
 
-        final var updatedCharacter = this.updateCharacterUseCase.execute(updateCharacterVo);
+        final var updatedCharacter = this.updateCharacterPort.execute(updateCharacterVo);
 
         final var characterDto = this.characterDtoMapper.toCharacterDto(updatedCharacter);
 

@@ -1,7 +1,6 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character.attack;
 
-import es.api.onepiece.adapters.inbound.rest.controller.character.attack.DeleteAttackController;
-import es.api.onepiece.core.internal.usecases.character.attack.DeleteAttackUseCase;
+import es.api.onepiece.core.ports.inbound.character.attack.DeleteAttackPort;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,9 +22,9 @@ class DeleteAttackControllerTest {
     @InjectMocks
     DeleteAttackController deleteAttackController;
 
-    /** The delete attack use case. */
+    /** The delete attack port. */
     @Mock
-    DeleteAttackUseCase deleteAttackUseCase;
+    DeleteAttackPort deleteAttackPort;
 
     /**
      * Test delete attack v1 when called then returns no content.
@@ -37,12 +36,12 @@ class DeleteAttackControllerTest {
         final var id = Instancio.create(Integer.class);
 
         // When
-        doNothing().when(this.deleteAttackUseCase).execute(id);
+        doNothing().when(this.deleteAttackPort).execute(id);
 
         final var response = this.deleteAttackController.deleteAttackV1(id);
 
         // Then
-        verify(this.deleteAttackUseCase, times(1)).execute(id);
+        verify(this.deleteAttackPort, times(1)).execute(id);
 
         assertThat(response).isNotNull();
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);

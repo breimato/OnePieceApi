@@ -1,7 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.fruit;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.fruit.FruitDtoMapper;
-import es.api.onepiece.core.internal.usecases.fruit.GetFruitsUseCase;
+import es.api.onepiece.core.ports.inbound.fruit.GetFruitsPort;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.GetFruitByIdV1Api;
@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class GetFruitByIdController implements GetFruitByIdV1Api {
 
-    /** The get fruits use case. */
-    private final GetFruitsUseCase getFruitsUseCase;
+    /** The get fruits port. */
+    private final GetFruitsPort getFruitsPort;
 
     /** The fruit dto mapper. */
     private final FruitDtoMapper fruitDtoMapper;
@@ -31,7 +31,7 @@ public class GetFruitByIdController implements GetFruitByIdV1Api {
     @Override
     public ResponseEntity<GetFruitByIdV1ResponseDto> getFruitByIdV1(@NotNull final Integer id) {
 
-        final var fruit = this.getFruitsUseCase.findById(id);
+        final var fruit = this.getFruitsPort.findById(id);
 
         final var fruitDto = this.fruitDtoMapper.toFruitDto(fruit);
 

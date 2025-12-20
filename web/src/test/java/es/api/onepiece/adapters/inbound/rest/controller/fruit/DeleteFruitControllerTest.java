@@ -1,6 +1,6 @@
 package es.api.onepiece.adapters.inbound.rest.controller.fruit;
 
-import es.api.onepiece.core.internal.usecases.fruit.DeleteFruitUseCase;
+import es.api.onepiece.core.ports.inbound.fruit.DeleteFruitPort;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,9 +23,9 @@ class DeleteFruitControllerTest {
     @InjectMocks
     DeleteFruitController deleteFruitController;
 
-    /** The delete fruit use case. */
+    /** The delete fruit port. */
     @Mock
-    DeleteFruitUseCase deleteFruitUseCase;
+    DeleteFruitPort deleteFruitPort;
 
     /**
      * Test delete fruit v1 when called then returns no content.
@@ -40,7 +40,7 @@ class DeleteFruitControllerTest {
         final var response = this.deleteFruitController.deleteFruitV1(id);
 
         // Then
-        verify(this.deleteFruitUseCase, times(1)).execute(id);
+        verify(this.deleteFruitPort, times(1)).execute(id);
 
         assertThat(response).isNotNull();
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);

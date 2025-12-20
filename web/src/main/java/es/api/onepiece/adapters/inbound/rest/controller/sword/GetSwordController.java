@@ -1,7 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.sword;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.sword.SwordDtoMapper;
-import es.api.onepiece.core.internal.usecases.sword.GetSwordsUseCase;
+import es.api.onepiece.core.ports.inbound.sword.GetSwordsPort;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.GetSwordsV1Api;
 import org.openapitools.model.GetSwordsV1ResponseDto;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class GetSwordController implements GetSwordsV1Api {
 
-    /** The get swords use case. */
-    private final GetSwordsUseCase getSwordsUseCase;
+    /** The get swords port. */
+    private final GetSwordsPort getSwordsPort;
 
     /** The sword dto mapper. */
     private final SwordDtoMapper swordDtoMapper;
@@ -30,7 +30,7 @@ public class GetSwordController implements GetSwordsV1Api {
     @Override
     public ResponseEntity<GetSwordsV1ResponseDto> getSwordsV1() {
 
-        final var swords = this.getSwordsUseCase.findAll();
+        final var swords = this.getSwordsPort.findAll();
 
         final var swordsDto = this.swordDtoMapper.toSwordDtoList(swords);
 

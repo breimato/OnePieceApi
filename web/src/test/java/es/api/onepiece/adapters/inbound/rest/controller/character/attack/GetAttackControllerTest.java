@@ -2,7 +2,7 @@ package es.api.onepiece.adapters.inbound.rest.controller.character.attack;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.AttackDtoMapper;
 import es.api.onepiece.core.internal.domain.character.Attack;
-import es.api.onepiece.core.internal.usecases.character.attack.GetAttacksUseCase;
+import es.api.onepiece.core.ports.inbound.character.attack.GetAttacksPort;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,9 +25,9 @@ class GetAttackControllerTest {
     @InjectMocks
     GetAttackController getAttackController;
 
-    /** The get attacks use case. */
+    /** The get attacks port. */
     @Mock
-    GetAttacksUseCase getAttacksUseCase;
+    GetAttacksPort getAttacksPort;
 
     /** The attack dto mapper. */
     @Mock
@@ -44,13 +44,13 @@ class GetAttackControllerTest {
         final var attacksDto = Instancio.ofList(AttackDto.class).size(3).create();
 
         // When
-        when(this.getAttacksUseCase.findAll()).thenReturn(attacks);
+        when(this.getAttacksPort.findAll()).thenReturn(attacks);
         when(this.attackDtoMapper.toAttackDtoList(attacks)).thenReturn(attacksDto);
 
         final var response = this.getAttackController.getAttacksV1();
 
         // Then
-        verify(this.getAttacksUseCase, times(1)).findAll();
+        verify(this.getAttacksPort, times(1)).findAll();
         verify(this.attackDtoMapper, times(1)).toAttackDtoList(attacks);
 
         assertThat(response).isNotNull();

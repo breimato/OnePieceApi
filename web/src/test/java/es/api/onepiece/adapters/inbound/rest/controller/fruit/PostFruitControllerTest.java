@@ -2,7 +2,7 @@ package es.api.onepiece.adapters.inbound.rest.controller.fruit;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.fruit.FruitDtoMapper;
 import es.api.onepiece.core.internal.domain.fruit.Fruit;
-import es.api.onepiece.core.internal.usecases.fruit.CreateFruitUseCase;
+import es.api.onepiece.core.ports.inbound.fruit.CreateFruitPort;
 import es.api.onepiece.core.internal.vo.fruit.CreateFruitVo;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -27,9 +27,9 @@ class PostFruitControllerTest {
     @InjectMocks
     PostFruitController postFruitController;
 
-    /** The create fruit use case. */
+    /** The create fruit port. */
     @Mock
-    CreateFruitUseCase createFruitUseCase;
+    CreateFruitPort createFruitPort;
 
     /** The fruit dto mapper. */
     @Mock
@@ -49,14 +49,14 @@ class PostFruitControllerTest {
 
         // When
         when(this.fruitDtoMapper.toCreateFruitVo(createFruitRequestDto)).thenReturn(createFruitVo);
-        when(this.createFruitUseCase.execute(createFruitVo)).thenReturn(fruit);
+        when(this.createFruitPort.execute(createFruitVo)).thenReturn(fruit);
         when(this.fruitDtoMapper.toFruitDto(fruit)).thenReturn(fruitDto);
 
         final var response = this.postFruitController.createFruitV1(createFruitRequestDto);
 
         // Then
         verify(this.fruitDtoMapper, times(1)).toCreateFruitVo(createFruitRequestDto);
-        verify(this.createFruitUseCase, times(1)).execute(createFruitVo);
+        verify(this.createFruitPort, times(1)).execute(createFruitVo);
         verify(this.fruitDtoMapper, times(1)).toFruitDto(fruit);
 
         assertThat(response).isNotNull();

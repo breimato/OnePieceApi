@@ -1,7 +1,8 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character.transformation;
+
 import es.api.onepiece.adapters.inbound.rest.mapper.character.TransformationDtoMapper;
 import es.api.onepiece.core.internal.domain.character.Transformation;
-import es.api.onepiece.core.internal.usecases.character.transformation.GetTransformationsUseCase;
+import es.api.onepiece.core.ports.inbound.character.transformation.GetTransformationsPort;
 import es.api.onepiece.adapters.inbound.rest.controller.character.transformation.GetTransformationByIdController;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -25,9 +26,9 @@ class GetTransformationByIdControllerTest {
     @InjectMocks
     GetTransformationByIdController getTransformationByIdController;
 
-    /** The get transformations use case. */
+    /** The get transformations port. */
     @Mock
-    GetTransformationsUseCase getTransformationsUseCase;
+    GetTransformationsPort getTransformationsPort;
 
     /** The transformation dto mapper. */
     @Mock
@@ -45,13 +46,13 @@ class GetTransformationByIdControllerTest {
         final var transformationDto = Instancio.create(TransformationDto.class);
 
         // When
-        when(this.getTransformationsUseCase.findById(id)).thenReturn(transformation);
+        when(this.getTransformationsPort.findById(id)).thenReturn(transformation);
         when(this.transformationDtoMapper.toTransformationDto(transformation)).thenReturn(transformationDto);
 
         final var response = this.getTransformationByIdController.getTransformationByIdV1(id);
 
         // Then
-        verify(this.getTransformationsUseCase, times(1)).findById(id);
+        verify(this.getTransformationsPort, times(1)).findById(id);
         verify(this.transformationDtoMapper, times(1)).toTransformationDto(transformation);
 
         assertThat(response).isNotNull();

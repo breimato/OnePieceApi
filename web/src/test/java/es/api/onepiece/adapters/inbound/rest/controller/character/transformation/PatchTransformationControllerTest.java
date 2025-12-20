@@ -2,7 +2,7 @@ package es.api.onepiece.adapters.inbound.rest.controller.character.transformatio
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.TransformationDtoMapper;
 import es.api.onepiece.core.internal.domain.character.Transformation;
-import es.api.onepiece.core.internal.usecases.character.transformation.UpdateTransformationUseCase;
+import es.api.onepiece.core.ports.inbound.character.transformation.UpdateTransformationPort;
 import es.api.onepiece.core.internal.vo.character.transformation.UpdateTransformationVo;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -27,9 +27,9 @@ class PatchTransformationControllerTest {
     @InjectMocks
     PatchTransformationController patchTransformationController;
 
-    /** The update transformation use case. */
+    /** The update transformation port. */
     @Mock
-    UpdateTransformationUseCase updateTransformationUseCase;
+    UpdateTransformationPort updateTransformationPort;
 
     /** The transformation dto mapper. */
     @Mock
@@ -51,7 +51,7 @@ class PatchTransformationControllerTest {
         // When
         when(this.transformationDtoMapper.toUpdateTransformationVo(id, updateTransformationRequestDto))
                 .thenReturn(updateTransformationVo);
-        when(this.updateTransformationUseCase.execute(updateTransformationVo)).thenReturn(transformation);
+        when(this.updateTransformationPort.execute(updateTransformationVo)).thenReturn(transformation);
         when(this.transformationDtoMapper.toTransformationDto(transformation)).thenReturn(transformationDto);
 
         final var response = this.patchTransformationController.updateTransformationV1(id,
@@ -59,7 +59,7 @@ class PatchTransformationControllerTest {
 
         // Then
         verify(this.transformationDtoMapper, times(1)).toUpdateTransformationVo(id, updateTransformationRequestDto);
-        verify(this.updateTransformationUseCase, times(1)).execute(updateTransformationVo);
+        verify(this.updateTransformationPort, times(1)).execute(updateTransformationVo);
         verify(this.transformationDtoMapper, times(1)).toTransformationDto(transformation);
 
         assertThat(response).isNotNull();

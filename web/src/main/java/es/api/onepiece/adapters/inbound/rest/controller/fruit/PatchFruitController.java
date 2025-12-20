@@ -1,7 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.fruit;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.fruit.FruitDtoMapper;
-import es.api.onepiece.core.internal.usecases.fruit.UpdateFruitUseCase;
+import es.api.onepiece.core.ports.inbound.fruit.UpdateFruitPort;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PatchFruitController implements UpdateFruitV1Api {
 
-    /** The update fruit use case. */
-    private final UpdateFruitUseCase updateFruitUseCase;
+    /** The update fruit port. */
+    private final UpdateFruitPort updateFruitPort;
 
     /** The fruit dto mapper. */
     private final FruitDtoMapper fruitDtoMapper;
@@ -36,7 +36,7 @@ public class PatchFruitController implements UpdateFruitV1Api {
 
         final var updateFruitVo = this.fruitDtoMapper.toUpdateFruitVo(id, updateFruitRequestDto);
 
-        final var updatedFruit = this.updateFruitUseCase.execute(updateFruitVo);
+        final var updatedFruit = this.updateFruitPort.execute(updateFruitVo);
 
         final var fruitDto = this.fruitDtoMapper.toFruitDto(updatedFruit);
 

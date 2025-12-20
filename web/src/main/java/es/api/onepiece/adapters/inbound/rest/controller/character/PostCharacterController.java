@@ -1,7 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.CharacterDtoMapper;
-import es.api.onepiece.core.internal.usecases.character.CreateCharacterUseCase;
+import es.api.onepiece.core.ports.inbound.character.CreateCharacterPort;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.CreateCharacterV1Api;
 import org.openapitools.model.CreateCharacterRequestDto;
@@ -20,8 +20,8 @@ import jakarta.validation.Valid;
 @RequiredArgsConstructor
 public class PostCharacterController implements CreateCharacterV1Api {
 
-    /** The create character use case. */
-    private final CreateCharacterUseCase createCharacterUseCase;
+    /** The create character port. */
+    private final CreateCharacterPort createCharacterPort;
 
     /** The character dto mapper. */
     private final CharacterDtoMapper characterDtoMapper;
@@ -35,7 +35,7 @@ public class PostCharacterController implements CreateCharacterV1Api {
 
         final var createCharacterVo = this.characterDtoMapper.toCreateCharacterVo(createCharacterRequestDto);
 
-        final var createdCharacter = this.createCharacterUseCase.execute(createCharacterVo);
+        final var createdCharacter = this.createCharacterPort.execute(createCharacterVo);
 
         final var characterDto = this.characterDtoMapper.toCharacterDto(createdCharacter);
 

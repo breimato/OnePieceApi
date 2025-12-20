@@ -2,7 +2,7 @@ package es.api.onepiece.adapters.inbound.rest.controller.character.attack;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.AttackDtoMapper;
 import es.api.onepiece.core.internal.domain.character.Attack;
-import es.api.onepiece.core.internal.usecases.character.attack.UpdateAttackUseCase;
+import es.api.onepiece.core.ports.inbound.character.attack.UpdateAttackPort;
 import es.api.onepiece.core.internal.vo.character.attack.UpdateAttackVo;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
@@ -27,9 +27,9 @@ class PatchAttackControllerTest {
     @InjectMocks
     PatchAttackController patchAttackController;
 
-    /** The update attack use case. */
+    /** The update attack port. */
     @Mock
-    UpdateAttackUseCase updateAttackUseCase;
+    UpdateAttackPort updateAttackPort;
 
     /** The attack dto mapper. */
     @Mock
@@ -50,14 +50,14 @@ class PatchAttackControllerTest {
 
         // When
         when(this.attackDtoMapper.toUpdateAttackVo(id, updateAttackRequestDto)).thenReturn(updateAttackVo);
-        when(this.updateAttackUseCase.execute(updateAttackVo)).thenReturn(attack);
+        when(this.updateAttackPort.execute(updateAttackVo)).thenReturn(attack);
         when(this.attackDtoMapper.toAttackDto(attack)).thenReturn(attackDto);
 
         final var response = this.patchAttackController.updateAttackV1(id, updateAttackRequestDto);
 
         // Then
         verify(this.attackDtoMapper, times(1)).toUpdateAttackVo(id, updateAttackRequestDto);
-        verify(this.updateAttackUseCase, times(1)).execute(updateAttackVo);
+        verify(this.updateAttackPort, times(1)).execute(updateAttackVo);
         verify(this.attackDtoMapper, times(1)).toAttackDto(attack);
 
         assertThat(response).isNotNull();

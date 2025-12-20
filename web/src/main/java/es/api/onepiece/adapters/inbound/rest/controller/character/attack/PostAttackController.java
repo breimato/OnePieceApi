@@ -1,7 +1,7 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character.attack;
 
 import es.api.onepiece.adapters.inbound.rest.mapper.character.AttackDtoMapper;
-import es.api.onepiece.core.internal.usecases.character.attack.CreateAttackUseCase;
+import es.api.onepiece.core.ports.inbound.character.attack.CreateAttackPort;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.CreateAttackV1Api;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PostAttackController implements CreateAttackV1Api {
 
     /** The create attack use case. */
-    private final CreateAttackUseCase createAttackUseCase;
+    private final CreateAttackPort createAttackPort;
 
     /** The attack dto mapper. */
     private final AttackDtoMapper attackDtoMapper;
@@ -35,7 +35,7 @@ public class PostAttackController implements CreateAttackV1Api {
 
         final var createAttackVo = this.attackDtoMapper.toCreateAttackVo(createAttackRequestDto);
 
-        final var createdAttack = this.createAttackUseCase.execute(createAttackVo);
+        final var createdAttack = this.createAttackPort.execute(createAttackVo);
 
         final var attackDto = this.attackDtoMapper.toAttackDto(createdAttack);
 

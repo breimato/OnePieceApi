@@ -1,6 +1,6 @@
 package es.api.onepiece.adapters.inbound.rest.controller.character.transformation;
 
-import es.api.onepiece.core.internal.usecases.character.transformation.DeleteTransformationUseCase;
+import es.api.onepiece.core.ports.inbound.character.transformation.DeleteTransformationPort;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.api.DeleteTransformationV1Api;
@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class DeleteTransformationController implements DeleteTransformationV1Api {
 
     /** The delete transformation use case. */
-    private final DeleteTransformationUseCase deleteTransformationUseCase;
+    private final DeleteTransformationPort deleteTransformationPort;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public ResponseEntity<Void> deleteTransformationV1(@NotNull final Integer id) {
-        this.deleteTransformationUseCase.execute(id);
+        this.deleteTransformationPort.execute(id);
         return ResponseEntity.noContent().build();
     }
 }
